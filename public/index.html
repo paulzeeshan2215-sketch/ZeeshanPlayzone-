@@ -1,336 +1,647 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIP Casino Arena</title>
+    <title>ROYAL COIN CASINO - Official Gaming Platform</title>
     <style>
         :root {
             --gold: #ffd700;
-            --dark-bg: #0f0c20;
-            --card-bg: #1a1638;
-            --accent: #ff2a5f;
+            --gold-bright: #fff066;
+            --dark-bg: #0b0914;
+            --card-bg: #161228;
+            --accent-red: #ff2a5f;
+            --accent-green: #00e676;
+            --purple-glow: rgba(138, 43, 226, 0.4);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            user-select: none;
         }
 
         body {
             background-color: var(--dark-bg);
-            color: #fff;
+            color: #ffffff;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            background-image: radial-gradient(circle at 50% 0%, #1e133a 0%, var(--dark-bg) 70%);
         }
 
-        /* Header & Wallet Section */
+        /* HEADER & WALLET BAR */
         header {
-            background: linear-gradient(135deg, #110d29, #281545);
-            padding: 15px 30px;
+            background: rgba(15, 12, 28, 0.95);
+            padding: 18px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid var(--gold);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.8);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
         }
 
-        .brand {
-            font-size: 24px;
-            font-weight: bold;
+        .logo {
+            font-size: 26px;
+            font-weight: 900;
             color: var(--gold);
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-        }
-
-        .wallet-container {
+            letter-spacing: 2px;
+            text-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
         }
 
-        .wallet-box {
-            background: rgba(255, 215, 0, 0.1);
+        .wallet-panel {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .coin-balance {
+            background: linear-gradient(145deg, #1f1938, #2a224a);
+            border: 2px solid var(--gold);
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--gold-bright);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .audio-toggle {
+            background: #251d42;
             border: 1px solid var(--gold);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-weight: bold;
             color: var(--gold);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .audio-btn {
-            background: var(--accent);
-            border: none;
-            color: white;
-            padding: 8px 12px;
+            padding: 10px 14px;
             border-radius: 50%;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 18px;
+            transition: 0.3s;
         }
 
-        /* Main Container */
+        .audio-toggle:hover {
+            background: var(--gold);
+            color: #000;
+        }
+
+        /* MAIN HERO & GRID */
         .container {
-            max-width: 1200px;
-            margin: 30px auto;
+            max-width: 1300px;
+            margin: 40px auto;
             padding: 0 20px;
             flex: 1;
         }
 
-        .section-title {
-            font-size: 22px;
-            margin-bottom: 20px;
-            color: #fff;
-            border-left: 4px solid var(--accent);
-            padding-left: 10px;
+        .hero-banner {
+            background: linear-gradient(90deg, #280f36, #120c24);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        /* Game Grid */
+        .hero-text h1 {
+            font-size: 32px;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .hero-text p {
+            color: #b0a8d1;
+            font-size: 16px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 25px;
+            color: #fff;
+            border-left: 5px solid var(--accent-red);
+            padding-left: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
         .game-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 25px;
         }
 
         .game-card {
             background: var(--card-bg);
-            border-radius: 12px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
 
         .game-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(255, 42, 95, 0.3);
-            border-color: var(--accent);
+            transform: translateY(-8px);
+            border-color: var(--gold);
+            box-shadow: 0 12px 30px var(--purple-glow);
         }
 
-        .game-info {
+        .card-banner {
+            height: 140px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
             padding: 15px;
         }
 
-        .game-title {
-            font-size: 16px;
-            font-weight: bold;
+        .badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--accent-red);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 12px;
+            text-transform: uppercase;
+        }
+
+        .card-details {
+            padding: 20px;
+        }
+
+        .game-name {
+            font-size: 18px;
+            font-weight: 800;
+            color: #fff;
             margin-bottom: 5px;
         }
 
         .game-provider {
-            font-size: 12px;
-            color: #aaa;
-            margin-bottom: 12px;
+            font-size: 13px;
+            color: #8a81ab;
+            margin-bottom: 15px;
         }
 
-        .bet-info {
-            font-size: 12px;
-            color: var(--gold);
-            margin-bottom: 12px;
-        }
-
-        .play-btn {
+        .btn-play {
             width: 100%;
-            padding: 10px;
-            background: linear-gradient(45deg, #ff2a5f, #ff7e40);
+            padding: 12px;
+            background: linear-gradient(135deg, #ffd700, #ffaa00);
             border: none;
-            color: white;
-            font-weight: bold;
-            border-radius: 6px;
+            color: #000;
+            font-weight: 900;
+            font-size: 14px;
+            border-radius: 10px;
             cursor: pointer;
-            transition: opacity 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.2s;
         }
 
-        .play-btn:hover {
-            opacity: 0.9;
+        .btn-play:hover {
+            filter: brightness(1.15);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
         }
 
-        /* Modal / Game Viewport */
-        .modal {
+        /* MODAL GAME VIEWPORT */
+        .game-modal {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.9);
+            background: rgba(5, 3, 10, 0.95);
             z-index: 1000;
-            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(8px);
         }
 
-        .modal-header {
-            background: #110d29;
-            padding: 10px 20px;
+        .modal-content {
+            background: #15102a;
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 800px;
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 0 50px rgba(0,0,0,0.9);
+            text-align: center;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: var(--accent-red);
+            border: none;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 8px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        /* GAME ENGINES CSS */
+        .game-screen {
+            background: #090714;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+            border: 1px solid rgba(255,255,255,0.1);
+            min-height: 250px;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
         }
 
-        .close-btn {
-            background: var(--accent);
-            color: white;
-            border: none;
-            padding: 5px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
+        .slot-reels {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
         }
 
-        .iframe-container {
-            flex: 1;
-            width: 100%;
-            height: 100%;
-            position: relative;
+        .reel {
+            width: 80px;
+            height: 100px;
+            background: #1e1738;
+            border: 2px solid var(--gold);
+            border-radius: 10px;
+            font-size: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
         }
 
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
+        .bet-controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 15px;
         }
 
-        .fallback-notice {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0,0,0,0.8);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 12px;
-            color: #aaa;
-        }
-
-        .fallback-notice a {
+        .bet-input {
+            background: #201a3a;
+            border: 1px solid var(--gold);
             color: var(--gold);
-            text-decoration: underline;
+            padding: 10px;
+            border-radius: 8px;
+            width: 100px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .action-btn {
+            background: var(--accent-green);
+            color: #000;
+            font-size: 16px;
+            font-weight: 900;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .action-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .aviator-display {
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--accent-red);
+            text-shadow: 0 0 20px rgba(255, 42, 95, 0.6);
         }
     </style>
 </head>
 <body>
 
-    <!-- Ambient Audio -->
-    <audio id="bg-music" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-    </audio>
+    <!-- Audio Elements -->
+    <audio id="bg-audio" loop src="https://assets.mixkit.co/music/preview/mixkit-tech-house-vibes-130.mp3"></audio>
 
     <header>
-        <div class="brand">My Casino Hub</div>
-        <div class="wallet-container">
-            <button class="audio-btn" id="audio-toggle" onclick="toggleAudio()">🎵</button>
-            <div class="wallet-box">
-                🪙 कॉइन्स: <span id="user-coins">10,000</span>
+        <div class="logo">
+            <span>🎰</span> ROYAL COIN CASINO
+        </div>
+        <div class="wallet-panel">
+            <button class="audio-toggle" id="audio-btn" onclick="toggleAudio()">🎵</button>
+            <div class="coin-balance">
+                🪙 COINS: <span id="balance-display">10,000</span>
             </div>
         </div>
     </header>
 
     <div class="container">
-        <h2 class="section-title">प्रीमियम स्लॉट्स और कैसिनो गेम्स</h2>
-        <div class="game-grid" id="game-grid">
-            <!-- Dynamic Game Cards Inserted Here -->
+        <div class="hero-banner">
+            <div class="hero-text">
+                <h1>Welcome to Your Official Casino Engine</h1>
+                <p>Play real interactive slot machines and crash games directly using your internal coins.</p>
+            </div>
+        </div>
+
+        <h2 class="section-title">Exclusive Casino Games</h2>
+
+        <div class="game-grid">
+            <!-- Game 1 -->
+            <div class="game-card">
+                <div class="card-banner" style="background-image: linear-gradient(to top, var(--card-bg), transparent), url('https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=400');">
+                    <span class="badge">HOT SLOT</span>
+                </div>
+                <div class="card-details">
+                    <div class="game-name">Book of Dead</div>
+                    <div class="game-provider">Play'n GO Style</div>
+                    <button class="btn-play" onclick="openSlotGame('Book of Dead', ['📖', '👑', '🗿', '💎', '🏺'])">PLAY NOW</button>
+                </div>
+            </div>
+
+            <!-- Game 2 -->
+            <div class="game-card">
+                <div class="card-banner" style="background-image: linear-gradient(to top, var(--card-bg), transparent), url('https://images.unsplash.com/photo-1511193311914-0346f16efe90?w=400');">
+                    <span class="badge">POPULAR</span>
+                </div>
+                <div class="card-details">
+                    <div class="game-name">Legacy of Dead</div>
+                    <div class="game-provider">Play'n GO Style</div>
+                    <button class="btn-play" onclick="openSlotGame('Legacy of Dead', ['🦅', 'Anubis', '🔱', '⚱️', '👑'])">PLAY NOW</button>
+                </div>
+            </div>
+
+            <!-- Game 3 -->
+            <div class="game-card">
+                <div class="card-banner" style="background-image: linear-gradient(to top, var(--card-bg), transparent), url('https://images.unsplash.com/photo-1606167668584-78701c57f13d?w=400');">
+                    <span class="badge">CRASH GAME</span>
+                </div>
+                <div class="card-details">
+                    <div class="game-name">Aviator</div>
+                    <div class="game-provider">Spribe Style</div>
+                    <button class="btn-play" onclick="openAviatorGame()">PLAY NOW</button>
+                </div>
+            </div>
+
+            <!-- Game 4 -->
+            <div class="game-card">
+                <div class="card-banner" style="background-image: linear-gradient(to top, var(--card-bg), transparent), url('https://images.unsplash.com/photo-1596838132731-3301c3fd431b?w=400');">
+                    <span class="badge">CLASSIC 777</span>
+                </div>
+                <div class="card-details">
+                    <div class="game-name">Crazy 777</div>
+                    <div class="game-provider">JILI Style</div>
+                    <button class="btn-play" onclick="openSlotGame('Crazy 777', ['7️⃣', '🔔', '🍒', '🍋', '💎'])">PLAY NOW</button>
+                </div>
+            </div>
+
+            <!-- Game 5 -->
+            <div class="game-card">
+                <div class="card-banner" style="background-image: linear-gradient(to top, var(--card-bg), transparent), url('https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=400');">
+                    <span class="badge">HIGH MULTIPLIER</span>
+                </div>
+                <div class="card-details">
+                    <div class="game-name">Money Coming</div>
+                    <div class="game-provider">JILI Style</div>
+                    <button class="btn-play" onclick="openSlotGame('Money Coming', ['💵', '💰', '💳', '🪙', '💎'])">PLAY NOW</button>
+                </div>
+            </div>
+
+            <!-- Game 6 -->
+            <div class="game-card">
+                <div class="card-banner" style="background-image: linear-gradient(to top, var(--card-bg), transparent), url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400');">
+                    <span class="badge">MEGAWAYS</span>
+                </div>
+                <div class="card-details">
+                    <div class="game-name">777 Streak Megacharged</div>
+                    <div class="game-provider">Octoplay Style</div>
+                    <button class="btn-play" onclick="openSlotGame('777 Streak Megacharged', ['⚡', '7️⃣', '💥', '🔥', '💎'])">PLAY NOW</button>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Game View Modal -->
-    <div class="modal" id="game-modal">
-        <div class="modal-header">
-            <span id="modal-game-title" style="font-weight: bold; color: var(--gold);">गेम लोड हो रहा है...</span>
-            <button class="close-btn" onclick="closeGame()">बंद करें ✖</button>
-        </div>
-        <div class="iframe-container">
-            <iframe id="game-iframe" src=""></iframe>
-            <div class="fallback-notice">
-                यदि गेम लोड नहीं हो रहा है, तो <a id="direct-link" href="#" target="_blank">यहाँ क्लिक करके सीधे खेलें</a>।
+    <!-- UNIVERSAL GAME MODAL -->
+    <div class="game-modal" id="game-modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">CLOSE ✖</button>
+            <h2 id="modal-title" style="color: var(--gold); margin-bottom: 10px;">Game Title</h2>
+            
+            <div id="game-stage">
+                <!-- Dynamic Game HTML Inject Here -->
             </div>
         </div>
     </div>
 
     <script>
-        // आपके दिए गए गेम्स का डेटाबेस
-        const games = [
-            { title: "Book of Dead", provider: "Play'n GO", url: "https://sigma.world/play/games/playn-go/book-of-dead/", minBet: 10 },
-            { title: "Legacy of Dead", provider: "Play'n GO", url: "https://sigma.world/play/games/playn-go/legacy-of-dead/", minBet: 10 },
-            { title: "777 Streak Megacharged", provider: "Octoplay", url: "https://sigma.world/play/games/octoplay/777-streak-megacharged/", minBet: 20 },
-            { title: "Money Coming", provider: "JILI Games", url: "https://www.casinorating.com/games/jili-games/slots/money-coming", minBet: 5 },
-            { title: "Crazy 777", provider: "JILI Games", url: "https://www.casinorating.com/games/jili-games/slots/crazy-777", minBet: 5 },
-            { title: "Golden Empire", provider: "JILI Games", url: "https://www.casinorating.com/games/jili-games/slots/golden-empire", minBet: 15 },
-            { title: "Lucky Ball", provider: "JILI Games", url: "https://www.casinorating.com/games/jili-games/slots/lucky-ball", minBet: 10 },
-            { title: "Chicken Dash", provider: "JILI Games", url: "https://www.casinorating.com/games/jili-games/slots/chicken-dash", minBet: 10 },
-            { title: "Cuc Toc 777", provider: "JILI Games", url: "https://www.casinorating.com/games/jili-games/slots/cuc-toc-777", minBet: 5 },
-            { title: "Aviator", provider: "Spribe", url: "https://www.bongobongo.ug/game/info/spribe-aviator", minBet: 50 }
-        ];
+        // GLOBAL WALLET SYSTEM
+        let userBalance = 10000;
+        let audioPlaying = false;
+        let activeGameSymbols = [];
+        let aviatorInterval = null;
+        let currentMultiplier = 1.00;
+        let isAviatorRunning = false;
 
-        let coins = 10000;
-
-        // गेम ग्रिड रेंडर करना
-        function renderGames() {
-            const grid = document.getElementById('game-grid');
-            grid.innerHTML = '';
-
-            games.forEach(game => {
-                const card = document.createElement('div');
-                card.className = 'game-card';
-                card.innerHTML = `
-                    <div class="game-info">
-                        <div class="game-title">${game.title}</div>
-                        <div class="game-provider">${game.provider}</div>
-                        <div class="bet-info">न्यूनतम बेट: ${game.minBet} कॉइन्स</div>
-                    </div>
-                    <div style="padding: 15px;">
-                        <button class="play-btn" onclick="launchGame('${game.url}', '${game.title}', ${game.minBet})">अभी खेलें</button>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
+        function updateBalanceDisplay() {
+            document.getElementById('balance-display').innerText = userBalance.toLocaleString();
         }
 
-        // गेम लॉन्च करना
-        function launchGame(url, title, minBet) {
-            if(coins < minBet) {
-                alert("आपके पास पर्याप्त कॉइन्स नहीं हैं!");
-                return;
+        function toggleAudio() {
+            const audio = document.getElementById('bg-audio');
+            const btn = document.getElementById('audio-btn');
+            if (audioPlaying) {
+                audio.pause();
+                btn.innerText = '🎵';
+            } else {
+                audio.play().catch(() => {});
+                btn.innerText = '🔊';
             }
+            audioPlaying = !audioPlaying;
+        }
 
-            // कॉइन्स काटना (Demo Simulation)
-            coins -= minBet;
-            document.getElementById('user-coins').innerText = coins.toLocaleString();
+        function closeModal() {
+            document.getElementById('game-modal').style.display = 'none';
+            if(aviatorInterval) clearInterval(aviatorInterval);
+            isAviatorRunning = false;
+        }
 
-            document.getElementById('modal-game-title').innerText = title + " (बेट: " + minBet + " कॉइन्स)";
-            document.getElementById('game-iframe').src = url;
-            document.getElementById('direct-link').href = url;
+        /* ----------------------------------
+           SLOT MACHINE ENGINE
+        ---------------------------------- */
+        function openSlotGame(title, symbols) {
+            activeGameSymbols = symbols;
+            document.getElementById('modal-title').innerText = title;
+            const stage = document.getElementById('game-stage');
+
+            stage.innerHTML = `
+                <div class="game-screen">
+                    <div class="slot-reels">
+                        <div class="reel" id="reel1">${symbols[0]}</div>
+                        <div class="reel" id="reel2">${symbols[1]}</div>
+                        <div class="reel" id="reel3">${symbols[2]}</div>
+                    </div>
+                    <div id="slot-status" style="font-size: 16px; font-weight: bold; color: var(--gold);">Set your bet and press SPIN</div>
+                </div>
+                <div class="bet-controls">
+                    <label>BET COINS:</label>
+                    <input type="number" id="bet-amount" class="bet-input" value="100" min="10">
+                    <button class="action-btn" id="spin-btn" onclick="spinSlots()">SPIN 🎰</button>
+                </div>
+            `;
             document.getElementById('game-modal').style.display = 'flex';
         }
 
-        // मोडल बंद करना
-        function closeGame() {
-            document.getElementById('game-modal').style.display = 'none';
-            document.getElementById('game-iframe').src = '';
-        }
+        function spinSlots() {
+            const betInput = document.getElementById('bet-amount');
+            const bet = parseInt(betInput.value);
 
-        // ऑडियो कंट्रोल
-        const audio = document.getElementById('bg-music');
-        let isPlaying = false;
-
-        function toggleAudio() {
-            if (isPlaying) {
-                audio.pause();
-                document.getElementById('audio-toggle').innerText = '🎵';
-            } else {
-                audio.play().catch(e => console.log("Audio play error"));
-                document.getElementById('audio-toggle').innerText = '🔊';
+            if (isNaN(bet) || bet <= 0) {
+                alert("Enter a valid bet amount!");
+                return;
             }
-            isPlaying = !isPlaying;
+            if (bet > userBalance) {
+                alert("Insufficient Coins!");
+                return;
+            }
+
+            userBalance -= bet;
+            updateBalanceDisplay();
+
+            const spinBtn = document.getElementById('spin-btn');
+            const status = document.getElementById('slot-status');
+            spinBtn.disabled = true;
+            status.innerText = "Spinning...";
+
+            let spins = 0;
+            const interval = setInterval(() => {
+                document.getElementById('reel1').innerText = activeGameSymbols[Math.floor(Math.random() * activeGameSymbols.length)];
+                document.getElementById('reel2').innerText = activeGameSymbols[Math.floor(Math.random() * activeGameSymbols.length)];
+                document.getElementById('reel3').innerText = activeGameSymbols[Math.floor(Math.random() * activeGameSymbols.length)];
+                spins++;
+
+                if (spins > 15) {
+                    clearInterval(interval);
+                    spinBtn.disabled = false;
+                    evaluateSlotWin(bet);
+                }
+            }, 100);
         }
 
-        // इनिशियलाइज़ेशन
-        renderGames();
+        function evaluateSlotWin(bet) {
+            const r1 = document.getElementById('reel1').innerText;
+            const r2 = document.getElementById('reel2').innerText;
+            const r3 = document.getElementById('reel3').innerText;
+            const status = document.getElementById('slot-status');
+
+            if (r1 === r2 && r2 === r3) {
+                const winAmount = bet * 10;
+                userBalance += winAmount;
+                status.innerText = `🎉 JACKPOT! You won ${winAmount} Coins! (10x)`;
+                status.style.color = "var(--accent-green)";
+            } else if (r1 === r2 || r2 === r3 || r1 === r3) {
+                const winAmount = bet * 2;
+                userBalance += winAmount;
+                status.innerText = `✨ NICE WIN! You won ${winAmount} Coins! (2x)`;
+                status.style.color = "var(--gold-bright)";
+            } else {
+                status.innerText = "❌ No match. Try again!";
+                status.style.color = "var(--accent-red)";
+            }
+            updateBalanceDisplay();
+        }
+
+        /* ----------------------------------
+           AVIATOR CRASH ENGINE
+        ---------------------------------- */
+        function openAviatorGame() {
+            document.getElementById('modal-title').innerText = "Aviator Crash Game";
+            const stage = document.getElementById('game-stage');
+
+            stage.innerHTML = `
+                <div class="game-screen">
+                    <div class="aviator-display" id="aviator-mult">1.00x</div>
+                    <div id="aviator-status" style="font-size: 16px; font-weight: bold; color: #fff; margin-top:15px;">Place your bet to take off</div>
+                </div>
+                <div class="bet-controls">
+                    <label>BET COINS:</label>
+                    <input type="number" id="aviator-bet" class="bet-input" value="100" min="10">
+                    <button class="action-btn" id="aviator-btn" onclick="startAviator()">START FLIGHT 🚀</button>
+                </div>
+            `;
+            document.getElementById('game-modal').style.display = 'flex';
+        }
+
+        function startAviator() {
+            const betBtn = document.getElementById('aviator-btn');
+
+            if (!isAviatorRunning) {
+                const betInput = document.getElementById('aviator-bet');
+                const bet = parseInt(betInput.value);
+
+                if (isNaN(bet) || bet <= 0 || bet > userBalance) {
+                    alert("Invalid or insufficient coin balance!");
+                    return;
+                }
+
+                userBalance -= bet;
+                updateBalanceDisplay();
+
+                isAviatorRunning = true;
+                currentMultiplier = 1.00;
+                const crashPoint = (Math.random() * 4 + 1.1).toFixed(2); // Random crash between 1.1x and 5.1x
+
+                betBtn.innerText = "CASH OUT 💰";
+                betBtn.style.background = "var(--gold)";
+
+                aviatorInterval = setInterval(() => {
+                    currentMultiplier += 0.05;
+                    document.getElementById('aviator-mult').innerText = currentMultiplier.toFixed(2) + "x";
+
+                    if (currentMultiplier >= crashPoint) {
+                        clearInterval(aviatorInterval);
+                        isAviatorRunning = false;
+                        document.getElementById('aviator-mult').innerText = "FLEW AWAY!";
+                        document.getElementById('aviator-status').innerText = `💥 Crashed at ${crashPoint}x! You lost the bet.`;
+                        document.getElementById('aviator-status').style.color = "var(--accent-red)";
+                        betBtn.innerText = "START FLIGHT 🚀";
+                        betBtn.style.background = "var(--accent-green)";
+                    }
+                }, 100);
+            } else {
+                // Cash out action
+                clearInterval(aviatorInterval);
+                isAviatorRunning = false;
+                const winAmount = Math.floor(parseInt(document.getElementById('aviator-bet').value) * currentMultiplier);
+                userBalance += winAmount;
+                updateBalanceDisplay();
+
+                document.getElementById('aviator-status').innerText = `🏆 Cashout Successful! Won ${winAmount} Coins!`;
+                document.getElementById('aviator-status').style.color = "var(--accent-green)";
+                betBtn.innerText = "START FLIGHT 🚀";
+                betBtn.style.background = "var(--accent-green)";
+            }
+        }
     </script>
 </body>
 </html>
