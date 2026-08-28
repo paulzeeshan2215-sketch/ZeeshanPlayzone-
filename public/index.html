@@ -3,1409 +3,867 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#071b2f">
-<title>ZeeshanPlayzone-</title>
+<meta name="theme-color" content="#031525">
+<title>ZeeshanPlayzone - Ultimate Gaming Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
-*{box-sizing:border-box}
-html,body{margin:0;min-height:100%;font-family:Inter,Arial,sans-serif;color:#fff}
-body{
-  background:
-    radial-gradient(circle at 50% -10%,#174b72 0,#0b263f 34%,#040b15 75%);
-  overflow-x:hidden;
-}
-button{font:inherit;cursor:pointer}
-button:disabled{opacity:.45;cursor:not-allowed}
-.hidden{display:none!important}
-
+*{box-sizing:border-box;margin:0;padding:0;user-select:none;-webkit-tap-highlight-color:transparent}
 :root{
- --bg:#06111f;
- --panel:#0b1e31;
- --panel2:#102b43;
- --line:#2b5574;
- --cyan:#46f0df;
- --blue:#4ba3ff;
- --gold:#ffd85a;
- --orange:#ff9f43;
- --text:#fff;
- --muted:#9eb6c9;
- --danger:#ff637d;
- --green:#53e6a9;
+  --bg-gradient: radial-gradient(circle at 50% 10%, #0d3859 0%, #051a2e 45%, #020c18 100%);
+  --panel-bg: linear-gradient(180deg, rgba(16, 49, 77, 0.85) 0%, rgba(6, 23, 38, 0.95) 100%);
+  --gold-grad: linear-gradient(135deg, #ffe066 0%, #f39c12 50%, #d35400 100%);
+  --cyan-grad: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+  --green-grad: linear-gradient(135deg, #2ecc71 0%, #11998e 100%);
+  --red-grad: linear-gradient(135deg, #ff4e50 0%, #f9d423 100%);
+  --accent-gold: #ffcf33;
+  --accent-cyan: #00f0ff;
+  --text-main: #ffffff;
+  --text-muted: #8ca2ba;
+  --border-glow: rgba(0, 240, 255, 0.3);
 }
 
-#loader{
- position:fixed;
- inset:0;
- z-index:99999;
- display:grid;
- place-items:center;
- background:#030a13;
-}
-.loader-inner{text-align:center}
-.loader-logo{
- width:92px;height:92px;
- display:grid;place-items:center;
- margin:auto;
- border-radius:28px;
- font-size:27px;
- font-weight:1000;
- color:#06131e;
- background:linear-gradient(145deg,#fff08b,#ffad28);
- box-shadow:0 0 55px #ffbe3d55;
-}
-.loader-inner h1{margin:18px 0 0;font-size:27px}
-.loader-inner p{color:var(--muted);font-size:13px}
-.loader-ring{
- width:40px;height:40px;
- margin:20px auto;
- border:4px solid #ffffff18;
- border-top-color:var(--cyan);
- border-radius:50%;
- animation:rotate 1s linear infinite;
-}
-@keyframes rotate{to{transform:rotate(360deg)}}
-
-#app{display:none;min-height:100vh;padding-bottom:90px}
-
-.topbar{
- position:sticky;
- top:0;
- z-index:100;
- height:72px;
- display:flex;
- align-items:center;
- gap:10px;
- padding:9px 13px;
- background:#061522eF;
- backdrop-filter:blur(18px);
- border-bottom:1px solid #ffffff10;
-}
-.logo-small{
- width:48px;height:48px;
- display:grid;place-items:center;
- border-radius:15px;
- background:linear-gradient(145deg,#fff080,#ffad2a);
- color:#071827;
- font-weight:1000;
-}
-.brand-area{min-width:0}
-.brand-area strong{display:block;font-size:15px}
-.brand-area span{font-size:10px;color:var(--muted)}
-.balance{
- margin-left:auto;
- display:flex;
- align-items:center;
- gap:7px;
- padding:8px 12px;
- border-radius:22px;
- background:#0b2539;
- border:1px solid #3b6683;
- font-weight:1000;
-}
-.coin{
- width:25px;height:25px;
- display:grid;place-items:center;
- border-radius:50%;
- background:linear-gradient(145deg,#fff080,#f5a400);
- color:#654300;
-}
-.settings{
- width:42px;height:42px;
- border-radius:13px;
- border:1px solid #ffffff14;
- background:#ffffff08;
- color:white;
+body {
+  font-family: 'Poppins', Arial, sans-serif;
+  background: #020c18;
+  background-image: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--text-main);
+  min-height: 100vh;
+  overflow-x: hidden;
+  padding-bottom: 85px;
 }
 
-.container{width:min(760px,100%);margin:auto;padding:12px}
+button{font:inherit;cursor:pointer;border:none;outline:none}
+button:active{transform:scale(0.96)}
 
-.hero{
- position:relative;
- overflow:hidden;
- padding:22px;
- border-radius:25px;
- border:1px solid #3c6e91;
- background:
- linear-gradient(135deg,#103653,#071927);
- box-shadow:0 18px 45px #0006;
+/* LOADER */
+#loader {
+  position: fixed; inset: 0; z-index: 99999;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background: #020a14;
 }
-.hero:before{
- content:"";
- position:absolute;
- width:220px;height:220px;
- right:-90px;top:-100px;
- border-radius:50%;
- background:#46f0df12;
+.loader-logo {
+  width: 90px; height: 90px; border-radius: 24px;
+  background: var(--gold-grad); color: #051421;
+  font-size: 32px; font-weight: 900;
+  display: grid; place-items: center;
+  box-shadow: 0 0 40px rgba(255, 207, 51, 0.5);
+  animation: pulse 1.5s infinite alternate;
 }
-.hero-kicker{
- color:var(--cyan);
- font-size:11px;
- font-weight:900;
- letter-spacing:1.5px;
+@keyframes pulse { 0%{transform:scale(0.95)} 100%{transform:scale(1.05)} }
+.loader-text { margin-top: 18px; font-size: 22px; font-weight: 800; tracking: 1px; }
+.loader-sub { color: var(--text-muted); font-size: 13px; margin-top: 4px; }
+.spinner {
+  width: 36px; height: 36px; margin-top: 20px;
+  border: 4px solid rgba(255,255,255,0.1); border-top-color: var(--accent-cyan);
+  border-radius: 50%; animation: spin 0.8s linear infinite;
 }
-.hero h1{margin:7px 0;font-size:31px}
-.hero p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
+@keyframes spin { to { transform: rotate(360deg); } }
 
-.categories{
- display:flex;
- gap:7px;
- overflow-x:auto;
- padding:12px 0 3px;
- scrollbar-width:none;
-}
-.categories::-webkit-scrollbar{display:none}
-.category{
- flex:0 0 auto;
- border:1px solid #ffffff13;
- background:#0a1d2e;
- color:#a9c0d1;
- border-radius:18px;
- padding:9px 13px;
- font-size:11px;
- font-weight:900;
-}
-.category.active{
- color:#061521;
- background:linear-gradient(135deg,#54f0dd,#41aaff);
-}
+/* APP LAYOUT */
+#app { display: none; }
 
-.section-head{
- display:flex;
- justify-content:space-between;
- align-items:center;
- margin:18px 2px 10px;
+/* TOPBAR */
+.topbar {
+  position: sticky; top: 0; z-index: 1000;
+  height: 65px; padding: 0 14px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(4, 18, 32, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 240, 255, 0.15);
 }
-.section-head h2{margin:0;font-size:18px}
-.section-head span{font-size:11px;color:var(--muted)}
+.profile-area { display: flex; align-items: center; gap: 10px; }
+.avatar-box {
+  position: relative; width: 44px; height: 44px; border-radius: 50%;
+  border: 2px solid var(--accent-gold); overflow: hidden; background: #0e2b45;
+  display: grid; place-items: center; font-size: 22px;
+}
+.vip-badge {
+  position: absolute; bottom: -2px; right: -2px;
+  background: #ff2a5f; color: #fff; font-size: 8px; font-weight: 900;
+  padding: 1px 4px; border-radius: 6px; border: 1px solid #000;
+}
+.user-info strong { display: block; font-size: 13px; line-height: 1.1; }
+.user-info span { font-size: 10px; color: var(--accent-cyan); font-weight: 600; }
 
-.games{
- display:grid;
- grid-template-columns:repeat(2,1fr);
- gap:11px;
+.top-right { display: flex; align-items: center; gap: 10px; }
+.balance-card {
+  display: flex; align-items: center; gap: 6px;
+  background: linear-gradient(180deg, #092238 0%, #041220 100%);
+  border: 1.5px solid #1a4a70; padding: 5px 12px; border-radius: 20px;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
 }
-.game-card{
- position:relative;
- overflow:hidden;
- min-height:178px;
- border-radius:20px;
- border:1px solid #315b78;
- background:linear-gradient(145deg,#102d45,#071725);
- box-shadow:0 9px 25px #0005;
- transition:.18s transform,.18s border-color;
+.coin-icon {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--gold-grad); color: #4a2800;
+  font-weight: 900; font-size: 12px; display: grid; place-items: center;
 }
-.game-card:hover{
- transform:translateY(-3px);
- border-color:#51dcca;
+.balance-val { font-size: 14px; font-weight: 800; color: var(--accent-gold); }
+.add-btn {
+  width: 22px; height: 22px; border-radius: 50%; background: var(--green-grad);
+  color: #fff; font-size: 14px; font-weight: 900; display: grid; place-items: center;
 }
-.game-cover{
- height:122px;
- display:grid;
- place-items:center;
- position:relative;
- font-size:54px;
- background:
- radial-gradient(circle at 50% 45%,#49dcca28,transparent 55%),
- linear-gradient(145deg,#123d59,#071827);
+.top-icon-btn {
+  width: 38px; height: 38px; border-radius: 12px; background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1); color: #fff; font-size: 16px;
+  display: grid; place-items: center; position: relative;
 }
-.game-cover:after{
- content:"";
- position:absolute;
- inset:0;
- background:linear-gradient(180deg,transparent 45%,#06111dcc);
-}
-.game-icon{position:relative;z-index:2}
-.game-info{
- display:flex;
- justify-content:space-between;
- align-items:center;
- padding:10px;
-}
-.game-info strong{font-size:12px}
-.game-info small{display:block;color:var(--muted);font-size:9px;margin-top:3px}
-.game-play{
- border:0;
- width:35px;height:35px;
- border-radius:50%;
- background:linear-gradient(145deg,#5bf0d8,#38aaff);
- color:#061522;
- font-weight:1000;
+.icon-badge {
+  position: absolute; top: -3px; right: -3px; background: #ff3b30; color: white;
+  font-size: 9px; font-weight: 800; width: 15px; height: 15px; border-radius: 50%;
+  display: grid; place-items: center; border: 1px solid #000;
 }
 
-.badge{
- position:absolute;
- left:8px;top:8px;
- z-index:4;
- padding:4px 7px;
- border-radius:7px;
- background:#ff526e;
- font-size:9px;
- font-weight:1000;
+/* CONTAINER */
+.container { max-width: 600px; margin: 0 auto; padding: 12px; }
+
+/* JACKPOT BANNER */
+.jackpot-banner {
+  background: linear-gradient(135deg, #0e304d 0%, #051627 100%);
+  border: 1.5px solid #ffcc00; border-radius: 18px; padding: 12px 16px;
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 14px; position: relative; overflow: hidden;
+  box-shadow: 0 6px 20px rgba(255, 204, 0, 0.15);
+}
+.jackpot-title { font-size: 11px; font-weight: 800; color: var(--accent-cyan); tracking: 1px; }
+.jackpot-amount { font-size: 24px; font-weight: 900; color: var(--accent-gold); text-shadow: 0 0 10px rgba(255, 207, 51, 0.4); }
+.jackpot-sub { font-size: 10px; color: var(--text-muted); }
+.jackpot-btn {
+  background: var(--gold-grad); color: #000; font-weight: 800; font-size: 11px;
+  padding: 8px 14px; border-radius: 12px; box-shadow: 0 4px 12px rgba(243, 156, 18, 0.4);
 }
 
-.bottom{
- position:fixed;
- z-index:200;
- left:0;right:0;bottom:0;
- display:grid;
- grid-template-columns:repeat(5,1fr);
- padding:7px 4px calc(7px + env(safe-area-inset-bottom));
- background:#061522F7;
- border-top:1px solid #ffffff13;
- backdrop-filter:blur(18px);
+/* CATEGORIES TAB */
+.category-bar {
+  display: flex; gap: 8px; overflow-x: auto; padding: 4px 0 12px;
+  scrollbar-width: none;
 }
-.nav{
- border:0;
- background:none;
- color:#7894a9;
- font-size:9px;
- font-weight:900;
+.category-bar::-webkit-scrollbar { display: none; }
+.cat-item {
+  flex: 0 0 auto; padding: 8px 16px; border-radius: 20px;
+  background: rgba(16, 45, 71, 0.6); border: 1px solid rgba(255,255,255,0.08);
+  color: var(--text-muted); font-size: 11px; font-weight: 800;
+  display: flex; align-items: center; gap: 5px;
 }
-.nav b{display:block;font-size:21px;margin-bottom:3px}
-.nav.active{color:var(--cyan)}
-
-.modal{
- position:fixed;
- inset:0;
- z-index:500;
- display:none;
- place-items:center;
- padding:14px;
- background:#000b;
- backdrop-filter:blur(8px);
-}
-.modal-box{
- width:min(620px,100%);
- max-height:92vh;
- overflow:auto;
- border-radius:26px;
- border:1px solid #3c6985;
- background:linear-gradient(150deg,#0c263b,#06131f);
- box-shadow:0 25px 80px #000b;
- padding:18px;
-}
-.close{
- float:right;
- width:36px;height:36px;
- border:0;
- border-radius:11px;
- background:#ffffff10;
- color:white;
+.cat-item.active {
+  background: var(--cyan-grad); color: #020c18; border-color: transparent;
+  box-shadow: 0 4px 15px rgba(0, 240, 255, 0.3);
 }
 
-.game-header{
- clear:both;
- padding-top:8px;
- display:flex;
- align-items:center;
- justify-content:space-between;
-}
-.game-header h2{margin:0;font-size:22px}
-.game-header span{color:var(--muted);font-size:11px}
+/* GAME GRID */
+.section-title { font-size: 15px; font-weight: 800; margin: 10px 0 12px; display: flex; align-items: center; justify-content: space-between; }
+.section-title span { font-size: 11px; color: var(--text-muted); font-weight: 500; }
 
-.virtual-note{
- margin:12px 0;
- padding:10px 12px;
- border-radius:12px;
- background:#46f0df0b;
- border:1px solid #46f0df22;
- color:#a9dcd7;
- font-size:10px;
- line-height:1.5;
+.games-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+}
+@media(max-width: 380px) {
+  .games-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* SLOT MACHINE */
+.game-card {
+  background: linear-gradient(145deg, #0d2b45 0%, #051422 100%);
+  border: 1px solid #1a4468; border-radius: 16px; overflow: hidden;
+  position: relative; display: flex; flex-direction: column;
+  transition: transform 0.2s, border-color 0.2s; box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+}
+.game-card:hover { transform: translateY(-4px); border-color: var(--accent-cyan); }
+.game-thumb {
+  height: 95px; display: grid; place-items: center; font-size: 42px; position: relative;
+  background: radial-gradient(circle at 50% 50%, rgba(0, 240, 255, 0.15) 0%, transparent 70%);
+}
+.game-hot-tag {
+  position: absolute; top: 6px; left: 6px; z-index: 2;
+  background: linear-gradient(135deg, #ff0055, #ff5e00); color: #fff;
+  font-size: 8px; font-weight: 900; padding: 2px 6px; border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(255,0,85,0.5);
+}
+.game-info-box { padding: 8px; text-align: center; background: rgba(3, 15, 27, 0.6); }
+.game-name { font-size: 11px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.game-desc { font-size: 9px; color: var(--text-muted); margin-top: 2px; }
 
-.slot-machine{
- margin-top:16px;
- padding:14px;
- border-radius:22px;
- background:
- linear-gradient(145deg,#152e42,#06111c);
- border:2px solid #395e75;
- box-shadow:inset 0 0 30px #0008,0 12px 35px #0006;
+/* QUICK PROMO CARD */
+.promo-card {
+  background: linear-gradient(135deg, #113c5e 0%, #071e31 100%);
+  border: 1px dashed var(--accent-cyan); border-radius: 16px;
+  padding: 12px; margin: 15px 0; display: flex; align-items: center; justify-content: space-between;
 }
-.reels{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:8px;
-}
-.reel{
- height:115px;
- overflow:hidden;
- border-radius:15px;
- background:#f5f7f8;
- border:3px solid #718494;
- box-shadow:inset 0 0 20px #0004;
-}
-.reel-track{
- display:flex;
- flex-direction:column;
- align-items:center;
- transform:translateY(0);
-}
-.symbol{
- width:100%;
- height:115px;
- display:grid;
- place-items:center;
- font-size:55px;
- flex:0 0 115px;
-}
-.reel.spinning .reel-track{
- animation:reelBlur .11s linear infinite;
-}
-@keyframes reelBlur{
- from{transform:translateY(0)}
- to{transform:translateY(-115px)}
-}
-.payline{
- height:3px;
- margin:-59px 5px 56px;
- position:relative;
- z-index:5;
- background:linear-gradient(90deg,transparent,#ffd84d,transparent);
- box-shadow:0 0 10px #ffd84d;
- pointer-events:none;
-}
-.slot-result{
- min-height:38px;
- display:grid;
- place-items:center;
- margin:9px 0;
- color:var(--gold);
- font-weight:1000;
- font-size:17px;
-}
-.controls{
- display:grid;
- grid-template-columns:1fr 1.6fr 1fr;
- gap:8px;
-}
-.control-btn{
- border:1px solid #ffffff17;
- border-radius:13px;
- padding:12px;
- background:#ffffff0a;
- color:white;
- font-weight:900;
-}
-.spin-btn{
- border:0;
- border-radius:14px;
- background:linear-gradient(145deg,#ffe86b,#ff9f28);
- color:#172514;
- font-weight:1000;
- font-size:16px;
+.promo-info h4 { font-size: 13px; color: #fff; font-weight: 800; }
+.promo-info p { font-size: 10px; color: var(--text-muted); }
+.promo-btn {
+  background: var(--green-grad); color: #fff; font-weight: 800; font-size: 11px;
+  padding: 8px 14px; border-radius: 10px; box-shadow: 0 4px 10px rgba(46, 204, 113, 0.3);
 }
 
-/* WHEEL */
+/* SIDEWAYS SLIDING MENU / QUICK LINKS */
+.quick-tools {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 15px;
+}
+.tool-btn {
+  background: rgba(14, 41, 66, 0.6); border: 1px solid #183e61; border-radius: 12px;
+  padding: 10px 5px; text-align: center; color: #fff; font-size: 10px; font-weight: 700;
+}
+.tool-btn div { font-size: 20px; margin-bottom: 4px; }
 
-.wheel-wrap{text-align:center;padding:18px 5px}
-.wheel{
- width:min(310px,80vw);
- aspect-ratio:1;
- margin:auto;
- border-radius:50%;
- border:9px solid #e0a933;
- position:relative;
- box-shadow:0 0 0 5px #243d4f,0 15px 40px #0009;
- background:conic-gradient(
-  #ef476f 0deg 45deg,
-  #ffd166 45deg 90deg,
-  #06d6a0 90deg 135deg,
-  #118ab2 135deg 180deg,
-  #9b5de5 180deg 225deg,
-  #f15bb5 225deg 270deg,
-  #00bbf9 270deg 315deg,
-  #70e000 315deg 360deg
- );
- transition:transform 4s cubic-bezier(.12,.7,.12,1);
+/* BOTTOM NAVIGATION */
+.bottom-nav {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000;
+  height: 65px; background: rgba(3, 14, 25, 0.95); backdrop-filter: blur(15px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: grid; grid-template-columns: repeat(5, 1fr);
 }
-.wheel:after{
- content:"";
- position:absolute;
- inset:30%;
- border-radius:50%;
- background:#071827;
- border:5px solid #f0bd43;
+.nav-item {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  color: var(--text-muted); font-size: 9px; font-weight: 700; gap: 3px; background: none;
 }
-.pointer{
- width:0;height:0;
- border-left:13px solid transparent;
- border-right:13px solid transparent;
- border-top:30px solid #fff;
- margin:-4px auto 10px;
- filter:drop-shadow(0 3px 5px #000);
- position:relative;
- z-index:4;
+.nav-item div { font-size: 20px; }
+.nav-item.active { color: var(--accent-cyan); }
+
+/* MODAL SYSTEM */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 5000;
+  background: rgba(1, 6, 12, 0.85); backdrop-filter: blur(8px);
+  display: none; place-items: center; padding: 12px;
 }
-.wheel-btn{
- margin-top:18px;
- width:100%;
- padding:15px;
- border:0;
- border-radius:14px;
- background:linear-gradient(145deg,#55f0db,#3b9fff);
- color:#061521;
- font-weight:1000;
+.modal-content {
+  width: min(500px, 100%); max-height: 90vh; overflow-y: auto;
+  background: linear-gradient(160deg, #0b263d 0%, #04121f 100%);
+  border: 1.5px solid #23547b; border-radius: 24px; padding: 18px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.8); position: relative;
+}
+.modal-close {
+  position: absolute; top: 14px; right: 14px;
+  width: 32px; height: 32px; border-radius: 10px; background: rgba(255,255,255,0.08);
+  color: #fff; font-size: 16px; font-weight: 800; display: grid; place-items: center;
 }
 
-/* CRASH */
-
-.crash{
- position:relative;
- height:250px;
- overflow:hidden;
- margin-top:15px;
- border-radius:20px;
- border:1px solid #345a74;
- background:
- linear-gradient(#091d2d,#050d16);
-}
-.crash-grid{
- position:absolute;
- inset:0;
- background-image:
- linear-gradient(#ffffff09 1px,transparent 1px),
- linear-gradient(90deg,#ffffff09 1px,transparent 1px);
- background-size:35px 35px;
-}
-.crash-line{
- position:absolute;
- left:0;
- bottom:25px;
- width:0;
- height:3px;
- background:var(--cyan);
- box-shadow:0 0 15px var(--cyan);
- transform-origin:left center;
-}
-.multiplier{
- position:absolute;
- inset:0;
- display:grid;
- place-items:center;
- font-size:48px;
- font-weight:1000;
- color:#fff;
- text-shadow:0 0 25px #46f0df;
-}
-.crash-start{
- width:100%;
- margin-top:10px;
- padding:14px;
- border:0;
- border-radius:14px;
- background:linear-gradient(145deg,#55f0db,#3b9fff);
- color:#061521;
- font-weight:1000;
+/* GAME UI INTERFACES */
+.game-box-title { font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+.game-disclaimer {
+  background: rgba(0, 240, 255, 0.06); border: 1px solid rgba(0, 240, 255, 0.15);
+  padding: 8px 12px; border-radius: 10px; color: #a2c7d9; font-size: 10px; margin: 10px 0;
 }
 
-/* HISTORY */
+/* REELS GAME UI */
+.slot-container {
+  background: #030e18; border: 2px solid #1b4970; border-radius: 18px; padding: 14px; margin-top: 10px;
+}
+.reels-wrapper { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.reel-window {
+  height: 95px; overflow: hidden; background: #fff; border-radius: 12px;
+  border: 2px solid #58738a; box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+.reel-strip { display: flex; flex-direction: column; align-items: center; transform: translateY(0); }
+.symbol-item { height: 95px; font-size: 48px; display: grid; place-items: center; flex: 0 0 95px; }
+.reel-window.spinning .reel-strip { animation: blurSpin 0.1s linear infinite; }
+@keyframes blurSpin { from{transform:translateY(0)} to{transform:translateY(-95px)} }
 
-.history-item{
- display:flex;
- align-items:center;
- justify-content:space-between;
- gap:10px;
- padding:12px 0;
- border-bottom:1px solid #ffffff0d;
+.payline-bar {
+  height: 2px; background: var(--accent-gold); box-shadow: 0 0 8px var(--accent-gold);
+  margin: -48px 0 46px; position: relative; z-index: 5; pointer-events: none;
 }
-.history-item:last-child{border-bottom:0}
-.history-icon{
- width:38px;height:38px;
- display:grid;place-items:center;
- border-radius:12px;
- background:#ffffff0b;
-}
-.history-item strong{font-size:12px}
-.history-item small{display:block;color:var(--muted);font-size:9px;margin-top:3px}
-.win{color:var(--green)}
-.loss{color:var(--danger)}
+.game-status { text-align: center; font-size: 14px; font-weight: 800; color: var(--accent-gold); min-height: 25px; margin: 10px 0; }
+.controls-row { display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 8px; }
+.btn-action { background: rgba(255,255,255,0.08); border: 1px solid #234f73; color: #fff; font-weight: 800; border-radius: 12px; padding: 12px; }
+.btn-primary-play { background: var(--gold-grad); color: #000; font-size: 15px; font-weight: 900; border-radius: 12px; box-shadow: 0 4px 15px rgba(243, 156, 18, 0.4); }
 
-.toast{
- position:fixed;
- left:50%;
- bottom:90px;
- transform:translateX(-50%) translateY(20px);
- z-index:1000;
- padding:11px 16px;
- border-radius:13px;
- background:#102d42;
- border:1px solid #41677f;
- box-shadow:0 12px 35px #0008;
- opacity:0;
- pointer-events:none;
- transition:.25s;
- font-size:12px;
+/* WHEEL GAME UI */
+.wheel-container { text-align: center; padding: 10px 0; }
+.wheel-box {
+  width: 240px; height: 240px; margin: 0 auto; border-radius: 50%;
+  border: 8px solid #f39c12; position: relative;
+  background: conic-gradient(#ef476f 0deg 45deg, #ffd166 45deg 90deg, #06d6a0 90deg 135deg, #118ab2 135deg 180deg, #9b5de5 180deg 225deg, #f15bb5 225deg 270deg, #00bbf9 270deg 315deg, #70e000 315deg 360deg);
+  transition: transform 4s cubic-bezier(0.1, 0.7, 0.1, 1);
+  box-shadow: 0 0 25px rgba(243, 156, 18, 0.3);
 }
-.toast.show{
- opacity:1;
- transform:translateX(-50%) translateY(0);
+.wheel-center {
+  position: absolute; inset: 32%; border-radius: 50%; background: #04121f; border: 4px solid #f39c12;
+}
+.wheel-arrow {
+  width: 0; height: 0; border-left: 12px solid transparent; border-right: 12px solid transparent;
+  border-top: 24px solid #fff; margin: 0 auto -6px; filter: drop-shadow(0 2px 4px #000);
+  position: relative; z-index: 10;
 }
 
-@media(max-width:430px){
- .games{grid-template-columns:repeat(2,1fr)}
- .hero h1{font-size:26px}
- .game-cover{height:108px}
- .game-card{min-height:160px}
- .reel,.symbol{height:100px}
- .symbol{flex-basis:100px}
- .reel.spinning .reel-track{animation-duration:.09s}
+/* AVIATOR / CRASH UI */
+.crash-box {
+  height: 200px; background: linear-gradient(180deg, #071b2c 0%, #020912 100%);
+  border: 1px solid #1a456b; border-radius: 16px; position: relative; overflow: hidden; margin-top: 10px;
 }
+.crash-grid-bg {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 25px 25px;
+}
+.crash-number {
+  position: absolute; inset: 0; display: grid; place-items: center;
+  font-size: 42px; font-weight: 900; color: #fff; text-shadow: 0 0 20px var(--accent-cyan);
+}
+.rocket-line {
+  position: absolute; left: 0; bottom: 20px; height: 3px; width: 0%;
+  background: var(--accent-cyan); box-shadow: 0 0 12px var(--accent-cyan);
+}
+
+/* PROMO CODE FORM INSIDE MODAL */
+.form-group { margin-bottom: 12px; }
+.form-group label { display: block; font-size: 11px; color: var(--text-muted); margin-bottom: 5px; font-weight: 600; }
+.input-flex { display: flex; gap: 8px; }
+.custom-input {
+  flex: 1; background: #030e18; border: 1px solid #1b4970; border-radius: 10px;
+  padding: 10px; color: #fff; font-size: 13px; outline: none;
+}
+.input-btn {
+  background: var(--cyan-grad); color: #000; font-weight: 800; font-size: 12px;
+  padding: 0 16px; border-radius: 10px;
+}
+
+/* BANK / WALLET INTERFACE */
+.wallet-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 12px 0; }
+.w-card {
+  background: #051829; border: 1px solid #183e61; border-radius: 12px; padding: 10px; text-align: center;
+}
+.w-card span { display: block; font-size: 9px; color: var(--text-muted); }
+.w-card strong { font-size: 14px; color: var(--accent-gold); }
+
+/* TOAST NOTIFICATION */
+.toast-msg {
+  position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%) translateY(30px);
+  background: #0e2f4a; border: 1px solid var(--accent-cyan); color: #fff;
+  padding: 10px 18px; border-radius: 20px; font-size: 12px; font-weight: 700;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.6); opacity: 0; pointer-events: none; transition: 0.3s; z-index: 10000;
+}
+.toast-msg.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 </style>
 </head>
 
 <body>
 
+<!-- LOADING SCREEN -->
 <div id="loader">
- <div class="loader-inner">
   <div class="loader-logo">ZP</div>
-  <h1>ZeeshanPlayzone-</h1>
-  <div class="loader-ring"></div>
-  <p>Loading game world...</p>
- </div>
+  <div class="loader-text">ZeeshanPlayzone</div>
+  <div class="loader-sub">Virtual Gaming Arcade World</div>
+  <div class="spinner"></div>
 </div>
 
-<main id="app">
+<!-- MAIN APP -->
+<div id="app">
 
-<header class="topbar">
- <div class="logo-small">ZP</div>
- <div class="brand-area">
-  <strong>ZeeshanPlayzone-</strong>
-  <span>Virtual Game Arcade</span>
- </div>
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div class="profile-area">
+      <div class="avatar-box">
+        👩🏻‍💼
+        <div class="vip-badge">VIP</div>
+      </div>
+      <div class="user-info">
+        <strong>Zeeshan Player</strong>
+        <span>ID: 884920</span>
+      </div>
+    </div>
 
- <div class="balance">
-  <span class="coin">★</span>
-  <span id="balance">1000</span>
- </div>
+    <div class="top-right">
+      <div class="balance-card">
+        <div class="coin-icon">₹</div>
+        <div class="balance-val" id="balance">1000.00</div>
+        <button class="add-btn" id="openBankBtn">+</button>
+      </div>
 
- <button class="settings" id="historyBtn">☰</button>
-</header>
+      <button class="top-icon-btn" id="promoBtn">
+        🎁
+        <div class="icon-badge">1</div>
+      </button>
 
-<div class="container">
+      <button class="top-icon-btn" id="historyBtn">📜</button>
+    </div>
+  </header>
 
-<section class="hero">
- <div class="hero-kicker">✦ ZEEshanPLAYZONE ORIGINAL</div>
- <h1>PLAY. SPIN. WIN COINS.</h1>
- <p>
-  A polished virtual game arcade. All coins are virtual points
-  used only inside this website.
- </p>
-</section>
+  <div class="container">
 
-<div class="categories">
- <button class="category active" data-filter="all">ALL</button>
- <button class="category" data-filter="slots">🎰 REELS</button>
- <button class="category" data-filter="wheel">🎡 WHEEL</button>
- <button class="category" data-filter="crash">🚀 ARCADE</button>
- <button class="category" data-filter="cards">🃏 CARDS</button>
-</div>
+    <!-- JACKPOT HEADER BANNER -->
+    <div class="jackpot-banner">
+      <div>
+        <div class="jackpot-title">⚡ JACKPOT LOTTO LIVE</div>
+        <div class="jackpot-amount">₹1,104,638</div>
+        <div class="jackpot-sub">Draw in: 10:40:06 • Tickets: 0/100</div>
+      </div>
+      <button class="jackpot-btn" id="lottoBtn">View Jackpot</button>
+    </div>
 
-<div class="section-head">
- <h2>Featured Games</h2>
- <span id="gameCount">4 games</span>
-</div>
+    <!-- CATEGORIES -->
+    <div class="category-bar">
+      <button class="cat-item active" data-filter="all">❤️ ALL GAMES</button>
+      <button class="cat-item" data-filter="slots">🎰 SLOTS</button>
+      <button class="cat-item" data-filter="crash">🚀 AVIATOR</button>
+      <button class="cat-item" data-filter="wheel">🎡 WHEEL</button>
+      <button class="cat-item" data-filter="cards">🃏 CARDS</button>
+    </div>
 
-<section class="games" id="games"></section>
+    <!-- PROMO CODE BANNER (LIKE IMAGE 1) -->
+    <div class="promo-card">
+      <div class="promo-info">
+        <h4>🎁 6X FREE SPINS AVAILABLE</h4>
+        <p>Use code 'ZEESHAN' to claim virtual coins</p>
+      </div>
+      <button class="promo-btn" id="claimPromoQuick">Claim Now</button>
+    </div>
 
-<div class="section-head">
- <h2>Recent Activity</h2>
- <span>Virtual coins</span>
-</div>
+    <!-- FEATURED GAMES GRID -->
+    <div class="section-title">
+      Popular Games
+      <span id="gameCount">9 Games</span>
+    </div>
 
-<div class="modal-box" style="max-height:none;padding:14px">
- <div id="miniHistory"></div>
-</div>
+    <div class="games-grid" id="gamesGrid">
+      <!-- Dynamic Games Rendered Here -->
+    </div>
 
-</div>
+    <!-- QUICK UTILITY LINKS -->
+    <div class="quick-tools">
+      <button class="tool-btn" id="toolPromo"><div>🎁</div>Promo</button>
+      <button class="tool-btn" id="toolVIP"><div>👑</div>VIP Club</button>
+      <button class="tool-btn" id="toolNotice"><div>📢</div>Notice</button>
+      <button class="tool-btn" id="toolSupport"><div>💬</div>Support</button>
+    </div>
 
-<nav class="bottom">
- <button class="nav active"><b>🎮</b>Games</button>
- <button class="nav" id="wheelNav"><b>🎡</b>Wheel</button>
- <button class="nav" id="slotsNav"><b>🎰</b>Reels</button>
- <button class="nav" id="historyNav"><b>📜</b>History</button>
- <button class="nav" id="resetBtn"><b>↻</b>Reset</button>
-</nav>
-
-</main>
-
-<div class="modal" id="gameModal">
- <div class="modal-box">
-
-  <button class="close" id="closeGame">✕</button>
-
-  <div class="game-header">
-   <h2 id="modalTitle">Game</h2>
-   <span>Virtual coins only</span>
   </div>
 
-  <div class="virtual-note">
-   This game uses virtual coins only. Coins have no cash value and
-   cannot be deposited, withdrawn, transferred or exchanged for money.
-  </div>
+  <!-- BOTTOM NAVIGATION BAR -->
+  <nav class="bottom-nav">
+    <button class="nav-item active" id="navHome"><div>🏛️</div>Bank</button>
+    <button class="nav-item" id="navSlots"><div>🎰</div>Slots</button>
+    <button class="nav-item" id="navWheel"><div>🎡</div>Wheel</button>
+    <button class="nav-item" id="navRefer"><div>🤝</div>Refer & Earn</button>
+    <button class="nav-item" id="navEvents"><div>🎁</div>Events</button>
+  </nav>
 
-  <div id="gameContent"></div>
-
- </div>
 </div>
 
-<div class="modal" id="historyModal">
- <div class="modal-box">
-
-  <button class="close" id="closeHistory">✕</button>
-
-  <div class="game-header">
-   <h2>Game History</h2>
-   <span>Local device</span>
+<!-- GAME MODAL -->
+<div class="modal-overlay" id="gameModal">
+  <div class="modal-content">
+    <button class="modal-close" id="closeGameModal">✕</button>
+    <div class="game-box-title" id="modalGameTitle">Game Engine</div>
+    <div class="game-disclaimer">
+      ⚠️ Virtual Arcade Mode: Coins are purely digital points with zero monetary real-cash value.
+    </div>
+    <div id="modalGameBody"></div>
   </div>
-
-  <div id="fullHistory"></div>
-
- </div>
 </div>
 
-<div class="toast" id="toast"></div>
+<!-- BANK / WALLET MODAL (LIKE IMAGE 3) -->
+<div class="modal-overlay" id="bankModal">
+  <div class="modal-content">
+    <button class="modal-close" id="closeBankModal">✕</button>
+    <div class="game-box-title">Total Balance Management</div>
+    <div style="font-size:32px; font-weight:900; color:var(--accent-gold); text-align:center; margin:10px 0;" id="modalTotalBalance">₹1000.00</div>
+    
+    <div class="wallet-cards">
+      <div class="w-card">
+        <span>BONUS</span>
+        <strong>₹0.00</strong>
+      </div>
+      <div class="w-card">
+        <span>CASH</span>
+        <strong>₹0.00</strong>
+      </div>
+      <div class="w-card">
+        <span>WITHDRAWABLE</span>
+        <strong id="modalWithdrawable">₹1000.00</strong>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:8px; margin-top:15px;">
+      <button class="input-btn" style="flex:1; padding:12px;" id="addCashDemo">Add Virtual Coins</button>
+      <button class="input-btn" style="flex:1; padding:12px; background:var(--gold-grad);" id="withdrawDemo">Withdraw Demo</button>
+    </div>
+  </div>
+</div>
+
+<!-- PROMO CODE MODAL (LIKE IMAGE 1) -->
+<div class="modal-overlay" id="promoModal">
+  <div class="modal-content">
+    <button class="modal-close" id="closePromoModal">✕</button>
+    <div class="game-box-title">Claim Promo & Voucher</div>
+    
+    <div class="form-group" style="margin-top:15px;">
+      <label>Promo Code</label>
+      <div class="input-flex">
+        <input type="text" class="custom-input" id="promoInput" placeholder="Input promo code (e.g. ZEESHAN)">
+        <button class="input-btn" id="claimPromoBtn">Claim</button>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Voucher Code</label>
+      <div class="input-flex">
+        <input type="text" class="custom-input" placeholder="Input voucher code">
+        <button class="input-btn">Collect</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HISTORY MODAL -->
+<div class="modal-overlay" id="historyModal">
+  <div class="modal-content">
+    <button class="modal-close" id="closeHistoryModal">✕</button>
+    <div class="game-box-title">Recent Activity Logs</div>
+    <div id="historyList" style="margin-top:15px;"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast-msg" id="toast">Message here</div>
 
 <script>
 "use strict";
 
-/* ---------------------------------------------------------
-   ZEEshanPLAYZONE
-   Virtual-coins arcade
---------------------------------------------------------- */
+const STORAGE_KEY_BAL = "zp_balance_v2";
+const STORAGE_KEY_HIST = "zp_history_v2";
 
-const STORAGE_BALANCE="zp_virtual_balance";
-const STORAGE_HISTORY="zp_game_history";
+let balance = Number(localStorage.getItem(STORAGE_KEY_BAL) || 1000);
+let history = JSON.parse(localStorage.getItem(STORAGE_KEY_HIST) || "[]");
+let currentFilter = "all";
+let activeGame = null;
 
-let balance=Number(localStorage.getItem(STORAGE_BALANCE)||1000);
-let history=JSON.parse(localStorage.getItem(STORAGE_HISTORY)||"[]");
-let currentFilter="all";
-let currentGame=null;
-let spinning=false;
-let wheelSpinning=false;
-
-const games=[
- {
-  id:"reels",
-  title:"777 Neon Reels",
-  icon:"🎰",
-  type:"slots",
-  badge:"HOT",
-  description:"Animated three-reel virtual arcade"
- },
- {
-  id:"treasure",
-  title:"Treasure Vault",
-  icon:"💎",
-  type:"slots",
-  badge:"NEW",
-  description:"Mystery treasure reel game"
- },
- {
-  id:"wheel",
-  title:"Lucky Wheel",
-  icon:"🎡",
-  type:"wheel",
-  badge:"LIVE",
-  description:"Spin for virtual coin rewards"
- },
- {
-  id:"rocket",
-  title:"Rocket Rise",
-  icon:"🚀",
-  type:"crash",
-  badge:"ARCADE",
-  description:"Watch the multiplier climb"
- },
- {
-  id:"cards",
-  title:"Royal Cards",
-  icon:"🃏",
-  type:"cards",
-  badge:"",
-  description:"Simple high-card arcade"
- },
- {
-  id:"gold",
-  title:"Golden Fortune",
-  icon:"🪙",
-  type:"slots",
-  badge:"",
-  description:"Gold themed virtual reels"
- }
+const gamesList = [
+  { id:"aviator", title:"Aviator UONO", icon:"✈️", type:"crash", badge:"HOT", desc:"Daily 1M Leaderboard Prize" },
+  { id:"super777", title:"Super 777", icon:"🎰", type:"slots", badge:"HOT", desc:"Classic Triple Reels" },
+  { id:"gems", title:"Gems Fortune II", icon:"🗿", type:"slots", badge:"HOT", desc:"Golden Tiki Multipliers" },
+  { id:"crypt", title:"The Crypt", icon:"💀", type:"slots", badge:"NEW", desc:"Dark Skeleton Vaults" },
+  { id:"chicken", title:"Chicken Road", icon:"🐔", type:"crash", badge:"HOT", desc:"Cross the Lucky Highway" },
+  { id:"wheel", title:"Lucky Wheel", icon:"🎡", type:"wheel", badge:"LIVE", desc:"Spin for Fortune Coins" },
+  { id:"fishing", title:"Jackpot Fishing", icon:"🦈", type:"slots", badge:"HOT", desc:"Underwater Mega Catch" },
+  { id:"kraken", title:"Power Kraken", icon:"🐙", type:"slots", badge:"FREE", desc:"6X Free Spins Ready" },
+  { id:"cards", title:"Royal Cards", icon:"🃏", type:"cards", badge:"CLASSIC", desc:"High Card Showdown" }
 ];
 
-const symbols=[
- "🍒","🍋","🍇","🔔","⭐","💎","7️⃣"
-];
+const slotSymbols = ["🍒", "🍋", "🍇", "🔔", "⭐", "💎", "7️⃣"];
 
-function $(id){
- return document.getElementById(id);
+function $(id) { return document.getElementById(id); }
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY_BAL, String(balance));
+  localStorage.setItem(STORAGE_KEY_HIST, JSON.stringify(history.slice(0, 30)));
 }
 
-function save(){
- localStorage.setItem(STORAGE_BALANCE,String(balance));
- localStorage.setItem(STORAGE_HISTORY,JSON.stringify(history.slice(0,40)));
+function updateBalance(amt) {
+  balance = Math.max(0, Math.floor(amt));
+  $("balance").textContent = balance.toFixed(2);
+  $("modalTotalBalance").textContent = "₹" + balance.toFixed(2);
+  $("modalWithdrawable").textContent = "₹" + balance.toFixed(2);
+  saveState();
 }
 
-function setBalance(value){
- balance=Math.max(0,Math.floor(value));
- $("balance").textContent=balance.toLocaleString();
- save();
+function showToast(msg) {
+  const t = $("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(window.tTimer);
+  window.tTimer = setTimeout(() => t.classList.remove("show"), 2500);
 }
 
-function toast(message){
- const el=$("toast");
- el.textContent=message;
- el.classList.add("show");
- clearTimeout(window.toastTimer);
- window.toastTimer=setTimeout(()=>el.classList.remove("show"),2200);
-}
-
-function addHistory(game,result,amount){
- history.unshift({
-  game,
-  result,
-  amount,
-  time:new Date().toLocaleTimeString([],{
-   hour:"2-digit",
-   minute:"2-digit"
-  })
- });
- history=history.slice(0,40);
- save();
- renderHistory();
-}
-
-function renderHistory(){
- const target=$("miniHistory");
- const full=$("fullHistory");
-
- if(!history.length){
-  const empty="<p style='color:#8fa8bb;font-size:12px'>No games played yet.</p>";
-  target.innerHTML=empty;
-  full.innerHTML=empty;
-  return;
- }
-
- const html=history.slice(0,6).map(item=>`
-  <div class="history-item">
-   <div style="display:flex;align-items:center;gap:10px">
-    <div class="history-icon">🎮</div>
-    <div>
-     <strong>${escapeHtml(item.game)}</strong>
-     <small>${item.time} • ${escapeHtml(item.result)}</small>
-    </div>
-   </div>
-   <b class="${item.amount>=0?"win":"loss"}">
-    ${item.amount>=0?"+":""}${item.amount}
-   </b>
-  </div>
- `).join("");
-
- target.innerHTML=html;
-
- full.innerHTML=history.map(item=>`
-  <div class="history-item">
-   <div style="display:flex;align-items:center;gap:10px">
-    <div class="history-icon">🎮</div>
-    <div>
-     <strong>${escapeHtml(item.game)}</strong>
-     <small>${item.time} • ${escapeHtml(item.result)}</small>
-    </div>
-   </div>
-   <b class="${item.amount>=0?"win":"loss"}">
-    ${item.amount>=0?"+":""}${item.amount}
-   </b>
-  </div>
- `).join("");
-}
-
-function escapeHtml(value){
- return String(value)
-  .replaceAll("&","&amp;")
-  .replaceAll("<","&lt;")
-  .replaceAll(">","&gt;")
-  .replaceAll('"',"&quot;");
-}
-
-function renderGames(){
- const list=games.filter(g=>
-  currentFilter==="all" || g.type===currentFilter
- );
-
- $("gameCount").textContent=list.length+" games";
-
- $("games").innerHTML=list.map(game=>`
-  <article class="game-card" data-id="${game.id}">
-   ${game.badge?`<span class="badge">${game.badge}</span>`:""}
-   <div class="game-cover">
-    <div class="game-icon">${game.icon}</div>
-   </div>
-   <div class="game-info">
-    <div>
-     <strong>${game.title}</strong>
-     <small>${game.description}</small>
-    </div>
-    <button class="game-play">▶</button>
-   </div>
-  </article>
- `).join("");
-
- document.querySelectorAll(".game-card").forEach(card=>{
-  card.addEventListener("click",()=>{
-   const game=games.find(g=>g.id===card.dataset.id);
-   openGame(game);
+function logActivity(game, res, amt) {
+  history.unshift({
+    game, res, amt,
+    time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
   });
- });
+  saveState();
 }
 
-function openGame(game){
- currentGame=game;
- $("modalTitle").textContent=game.title;
- $("gameContent").innerHTML="";
-
- if(game.type==="slots"){
-  buildSlots(game);
- }
-
- if(game.type==="wheel"){
-  buildWheel();
- }
-
- if(game.type==="crash"){
-  buildCrash();
- }
-
- if(game.type==="cards"){
-  buildCards();
- }
-
- $("gameModal").style.display="grid";
-}
-
-/* ---------------------------------------------------------
-   AUDIO
---------------------------------------------------------- */
-
-let audioContext=null;
-
-function audio(){
- if(!audioContext){
-  const AC=window.AudioContext||window.webkitAudioContext;
-  if(AC) audioContext=new AC();
- }
- return audioContext;
-}
-
-function tone(freq,duration,type="sine",volume=.04){
- const ctx=audio();
- if(!ctx)return;
-
- const oscillator=ctx.createOscillator();
- const gain=ctx.createGain();
-
- oscillator.type=type;
- oscillator.frequency.value=freq;
-
- gain.gain.setValueAtTime(volume,ctx.currentTime);
- gain.gain.exponentialRampToValueAtTime(
-  .001,
-  ctx.currentTime+duration
- );
-
- oscillator.connect(gain);
- gain.connect(ctx.destination);
-
- oscillator.start();
- oscillator.stop(ctx.currentTime+duration);
-}
-
-function spinSound(){
- tone(180,.08,"square",.025);
- setTimeout(()=>tone(230,.08,"square",.025),80);
- setTimeout(()=>tone(280,.08,"square",.025),160);
-}
-
-function winSound(){
- tone(523,.12,"sine",.04);
- setTimeout(()=>tone(659,.12,"sine",.04),100);
- setTimeout(()=>tone(784,.25,"sine",.04),200);
-}
-
-function loseSound(){
- tone(180,.15,"sawtooth",.025);
- setTimeout(()=>tone(130,.22,"sawtooth",.02),130);
-}
-
-/* ---------------------------------------------------------
-   SLOTS
---------------------------------------------------------- */
-
-function buildSlots(game){
-
- $("gameContent").innerHTML=`
-  <div class="slot-machine">
-
-   <div class="reels">
-    <div class="reel" id="reel0">
-     <div class="reel-track" id="track0">
-      ${symbols.concat(symbols).map(s=>`
-       <div class="symbol">${s}</div>
-      `).join("")}
-     </div>
+/* RENDER GAMES */
+function renderGames() {
+  const filtered = gamesList.filter(g => currentFilter === "all" || g.type === currentFilter);
+  $("gameCount").textContent = filtered.length + " Games";
+  
+  $("gamesGrid").innerHTML = filtered.map(g => `
+    <div class="game-card" onclick="openGameModal('${g.id}')">
+      ${g.badge ? `<div class="game-hot-tag">${g.badge}</div>` : ""}
+      <div class="game-thumb">${g.icon}</div>
+      <div class="game-info-box">
+        <div class="game-name">${g.title}</div>
+        <div class="game-desc">${g.desc}</div>
+      </div>
     </div>
+  `).join("");
+}
 
-    <div class="reel" id="reel1">
-     <div class="reel-track" id="track1">
-      ${symbols.concat(symbols).map(s=>`
-       <div class="symbol">${s}</div>
-      `).join("")}
-     </div>
+/* OPEN GAME MODAL */
+function openGameModal(id) {
+  activeGame = gamesList.find(g => g.id === id);
+  if (!activeGame) return;
+
+  $("modalGameTitle").textContent = activeGame.title;
+  const body = $("modalGameBody");
+  body.innerHTML = "";
+
+  if (activeGame.type === "slots") buildSlotsEngine(body);
+  else if (activeGame.type === "wheel") buildWheelEngine(body);
+  else if (activeGame.type === "crash") buildCrashEngine(body);
+  else if (activeGame.type === "cards") buildCardsEngine(body);
+
+  $("gameModal").style.display = "grid";
+}
+
+/* SLOTS ENGINE */
+function buildSlotsEngine(container) {
+  container.innerHTML = `
+    <div class="slot-container">
+      <div class="reels-wrapper">
+        <div class="reel-window" id="rw0"><div class="reel-strip" id="rs0">${getSymbolListHTML()}</div></div>
+        <div class="reel-window" id="rw1"><div class="reel-strip" id="rs1">${getSymbolListHTML()}</div></div>
+        <div class="reel-window" id="rw2"><div class="reel-strip" id="rs2">${getSymbolListHTML()}</div></div>
+      </div>
+      <div class="payline-bar"></div>
+      <div class="game-status" id="slotStatus">Tap SPIN to Start</div>
+      <div class="controls-row">
+        <button class="btn-action" id="subBet">-</button>
+        <button class="btn-primary-play" id="spinSlotsBtn">SPIN (₹10)</button>
+        <button class="btn-action" id="addBet">+</button>
+      </div>
     </div>
+  `;
 
-    <div class="reel" id="reel2">
-     <div class="reel-track" id="track2">
-      ${symbols.concat(symbols).map(s=>`
-       <div class="symbol">${s}</div>
-      `).join("")}
-     </div>
+  let bet = 10;
+  $("subBet").onclick = () => { bet = Math.max(5, bet - 5); $("spinSlotsBtn").textContent = `SPIN (₹${bet})`; };
+  $("addBet").onclick = () => { bet = Math.min(100, bet + 5); $("spinSlotsBtn").textContent = `SPIN (₹${bet})`; };
+  $("spinSlotsBtn").onclick = () => playSlots(bet);
+}
+
+function getSymbolListHTML() {
+  return slotSymbols.concat(slotSymbols).map(s => `<div class="symbol-item">${s}</div>`).join("");
+}
+
+let isSpinning = false;
+function playSlots(cost) {
+  if (isSpinning) return;
+  if (balance < cost) { showToast("Insufficient virtual balance!"); return; }
+
+  isSpinning = true;
+  updateBalance(balance - cost);
+  $("slotStatus").textContent = "Spinning Reels...";
+
+  [0, 1, 2].forEach(i => $("rw" + i).classList.add("spinning"));
+
+  const results = [
+    slotSymbols[Math.floor(Math.random() * slotSymbols.length)],
+    slotSymbols[Math.floor(Math.random() * slotSymbols.length)],
+    slotSymbols[Math.floor(Math.random() * slotSymbols.length)]
+  ];
+
+  [0, 1, 2].forEach(i => {
+    setTimeout(() => {
+      $("rw" + i).classList.remove("spinning");
+      const idx = slotSymbols.indexOf(results[i]);
+      $("rs" + i).style.transform = `translateY(-${idx * 95}px)`;
+
+      if (i === 2) {
+        isSpinning = false;
+        let win = 0;
+        if (results[0] === results[1] && results[1] === results[2]) win = cost * 10;
+        else if (results[0] === results[1] || results[1] === results[2] || results[0] === results[2]) win = cost * 2;
+
+        if (win > 0) {
+          updateBalance(balance + win);
+          $("slotStatus").textContent = `🎉 WIN! +₹${win}`;
+          logActivity(activeGame.title, "Win", win - cost);
+        } else {
+          $("slotStatus").textContent = "No match. Try again!";
+          logActivity(activeGame.title, "Loss", -cost);
+        }
+      }
+    }, 800 + i * 500);
+  });
+}
+
+/* WHEEL ENGINE */
+function buildWheelEngine(container) {
+  container.innerHTML = `
+    <div class="wheel-container">
+      <div class="wheel-arrow"></div>
+      <div class="wheel-box" id="wheelBox"><div class="wheel-center"></div></div>
+      <div class="game-status" id="wheelStatus" style="margin-top:15px;">Spin for rewards!</div>
+      <button class="btn-primary-play" style="width:100%; padding:14px;" id="wheelSpinBtn">SPIN WHEEL (₹10)</button>
     </div>
-   </div>
-
-   <div class="payline"></div>
-
-   <div class="slot-result" id="slotResult">
-    Press SPIN to play
-   </div>
-
-   <div class="controls">
-    <button class="control-btn" id="minusBet">−</button>
-    <button class="spin-btn" id="spinButton">SPIN • 10</button>
-    <button class="control-btn" id="plusBet">+</button>
-   </div>
-
-  </div>
- `;
-
- let cost=10;
-
- const updateButton=()=>{
-  $("spinButton").textContent="SPIN • "+cost;
- };
-
- $("minusBet").onclick=()=>{
-  cost=Math.max(5,cost-5);
-  updateButton();
- };
-
- $("plusBet").onclick=()=>{
-  cost=Math.min(50,cost+5);
-  updateButton();
- };
-
- $("spinButton").onclick=()=>spinSlots(cost);
+  `;
+  $("wheelSpinBtn").onclick = playWheel;
 }
 
-function spinSlots(cost){
+let wheelSpinning = false;
+function playWheel() {
+  if (wheelSpinning) return;
+  const cost = 10;
+  if (balance < cost) { showToast("Insufficient balance!"); return; }
 
- if(spinning)return;
+  wheelSpinning = true;
+  updateBalance(balance - cost);
 
- if(balance<cost){
-  toast("Not enough virtual coins.");
-  return;
- }
+  const degrees = 1440 + Math.floor(Math.random() * 360);
+  $("wheelBox").style.transform = `rotate(${degrees}deg)`;
+  $("wheelStatus").textContent = "Spinning...";
 
- spinning=true;
- setBalance(balance-cost);
-
- const resultEl=$("slotResult");
- resultEl.textContent="SPINNING...";
-
- document.querySelectorAll(".reel").forEach(r=>{
-  r.classList.add("spinning");
- });
-
- spinSound();
-
- const values=[
-  symbols[Math.floor(Math.random()*symbols.length)],
-  symbols[Math.floor(Math.random()*symbols.length)],
-  symbols[Math.floor(Math.random()*symbols.length)]
- ];
-
- [0,1,2].forEach(i=>{
-  setTimeout(()=>{
-   const reel=$("reel"+i);
-   const track=$("track"+i);
-
-   reel.classList.remove("spinning");
-
-   const index=symbols.indexOf(values[i]);
-   track.style.transform=`translateY(-${index*115}px)`;
-
-   tone(300+i*120,.1,"square",.03);
-
-   if(i===2){
-    finishSlots(values,cost);
-   }
-  },900+i*550);
- });
+  setTimeout(() => {
+    wheelSpinning = false;
+    const prizes = [0, 15, 30, 50, 100, 200];
+    const prize = prizes[Math.floor(Math.random() * prizes.length)];
+    if (prize > 0) {
+      updateBalance(balance + prize);
+      $("wheelStatus").textContent = `🎉 Landed on ₹${prize}!`;
+      logActivity("Lucky Wheel", "Win", prize - cost);
+    } else {
+      $("wheelStatus").textContent = "Landed on 0. Try again!";
+      logActivity("Lucky Wheel", "Loss", -cost);
+    }
+  }, 4000);
 }
 
-function finishSlots(values,cost){
-
- spinning=false;
-
- let reward=0;
- let message="No match — spin again.";
-
- if(values[0]===values[1] && values[1]===values[2]){
-  reward=cost*10;
-  message="JACKPOT! +"+reward+" virtual coins!";
- }
- else if(values[0]===values[1] || values[1]===values[2] || values[0]===values[2]){
-  reward=cost*2;
-  message="DOUBLE MATCH! +"+reward+" virtual coins!";
- }
-
- if(reward>0){
-  setBalance(balance+reward);
-  winSound();
-  $("slotResult").textContent="🎉 "+message;
-  addHistory(currentGame.title,"Win",reward-cost);
- }else{
-  loseSound();
-  $("slotResult").textContent="✨ "+message;
-  addHistory(currentGame.title,"No match",-cost);
- }
+/* CRASH / AVIATOR ENGINE */
+function buildCrashEngine(container) {
+  container.innerHTML = `
+    <div class="crash-box">
+      <div class="crash-grid-bg"></div>
+      <div class="rocket-line" id="rocketLine"></div>
+      <div class="crash-number" id="crashNum">1.00x</div>
+    </div>
+    <div class="game-status" id="crashStatus">Watch the multiplier grow!</div>
+    <button class="btn-primary-play" style="width:100%; padding:14px;" id="startCrashBtn">LAUNCH ROCKET (₹10)</button>
+  `;
+  $("startCrashBtn").onclick = playCrash;
 }
 
-/* ---------------------------------------------------------
-   WHEEL
---------------------------------------------------------- */
+function playCrash() {
+  const cost = 10;
+  if (balance < cost) { showToast("Insufficient balance!"); return; }
 
-function buildWheel(){
+  updateBalance(balance - cost);
+  const btn = $("startCrashBtn");
+  btn.disabled = true;
 
- $("gameContent").innerHTML=`
-  <div class="wheel-wrap">
+  let val = 1.0;
+  const crashAt = 1.2 + Math.random() * 3.5;
 
-   <div class="pointer"></div>
+  const timer = setInterval(() => {
+    val += 0.03;
+    $("crashNum").textContent = val.toFixed(2) + "x";
+    $("rocketLine").style.width = Math.min(100, (val / crashAt) * 100) + "%";
 
-   <div class="wheel" id="wheel">
-   </div>
-
-   <button class="wheel-btn" id="wheelSpin">
-    SPIN WHEEL • 10 COINS
-   </button>
-
-   <div class="slot-result" id="wheelResult">
-    Spin the wheel for a virtual reward
-   </div>
-
-  </div>
- `;
-
- $("wheelSpin").onclick=spinWheel;
+    if (val >= crashAt) {
+      clearInterval(timer);
+      btn.disabled = false;
+      const win = Math.floor(cost * crashAt);
+      if (crashAt >= 2.0) {
+        updateBalance(balance + win);
+        $("crashStatus").textContent = `🚀 Escaped at ${crashAt.toFixed(2)}x (+₹${win})`;
+        logActivity("Aviator", "Win", win - cost);
+      } else {
+        $("crashStatus").textContent = `💥 Crashed at ${crashAt.toFixed(2)}x!`;
+        logActivity("Aviator", "Loss", -cost);
+      }
+    }
+  }, 60);
 }
 
-function spinWheel(){
+/* CARDS ENGINE */
+function buildCardsEngine(container) {
+  container.innerHTML = `
+    <div style="text-align:center; padding:20px 0;">
+      <div id="cardDisp" style="font-size:80px; margin-bottom:10px;">🂠</div>
+      <div class="game-status" id="cardStatus">Draw a high card</div>
+      <button class="btn-primary-play" style="width:100%; padding:14px;" id="drawCardBtn">DRAW CARD (₹10)</button>
+    </div>
+  `;
+  $("drawCardBtn").onclick = playCards;
+}
 
- if(wheelSpinning)return;
+function playCards() {
+  const cost = 10;
+  if (balance < cost) { showToast("Insufficient balance!"); return; }
 
- const cost=10;
+  updateBalance(balance - cost);
+  const cards = ["🂡","🂢","🂣","🂤","🂥","🂦","🂧","🂨","🂩","🂪","🂫","🂭","🂮"];
+  const pick = cards[Math.floor(Math.random() * cards.length)];
+  const score = Math.floor(Math.random() * 13) + 1;
 
- if(balance<cost){
-  toast("Not enough virtual coins.");
-  return;
- }
-
- wheelSpinning=true;
- setBalance(balance-cost);
-
- const wheel=$("wheel");
- const extra=1440+Math.floor(Math.random()*1440);
-
- wheel.style.transform=`rotate(${extra}deg)`;
- spinSound();
-
- setTimeout(()=>{
-
-  wheelSpinning=false;
-
-  const rewards=[0,10,20,30,50,75,100,200];
-  const reward=rewards[Math.floor(Math.random()*rewards.length)];
-
-  if(reward>0){
-   setBalance(balance+reward);
-   $("wheelResult").textContent=
-    "🎉 You received "+reward+" virtual coins!";
-   winSound();
-   addHistory("Lucky Wheel","Reward",reward-cost);
-  }else{
-   $("wheelResult").textContent=
-    "The wheel landed on 0. Try again!";
-   loseSound();
-   addHistory("Lucky Wheel","Zero reward",-cost);
+  $("cardDisp").textContent = pick;
+  if (score >= 8) {
+    const win = 25;
+    updateBalance(balance + win);
+    $("cardStatus").textContent = `👑 High Card! Won ₹${win}`;
+    logActivity("Royal Cards", "Win", win - cost);
+  } else {
+    $("cardStatus").textContent = "Low Card. Better luck next time!";
+    logActivity("Royal Cards", "Loss", -cost);
   }
-
- },4300);
 }
 
-/* ---------------------------------------------------------
-   ROCKET ARCADE
---------------------------------------------------------- */
+/* CATEGORY FILTERS */
+document.querySelectorAll(".cat-item").forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll(".cat-item").forEach(x => x.classList.remove("active"));
+    btn.classList.add("active");
+    currentFilter = btn.dataset.filter;
+    renderGames();
+  };
+});
 
-function buildCrash(){
+/* MODAL TOGGLES */
+$("closeGameModal").onclick = () => $("gameModal").style.display = "none";
+$("openBankBtn").onclick = () => $("bankModal").style.display = "grid";
+$("closeBankModal").onclick = () => $("bankModal").style.display = "none";
+$("navHome").onclick = () => $("bankModal").style.display = "grid";
 
- $("gameContent").innerHTML=`
-  <div class="crash">
+$("promoBtn").onclick = () => $("promoModal").style.display = "grid";
+$("toolPromo").onclick = () => $("promoModal").style.display = "grid";
+$("claimPromoQuick").onclick = () => $("promoModal").style.display = "grid";
+$("closePromoModal").onclick = () => $("promoModal").style.display = "none";
 
-   <div class="crash-grid"></div>
-
-   <div class="crash-line" id="crashLine"></div>
-
-   <div class="multiplier" id="multiplier">
-    1.00x
-   </div>
-
-  </div>
-
-  <button class="crash-start" id="crashStart">
-   START ROUND • 10 COINS
-  </button>
-
-  <div class="slot-result" id="crashResult">
-   Watch the rocket climb!
-  </div>
- `;
-
- $("crashStart").onclick=startRocket;
-}
-
-function startRocket(){
-
- const cost=10;
-
- if(balance<cost){
-  toast("Not enough virtual coins.");
-  return;
- }
-
- setBalance(balance-cost);
-
- const button=$("crashStart");
- const multiplier=$("multiplier");
- const line=$("crashLine");
-
- button.disabled=true;
-
- let value=1;
- let elapsed=0;
-
- line.style.width="0";
- line.style.transform="rotate(-20deg)";
-
- const stopAt=1.5+Math.random()*4;
-
- const timer=setInterval(()=>{
-
-  elapsed+=50;
-  value+=0.012+(value*.0015);
-
-  multiplier.textContent=value.toFixed(2)+"x";
-
-  const width=Math.min(100,(value/stopAt)*100);
-  line.style.width=width+"%";
-  line.style.transform=
-   `rotate(${-20+Math.min(24,width*.25)}deg)`;
-
-  if(value>=stopAt){
-
-   clearInterval(timer);
-
-   const reward=Math.floor(cost*stopAt);
-
-   if(stopAt>=2.5){
-    setBalance(balance+reward);
-
-    $("crashResult").textContent=
-     "🚀 Rocket reached "+stopAt.toFixed(2)+"x • +"+reward+" coins";
-
-    winSound();
-    addHistory("Rocket Rise","Reached "+stopAt.toFixed(2)+"x",reward-cost);
-
-   }else{
-
-    $("crashResult").textContent=
-     "Rocket stopped at "+stopAt.toFixed(2)+"x.";
-
-    loseSound();
-    addHistory("Rocket Rise","Round ended",-cost);
-   }
-
-   button.disabled=false;
+$("claimPromoBtn").onclick = () => {
+  const val = $("promoInput").value.trim().toUpperCase();
+  if (val === "ZEESHAN") {
+    updateBalance(balance + 200);
+    showToast("🎉 Promo Code Applied! +₹200 Added");
+    $("promoModal").style.display = "none";
+  } else {
+    showToast("Invalid Promo Code!");
   }
+};
 
- },50);
+$("addCashDemo").onclick = () => { updateBalance(balance + 500); showToast("Added +₹500 Virtual Coins!"); };
+$("withdrawDemo").onclick = () => { showToast("Demo withdrawal submitted!"); };
+
+$("historyBtn").onclick = showHistoryModal;
+$("closeHistoryModal").onclick = () => $("historyModal").style.display = "none";
+
+function showHistoryModal() {
+  const hList = $("historyList");
+  if (!history.length) {
+    hList.innerHTML = "<p style='color:var(--text-muted); font-size:12px;'>No recent games played.</p>";
+  } else {
+    hList.innerHTML = history.map(item => `
+      <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.08);">
+        <div>
+          <strong style="font-size:12px; display:block;">${item.game}</strong>
+          <small style="color:var(--text-muted); font-size:10px;">${item.time} • ${item.res}</small>
+        </div>
+        <strong style="color:${item.amt >= 0 ? '#2ecc71' : '#e74c3c'}; font-size:13px;">
+          ${item.amt >= 0 ? '+' : ''}${item.amt}
+        </strong>
+      </div>
+    `).join("");
+  }
+  $("historyModal").style.display = "grid";
 }
 
-/* ---------------------------------------------------------
-   CARDS
---------------------------------------------------------- */
-
-function buildCards(){
-
- $("gameContent").innerHTML=`
-  <div style="text-align:center;padding:20px 0">
-
-   <div id="playerCard"
-    style="font-size:80px;margin:15px">
-    🂠
-   </div>
-
-   <div id="cardResult"
-    class="slot-result">
-    Choose HIGH CARD
-   </div>
-
-   <button class="wheel-btn" id="drawCard">
-    DRAW CARD • 10 COINS
-   </button>
-
-  </div>
- `;
-
- $("drawCard").onclick=drawCard;
-}
-
-function drawCard(){
-
- const cost=10;
-
- if(balance<cost){
-  toast("Not enough virtual coins.");
-  return;
- }
-
- setBalance(balance-cost);
-
- const deck=[
-  "🂡","🂢","🂣","🂤","🂥","🂦","🂧",
-  "🂨","🂩","🂪","🂫","🂭","🂮"
- ];
-
- const card=deck[Math.floor(Math.random()*deck.length)];
- const value=Math.floor(Math.random()*13)+1;
-
- $("playerCard").textContent=card;
-
- if(value>=10){
-
-  const reward=25;
-  setBalance(balance+reward);
-
-  $("cardResult").textContent=
-   "👑 HIGH CARD! +"+reward+" virtual coins";
-
-  winSound();
-  addHistory("Royal Cards","High card",reward-cost);
-
- }else{
-
-  $("cardResult").textContent=
-   "Card drawn. No reward this round.";
-
-  loseSound();
-  addHistory("Royal Cards","No reward",-cost);
- }
-}
-
-/* ---------------------------------------------------------
-   MODALS / NAVIGATION
---------------------------------------------------------- */
-
-$("closeGame").onclick=()=>{
- $("gameModal").style.display="none";
-};
-
-$("closeHistory").onclick=()=>{
- $("historyModal").style.display="none";
-};
-
-$("historyBtn").onclick=()=>{
- $("historyModal").style.display="grid";
-};
-
-$("historyNav").onclick=()=>{
- $("historyModal").style.display="grid";
-};
-
-$("wheelNav").onclick=()=>{
- openGame(games.find(g=>g.id==="wheel"));
-};
-
-$("slotsNav").onclick=()=>{
- openGame(games.find(g=>g.id==="reels"));
-};
-
-$("resetBtn").onclick=()=>{
- if(confirm("Reset virtual coins and local game history?")){
-  balance=1000;
-  history=[];
-  save();
-  setBalance(balance);
-  renderHistory();
-  toast("Virtual arcade reset.");
- }
-};
-
-document.querySelectorAll(".category").forEach(button=>{
- button.onclick=()=>{
-
-  document.querySelectorAll(".category")
-   .forEach(x=>x.classList.remove("active"));
-
-  button.classList.add("active");
-
-  currentFilter=button.dataset.filter;
-
-  renderGames();
- };
-});
-
-/* Close modal by clicking outside */
-$("gameModal").addEventListener("click",e=>{
- if(e.target===$("gameModal")){
-  $("gameModal").style.display="none";
- }
-});
-
-$("historyModal").addEventListener("click",e=>{
- if(e.target===$("historyModal")){
-  $("historyModal").style.display="none";
- }
-});
-
-/* ---------------------------------------------------------
-   STARTUP
---------------------------------------------------------- */
-
-window.addEventListener("load",()=>{
-
- setTimeout(()=>{
-
-  $("loader").style.display="none";
-  $("app").style.display="block";
-
-  setBalance(balance);
-  renderGames();
-  renderHistory();
-
- },800);
-
+/* INITIAL LOAD */
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    $("loader").style.display = "none";
+    $("app").style.display = "block";
+    updateBalance(balance);
+    renderGames();
+  }, 600);
 });
 </script>
 
