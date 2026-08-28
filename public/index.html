@@ -1,10 +1,11 @@
+```html
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#063d35">
-<title>SehrAn Games</title>
+<title>ZeeshanPlayzone-</title>
 <style>
 :root{
   --bg:#032d28;--bg2:#06463c;--panel:#075d50;--panel2:#0a7666;
@@ -103,33 +104,73 @@ button{cursor:pointer}
 </style>
 </head>
 <body>
-<div id="loader"><div class="loader-box"><div class="logo">SM</div><div class="loader-title">SehrAn Games</div><div class="spinner"></div><div class="muted">Loading your game world…</div></div></div>
+
+<div id="loader">
+  <div class="loader-box">
+    <div class="logo">ZP</div>
+    <div class="loader-title">ZeeshanPlayzone-</div>
+    <div class="spinner"></div>
+    <div class="muted">Loading your game world…</div>
+  </div>
+</div>
 
 <section id="auth">
   <div class="auth-card">
-    <div class="brand"><div class="brand-mark">SM</div> SehrAn Games</div>
+    <div class="brand">
+      <div class="brand-mark">ZP</div> ZeeshanPlayzone-
+    </div>
+
     <h1>Welcome back</h1>
+
     <p>Sign in with your mobile number. A real OTP can be sent when an SMS provider is configured on the server.</p>
-    <div class="field"><label>NAME</label><input id="name" maxlength="40" placeholder="Your name"></div>
-    <div class="field"><label>MOBILE</label><input id="mobile" inputmode="tel" maxlength="15" placeholder="+91 9876543210"></div>
-    <div class="field"><label>PASSWORD</label><input id="password" type="password" maxlength="72" placeholder="Create or enter password"></div>
+
+    <div class="field">
+      <label>NAME</label>
+      <input id="name" maxlength="40" placeholder="Your name">
+    </div>
+
+    <div class="field">
+      <label>MOBILE</label>
+      <input id="mobile" inputmode="tel" maxlength="15" placeholder="+91 9876543210">
+    </div>
+
+    <div class="field">
+      <label>PASSWORD</label>
+      <input id="password" type="password" maxlength="72" placeholder="Create or enter password">
+    </div>
+
     <button class="btn btn-gold" id="sendOtp">SEND OTP</button>
+
     <div id="otpArea" style="display:none">
-      <div class="field"><label>OTP</label><input id="otp" inputmode="numeric" maxlength="6" placeholder="6-digit OTP"></div>
+      <div class="field">
+        <label>OTP</label>
+        <input id="otp" inputmode="numeric" maxlength="6" placeholder="6-digit OTP">
+      </div>
+
       <button class="btn btn-gold" id="verifyOtp">VERIFY & ENTER</button>
     </div>
+
     <div class="auth-msg" id="authMsg"></div>
   </div>
 </section>
 
 <main id="app">
+
 <header class="topbar">
-  <div class="avatar">🎮</div><div class="user-name" id="displayName">Player</div>
-  <div class="balance"><span class="coin">★</span><span id="balance">1000</span><button class="plus" id="bonusBtn">+</button></div>
+  <div class="avatar">🎮</div>
+  <div class="user-name" id="displayName">Player</div>
+
+  <div class="balance">
+    <span class="coin">★</span>
+    <span id="balance">1000</span>
+    <button class="plus" id="bonusBtn">+</button>
+  </div>
+
   <button class="icon-btn" id="profileBtn">⚙</button>
 </header>
 
 <div class="container">
+
   <div class="tabs">
     <button class="tab active" data-filter="all">❤️<br>ALL</button>
     <button class="tab" data-filter="slots">🎰<br>SLOTS</button>
@@ -139,25 +180,48 @@ button{cursor:pointer}
   </div>
 
   <section class="banner">
-    <small>✦ SEHRAN GAMES LIVE</small>
+    <small>✦ ZEESHANPLAYZONE- LIVE</small>
     <h2>DAILY GAME CHALLENGE</h2>
     <strong id="challenge">1,000</strong> <span>FREE COINS</span>
     <p>Virtual coins only • No cash wagering • Fair random game outcomes</p>
   </section>
 
-  <div class="section-title"><h3>⭐ FAVORITE</h3><span>SEE ALL ›</span></div>
+  <div class="section-title">
+    <h3>⭐ FAVORITE</h3>
+    <span>SEE ALL ›</span>
+  </div>
+
   <div class="games" id="games"></div>
 
   <div class="card">
-    <div class="row"><div><b>🎟️ Promo Code</b><div class="muted">Use your code for virtual bonus coins.</div></div></div>
-    <div class="promo-input"><input id="promo" placeholder="Enter promo code"><button id="claimPromo">CLAIM</button></div>
+    <div class="row">
+      <div>
+        <b>🎟️ Promo Code</b>
+        <div class="muted">Use your code for virtual bonus coins.</div>
+      </div>
+    </div>
+
+    <div class="promo-input">
+      <input id="promo" placeholder="Enter promo code">
+      <button id="claimPromo">CLAIM</button>
+    </div>
+
     <div id="promoMsg"></div>
   </div>
 
   <div class="card">
-    <div class="row"><b>🏆 Leaderboard</b><span class="muted">This week</span></div>
-    <p class="muted">1. Player One — 8,420 coins<br>2. Lucky Star — 7,915 coins<br>3. Game Master — 7,210 coins</p>
+    <div class="row">
+      <b>🏆 Leaderboard</b>
+      <span class="muted">This week</span>
+    </div>
+
+    <p class="muted">
+      1. Player One — 8,420 coins<br>
+      2. Lucky Star — 7,915 coins<br>
+      3. Game Master — 7,210 coins
+    </p>
   </div>
+
 </div>
 
 <nav class="bottom">
@@ -167,20 +231,45 @@ button{cursor:pointer}
   <button class="nav" data-page="refer"><b>🔗</b>Refer & Earn</button>
   <button class="nav" data-page="events"><b>🎁</b>Events</button>
 </nav>
+
 </main>
 
-<div class="modal" id="gameModal"><div class="modal-box game-screen">
-<button class="close" data-close="gameModal">✕</button><h2 id="modalTitle">Game</h2>
-<div class="big" id="modalEmoji">🎰</div><div class="result" id="result"></div>
-<p class="muted">This is a virtual-coin game. Outcomes are generated randomly and are not connected to real-money wagering.</p>
-<button class="btn btn-gold" id="playRound">PLAY ROUND</button>
-</div></div>
+<div class="modal" id="gameModal">
+  <div class="modal-box game-screen">
+    <button class="close" data-close="gameModal">✕</button>
 
-<div class="modal" id="profileModal"><div class="modal-box">
-<button class="close" data-close="profileModal">✕</button><h2>Profile</h2>
-<p>Player: <b id="profileName">Player</b></p><p class="muted">Virtual balance: <b id="profileBalance">0</b> coins</p>
-<button class="btn btn-ghost" id="logout">LOG OUT</button>
-</div></div>
+    <h2 id="modalTitle">Game</h2>
+
+    <div class="big" id="modalEmoji">🎰</div>
+
+    <div class="result" id="result"></div>
+
+    <p class="muted">
+      This is a virtual-coin game. Outcomes are generated randomly and are not connected to real-money wagering.
+    </p>
+
+    <button class="btn btn-gold" id="playRound">PLAY ROUND</button>
+  </div>
+</div>
+
+<div class="modal" id="profileModal">
+  <div class="modal-box">
+
+    <button class="close" data-close="profileModal">✕</button>
+
+    <h2>Profile</h2>
+
+    <p>Player: <b id="profileName">Player</b></p>
+
+    <p class="muted">
+      Virtual balance:
+      <b id="profileBalance">0</b> coins
+    </p>
+
+    <button class="btn btn-ghost" id="logout">LOG OUT</button>
+
+  </div>
+</div>
 
 <script>
 const games=[
@@ -197,65 +286,301 @@ const games=[
  {name:"Chicken Road",emoji:"🐔",type:"arcade",hot:true},
  {name:"Very Lucky",emoji:"🍀",type:"lucky",hot:true}
 ];
-let currentGame=null, balance=1000, filter="all";
+
+let currentGame=null;
+let balance=1000;
+let filter="all";
+
 const $=id=>document.getElementById(id);
 
 function renderGames(){
-  $("games").innerHTML=games.filter(g=>filter==="all"||g.type===filter).map((g,i)=>`
-    <article class="game" data-i="${i}">
-      ${g.hot?'<span class="hot">HOT</span>':''}${g.new?'<span class="hot">NEW</span>':''}
-      <div class="game-art">${g.emoji}</div><div class="game-name">${g.name}</div>
-      <button class="play">▶</button>
-    </article>`).join("");
-  document.querySelectorAll(".game").forEach(el=>el.onclick=()=>openGame(games[+el.dataset.i]));
+  $("games").innerHTML=games
+    .filter(g=>filter==="all"||g.type===filter)
+    .map((g,i)=>`
+      <article class="game" data-i="${i}">
+        ${g.hot?'<span class="hot">HOT</span>':''}
+        ${g.new?'<span class="hot">NEW</span>':''}
+        <div class="game-art">${g.emoji}</div>
+        <div class="game-name">${g.name}</div>
+        <button class="play">▶</button>
+      </article>
+    `)
+    .join("");
+
+  document.querySelectorAll(".game").forEach(el=>{
+    el.onclick=()=>openGame(games[+el.dataset.i]);
+  });
 }
-function openGame(g){currentGame=g;$("modalTitle").textContent=g.name;$("modalEmoji").textContent=g.emoji;$("result").textContent="";$("gameModal").style.display="grid"}
-function setBalance(v){balance=Math.max(0,v);$("balance").textContent=balance.toLocaleString();$("profileBalance").textContent=balance.toLocaleString()}
+
+function openGame(g){
+  currentGame=g;
+  $("modalTitle").textContent=g.name;
+  $("modalEmoji").textContent=g.emoji;
+  $("result").textContent="";
+  $("gameModal").style.display="grid";
+}
+
+function setBalance(v){
+  balance=Math.max(0,v);
+  $("balance").textContent=balance.toLocaleString();
+  $("profileBalance").textContent=balance.toLocaleString();
+}
+
 function showApp(){
-  $("auth").style.display="none";$("app").style.display="block";
-  $("displayName").textContent=localStorage.getItem("sm_name")||"Player";$("profileName").textContent=$("displayName").textContent;
-  renderGames();setBalance(Number(localStorage.getItem("sm_balance")||1000));
+  $("auth").style.display="none";
+  $("app").style.display="block";
+
+  $("displayName").textContent=
+    localStorage.getItem("sm_name")||"Player";
+
+  $("profileName").textContent=
+    $("displayName").textContent;
+
+  renderGames();
+
+  setBalance(
+    Number(
+      localStorage.getItem("sm_balance")||1000
+    )
+  );
 }
-function save(){localStorage.setItem("sm_balance",balance);localStorage.setItem("sm_name",$("displayName").textContent)}
-function authMsg(t){$("authMsg").textContent=t}
-window.addEventListener("load",()=>setTimeout(()=>{ $("loader").style.display="none"; if(localStorage.getItem("sm_session"))showApp(); else $("auth").style.display="grid"},700));
+
+function save(){
+  localStorage.setItem(
+    "sm_balance",
+    balance
+  );
+
+  localStorage.setItem(
+    "sm_name",
+    $("displayName").textContent
+  );
+}
+
+function authMsg(t){
+  $("authMsg").textContent=t;
+}
+
+window.addEventListener("load",()=>{
+  setTimeout(()=>{
+    $("loader").style.display="none";
+
+    if(localStorage.getItem("sm_session")){
+      showApp();
+    }else{
+      $("auth").style.display="grid";
+    }
+  },700);
+});
 
 $("sendOtp").onclick=async()=>{
-  const name=$("name").value.trim(), mobile=$("mobile").value.trim(), password=$("password").value;
-  if(!name||!mobile||password.length<8)return authMsg("Enter your name, mobile number and a password of at least 8 characters.");
+  const name=$("name").value.trim();
+  const mobile=$("mobile").value.trim();
+  const password=$("password").value;
+
+  if(
+    !name||
+    !mobile||
+    password.length<8
+  ){
+    return authMsg(
+      "Enter your name, mobile number and a password of at least 8 characters."
+    );
+  }
+
   authMsg("Sending OTP…");
+
   try{
-    const r=await fetch("/api/auth/request-otp",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name,mobile,password})});
-    const d=await r.json(); if(!r.ok)throw new Error(d.error||"Unable to send OTP");
-    $("otpArea").style.display="block";authMsg(d.message||"OTP sent.");
-  }catch(e){authMsg(e.message)}
+    const r=await fetch(
+      "/api/auth/request-otp",
+      {
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+          name,
+          mobile,
+          password
+        })
+      }
+    );
+
+    const d=await r.json();
+
+    if(!r.ok){
+      throw new Error(
+        d.error||"Unable to send OTP"
+      );
+    }
+
+    $("otpArea").style.display="block";
+
+    authMsg(
+      d.message||"OTP sent."
+    );
+
+  }catch(e){
+    authMsg(e.message);
+  }
 };
+
 $("verifyOtp").onclick=async()=>{
   try{
-    const r=await fetch("/api/auth/verify-otp",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({mobile:$("mobile").value.trim(),otp:$("otp").value.trim()})});
-    const d=await r.json();if(!r.ok)throw new Error(d.error||"OTP verification failed");
-    localStorage.setItem("sm_session",d.session);localStorage.setItem("sm_name",d.name);showApp();
-  }catch(e){authMsg(e.message)}
+    const r=await fetch(
+      "/api/auth/verify-otp",
+      {
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+          mobile:$("mobile").value.trim(),
+          otp:$("otp").value.trim()
+        })
+      }
+    );
+
+    const d=await r.json();
+
+    if(!r.ok){
+      throw new Error(
+        d.error||"OTP verification failed"
+      );
+    }
+
+    localStorage.setItem(
+      "sm_session",
+      d.session
+    );
+
+    localStorage.setItem(
+      "sm_name",
+      d.name
+    );
+
+    showApp();
+
+  }catch(e){
+    authMsg(e.message);
+  }
 };
+
 $("claimPromo").onclick=async()=>{
-  if($("promo").value.trim().toUpperCase()!=="ZEESHAN10")return $("promoMsg").textContent="Invalid promo code.";
-  if(localStorage.getItem("sm_promo"))return $("promoMsg").textContent="Promo already claimed.";
-  balance+=1000;localStorage.setItem("sm_promo","1");setBalance(balance);save();$("promoMsg").textContent="ZEESHAN10 applied: +1,000 virtual coins!";
+  if(
+    $("promo").value
+      .trim()
+      .toUpperCase()!=="ZEESHAN10"
+  ){
+    return $("promoMsg").textContent=
+      "Invalid promo code.";
+  }
+
+  if(
+    localStorage.getItem("sm_promo")
+  ){
+    return $("promoMsg").textContent=
+      "Promo already claimed.";
+  }
+
+  balance+=1000;
+
+  localStorage.setItem(
+    "sm_promo",
+    "1"
+  );
+
+  setBalance(balance);
+  save();
+
+  $("promoMsg").textContent=
+    "ZEESHAN10 applied: +1,000 virtual coins!";
 };
+
 $("playRound").onclick=()=>{
-  if(balance<10){$("result").textContent="Not enough virtual coins.";return}
+  if(balance<10){
+    $("result").textContent=
+      "Not enough virtual coins.";
+    return;
+  }
+
   balance-=10;
-  const win=Math.random()<0.5; // transparent demo odds; not tied to money
-  if(win){balance+=20;$("result").textContent="🎉 You won 20 virtual coins!";}
-  else $("result").textContent="Try again — 10 virtual coins used.";
-  setBalance(balance);save();
+
+  const win=Math.random()<0.5;
+
+  if(win){
+    balance+=20;
+    $("result").textContent=
+      "🎉 You won 20 virtual coins!";
+  }else{
+    $("result").textContent=
+      "Try again — 10 virtual coins used.";
+  }
+
+  setBalance(balance);
+  save();
 };
-document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));b.classList.add("active");filter=b.dataset.filter;renderGames()});
-$("bonusBtn").onclick=()=>{balance+=50;setBalance(balance);save();alert("+50 virtual coins added!")};
-$("profileBtn").onclick=()=>{$("profileBalance").textContent=balance.toLocaleString();$("profileModal").style.display="grid"};
-$("logout").onclick=()=>{localStorage.removeItem("sm_session");$("app").style.display="none";$("profileModal").style.display="none";$("auth").style.display="grid"};
-document.querySelectorAll("[data-close]").forEach(b=>b.onclick=()=>$(b.dataset.close).style.display="none");
-document.querySelectorAll(".nav").forEach(b=>b.onclick=()=>alert(b.dataset.page==="bank"?"Bank is virtual-coin only in this version.":"Section: "+b.dataset.page));
+
+document.querySelectorAll(".tab").forEach(b=>{
+  b.onclick=()=>{
+    document
+      .querySelectorAll(".tab")
+      .forEach(x=>x.classList.remove("active"));
+
+    b.classList.add("active");
+
+    filter=b.dataset.filter;
+
+    renderGames();
+  };
+});
+
+$("bonusBtn").onclick=()=>{
+  balance+=50;
+
+  setBalance(balance);
+  save();
+
+  alert(
+    "+50 virtual coins added!"
+  );
+};
+
+$("profileBtn").onclick=()=>{
+  $("profileBalance").textContent=
+    balance.toLocaleString();
+
+  $("profileModal").style.display="grid";
+};
+
+$("logout").onclick=()=>{
+  localStorage.removeItem(
+    "sm_session"
+  );
+
+  $("app").style.display="none";
+  $("profileModal").style.display="none";
+  $("auth").style.display="grid";
+};
+
+document.querySelectorAll("[data-close]")
+.forEach(b=>{
+  b.onclick=()=>
+    $(b.dataset.close).style.display="none";
+});
+
+document.querySelectorAll(".nav")
+.forEach(b=>{
+  b.onclick=()=>{
+    alert(
+      b.dataset.page==="bank"
+        ? "Bank is virtual-coin only in this version."
+        : "Section: "+b.dataset.page
+    );
+  };
+});
 </script>
+
 </body>
 </html>
+```
