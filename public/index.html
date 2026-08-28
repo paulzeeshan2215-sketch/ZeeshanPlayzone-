@@ -3,643 +3,418 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROYAL COIN CASINO - Official Gaming Platform</title>
+    <title>Crazy 777 Slot Game</title>
     <style>
         :root {
             --gold: #ffd700;
-            --gold-bright: #fff066;
-            --dark-bg: #0b0914;
-            --card-bg: #161228;
+            --purple-dark: #12092b;
+            --purple-card: #201343;
             --accent-red: #ff2a5f;
-            --accent-green: #00e676;
-            --purple-glow: rgba(138, 43, 226, 0.4);
+            --green-btn: #00e676;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             user-select: none;
         }
 
         body {
-            background-color: var(--dark-bg);
+            background-color: var(--purple-dark);
             color: #ffffff;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            background-image: radial-gradient(circle at 50% 0%, #1e133a 0%, var(--dark-bg) 70%);
-        }
-
-        /* HEADER & WALLET BAR */
-        header {
-            background: rgba(15, 12, 28, 0.95);
-            padding: 18px 40px;
-            display: flex;
-            justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
-            box-shadow: 0 5px 25px rgba(0,0,0,0.8);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(10px);
+            justify-content: center;
         }
 
-        .logo {
-            font-size: 26px;
-            font-weight: 900;
-            color: var(--gold);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .wallet-panel {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .coin-balance {
-            background: linear-gradient(145deg, #1f1938, #2a224a);
-            border: 2px solid var(--gold);
-            padding: 10px 22px;
-            border-radius: 30px;
-            font-size: 18px;
-            font-weight: 800;
-            color: var(--gold-bright);
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .audio-toggle {
-            background: #251d42;
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            padding: 10px 14px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 18px;
-            transition: 0.3s;
-        }
-
-        .audio-toggle:hover {
-            background: var(--gold);
-            color: #000;
-        }
-
-        /* MAIN HERO & GRID */
-        .container {
-            max-width: 1300px;
-            margin: 40px auto;
-            padding: 0 20px;
-            flex: 1;
-        }
-
-        .hero-banner {
-            background: linear-gradient(90deg, #280f36, #120c24);
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .hero-text h1 {
-            font-size: 32px;
-            color: var(--gold);
-            margin-bottom: 10px;
-        }
-
-        .hero-text p {
-            color: #b0a8d1;
-            font-size: 16px;
-        }
-
-        .section-title {
-            font-size: 24px;
-            font-weight: 800;
-            margin-bottom: 25px;
-            color: #fff;
-            border-left: 5px solid var(--accent-red);
-            padding-left: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .game-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 25px;
-        }
-
-        .game-card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            overflow: hidden;
-            transition: all 0.3s ease;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .game-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--gold);
-            box-shadow: 0 12px 30px var(--purple-glow);
-        }
-
-        .card-banner {
-            height: 140px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            display: flex;
-            align-items: flex-end;
-            padding: 15px;
-        }
-
-        .badge {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: var(--accent-red);
-            color: #fff;
-            font-size: 11px;
-            font-weight: 800;
-            padding: 4px 10px;
-            border-radius: 12px;
-            text-transform: uppercase;
-        }
-
-        .card-details {
-            padding: 20px;
-        }
-
-        .game-name {
-            font-size: 18px;
-            font-weight: 800;
-            color: #fff;
-            margin-bottom: 5px;
-        }
-
-        .game-provider {
-            font-size: 13px;
-            color: #8a81ab;
-            margin-bottom: 15px;
-        }
-
-        .btn-play {
-            width: 100%;
-            padding: 12px;
-            background: linear-gradient(135deg, #ffd700, #ffaa00);
-            border: none;
-            color: #000;
-            font-weight: 900;
-            font-size: 14px;
-            border-radius: 10px;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.2s;
-        }
-
-        .btn-play:hover {
-            filter: brightness(1.15);
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
-        }
-
-        /* MODAL GAME VIEWPORT */
-        .game-modal {
-            display: none;
+        /* 1. LOADING SCREEN */
+        #loading-screen {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(5, 3, 10, 0.95);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(8px);
-        }
-
-        .modal-content {
-            background: #15102a;
-            border: 2px solid var(--gold);
-            border-radius: 20px;
-            width: 90%;
-            max-width: 800px;
-            padding: 30px;
-            position: relative;
-            box-shadow: 0 0 50px rgba(0,0,0,0.9);
-            text-align: center;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            background: var(--accent-red);
-            border: none;
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            padding: 8px 16px;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-
-        /* GAME ENGINES CSS */
-        .game-screen {
-            background: #090714;
-            border-radius: 12px;
-            padding: 25px;
-            margin: 20px 0;
-            border: 1px solid rgba(255,255,255,0.1);
-            min-height: 250px;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--purple-dark);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            z-index: 999;
         }
 
-        .slot-reels {
-            display: flex;
-            gap: 15px;
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 6px solid rgba(255, 215, 0, 0.2);
+            border-top: 6px solid var(--gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
             margin-bottom: 20px;
         }
 
-        .reel {
-            width: 80px;
-            height: 100px;
-            background: #1e1738;
-            border: 2px solid var(--gold);
-            border-radius: 10px;
-            font-size: 45px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
-        .bet-controls {
-            display: flex;
-            gap: 15px;
+        /* 2. AUTH MODAL (LOGIN / OTP) */
+        #auth-modal {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
             justify-content: center;
             align-items: center;
+            z-index: 900;
+        }
+
+        .auth-box {
+            background: var(--purple-card);
+            border: 2px solid var(--gold);
+            padding: 30px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .auth-box h2 {
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .auth-input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            background: #100826;
+            border: 1px solid var(--gold);
+            color: #fff;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .auth-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            border: none;
+            color: #000;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
             margin-top: 15px;
         }
 
-        .bet-input {
-            background: #201a3a;
+        /* 3. MAIN GAME PLATFORM */
+        #game-platform {
+            display: none;
+            width: 100%;
+            max-width: 900px;
+            padding: 20px;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--purple-card);
+            padding: 15px 25px;
+            border-radius: 12px;
             border: 1px solid var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .wallet-box {
+            background: rgba(255, 215, 0, 0.15);
+            border: 1px solid var(--gold);
+            padding: 8px 18px;
+            border-radius: 20px;
             color: var(--gold);
-            padding: 10px;
-            border-radius: 8px;
-            width: 100px;
-            text-align: center;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 18px;
         }
 
-        .action-btn {
-            background: var(--accent-green);
+        /* CRAZY 777 MACHINE STYLING */
+        .casino-machine {
+            background: linear-gradient(180deg, #3d145a 0%, #17092c 100%);
+            border: 4px solid var(--gold);
+            border-radius: 20px;
+            padding: 25px;
+            width: 100%;
+            box-shadow: 0 0 30px rgba(0,0,0,0.8);
+            position: relative;
+        }
+
+        .machine-header {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 900;
+            color: #ff2a5f;
+            text-shadow: 0 0 10px #ff2a5f, 0 0 20px var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .reels-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            background: #000;
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid var(--gold);
+        }
+
+        .reel {
+            width: 100px;
+            height: 120px;
+            background: linear-gradient(180deg, #fff 0%, #e0e0e0 100%);
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            font-weight: bold;
             color: #000;
-            font-size: 16px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        .bonus-reel {
+            border: 3px solid var(--gold);
+            background: linear-gradient(180deg, #fff3b0 0%, #ffd700 100%);
+            color: #b30000;
+        }
+
+        .win-display {
+            margin: 20px 0;
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--gold);
+            text-align: center;
+            min-height: 35px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background: var(--purple-card);
+            padding: 15px;
+            border-radius: 12px;
+        }
+
+        .bet-control-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .bet-input {
+            width: 80px;
+            padding: 8px;
+            background: #12092b;
+            border: 1px solid var(--gold);
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .spin-btn {
+            background: linear-gradient(180deg, #00e676 0%, #00897b 100%);
+            border: 2px solid #fff;
+            color: #fff;
+            padding: 15px 40px;
+            font-size: 20px;
             font-weight: 900;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 8px;
+            border-radius: 50px;
             cursor: pointer;
-            text-transform: uppercase;
+            box-shadow: 0 0 15px rgba(0, 230, 118, 0.5);
         }
 
-        .action-btn:disabled {
-            opacity: 0.5;
+        .spin-btn:disabled {
+            filter: grayscale(1);
             cursor: not-allowed;
-        }
-
-        .aviator-display {
-            font-size: 48px;
-            font-weight: 900;
-            color: var(--accent-red);
-            text-shadow: 0 0 20px rgba(255, 42, 95, 0.6);
         }
     </style>
 </head>
 <body>
 
-    <!-- Audio Elements -->
-    <audio id="bg-audio" loop src="https://assets.mixkit.co/music/preview/mixkit-tech-house-vibes-130.mp3"></audio>
+    <!-- 1. LOADING SCREEN -->
+    <div id="loading-screen">
+        <div class="spinner"></div>
+        <h2 style="color: var(--gold);">Loading Crazy 777...</h2>
+    </div>
 
-    <header>
-        <div class="logo">
-            <span>🎰</span> ROYAL COIN CASINO
-        </div>
-        <div class="wallet-panel">
-            <button class="audio-toggle" id="audio-btn" onclick="toggleAudio()">🎵</button>
-            <div class="coin-balance">
-                🪙 COINS: <span id="balance-display">10,000</span>
-            </div>
-        </div>
-    </header>
-
-    <div class="container">
-        <div class="hero-banner">
-            <div class="hero-text">
-                <h1>Welcome to Your Official Casino Engine</h1>
-                <p>Play real interactive slot machines and crash games directly using your internal coins.</p>
-            </div>
+    <!-- 2. LOGIN & OTP FORM -->
+    <div id="auth-modal">
+        <div class="auth-box" id="step-1">
+            <h2>User Login</h2>
+            <input type="text" id="user-name" class="auth-input" placeholder="Full Name">
+            <input type="tel" id="user-phone" class="auth-input" placeholder="Mobile Number">
+            <input type="password" class="auth-input" placeholder="Password">
+            <button class="auth-btn" onclick="sendOTP()">SEND OTP</button>
         </div>
 
-        <h2 class="section-title">Exclusive Casino Games</h2>
-
-        <div class="game-grid">
-            <!-- Game 1 -->
-            <div class="game-card">
-                <div class="card-banner" style="background-image: linear-gradient(to top, var(--card-bg), transparent), url('https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=400');">
-                    <span class="badge">HOT SLOT</span>
-                </div>
-                <div class="card-details">
-                    <div class="game-name">Book of Dead</div>
-                    <div class="game-provider">Play'n GO Style</div>
-                    <button class="btn-play" onclick="openSlotGame('Book of Dead', ['📖', '👑', '🗿', '💎', '🏺'])">PLAY NOW</button>
-                </div>
-            </div>
-
-            <!-- Game 2 -->
-            <div class="game-card">
-                <div class="card-banner" style="background-image: linear-gradient(to top, var(--card-bg), transparent), url('https://images.unsplash.com/photo-1511193311914-0346f16efe90?w=400');">
-                    <span class="badge">POPULAR</span>
-                </div>
-                <div class="card-details">
-                    <div class="game-name">Legacy of Dead</div>
-                    <div class="game-provider">Play'n GO Style</div>
-                    <button class="btn-play" onclick="openSlotGame('Legacy of Dead', ['🦅', 'Anubis', '🔱', '⚱️', '👑'])">PLAY NOW</button>
-                </div>
-            </div>
-
-            <!-- Game 3 -->
-            <div class="game-card">
-                <div class="card-banner" style="background-image: linear-gradient(to top, var(--card-bg), transparent), url('https://images.unsplash.com/photo-1606167668584-78701c57f13d?w=400');">
-                    <span class="badge">CRASH GAME</span>
-                </div>
-                <div class="card-details">
-                    <div class="game-name">Aviator</div>
-                    <div class="game-provider">Spribe Style</div>
-                    <button class="btn-play" onclick="openAviatorGame()">PLAY NOW</button>
-                </div>
-            </div>
-
-            <!-- Game 4 -->
-            <div class="game-card">
-                <div class="card-banner" style="background-image: linear-gradient(to top, var(--card-bg), transparent), url('https://images.unsplash.com/photo-1596838132731-3301c3fd431b?w=400');">
-                    <span class="badge">CLASSIC 777</span>
-                </div>
-                <div class="card-details">
-                    <div class="game-name">Crazy 777</div>
-                    <div class="game-provider">JILI Style</div>
-                    <button class="btn-play" onclick="openSlotGame('Crazy 777', ['7️⃣', '🔔', '🍒', '🍋', '💎'])">PLAY NOW</button>
-                </div>
-            </div>
-
-            <!-- Game 5 -->
-            <div class="game-card">
-                <div class="card-banner" style="background-image: linear-gradient(to top, var(--card-bg), transparent), url('https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=400');">
-                    <span class="badge">HIGH MULTIPLIER</span>
-                </div>
-                <div class="card-details">
-                    <div class="game-name">Money Coming</div>
-                    <div class="game-provider">JILI Style</div>
-                    <button class="btn-play" onclick="openSlotGame('Money Coming', ['💵', '💰', '💳', '🪙', '💎'])">PLAY NOW</button>
-                </div>
-            </div>
-
-            <!-- Game 6 -->
-            <div class="game-card">
-                <div class="card-banner" style="background-image: linear-gradient(to top, var(--card-bg), transparent), url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400');">
-                    <span class="badge">MEGAWAYS</span>
-                </div>
-                <div class="card-details">
-                    <div class="game-name">777 Streak Megacharged</div>
-                    <div class="game-provider">Octoplay Style</div>
-                    <button class="btn-play" onclick="openSlotGame('777 Streak Megacharged', ['⚡', '7️⃣', '💥', '🔥', '💎'])">PLAY NOW</button>
-                </div>
-            </div>
+        <div class="auth-box" id="step-2" style="display: none;">
+            <h2>Enter OTP</h2>
+            <p style="font-size: 12px; color: #aaa; margin-bottom: 10px;">Demo OTP is <b>1234</b></p>
+            <input type="text" id="otp-input" class="auth-input" placeholder="Enter 4-Digit OTP" maxlength="4">
+            <button class="auth-btn" onclick="verifyOTP()">VERIFY & PLAY</button>
         </div>
     </div>
 
-    <!-- UNIVERSAL GAME MODAL -->
-    <div class="game-modal" id="game-modal">
-        <div class="modal-content">
-            <button class="close-modal" onclick="closeModal()">CLOSE ✖</button>
-            <h2 id="modal-title" style="color: var(--gold); margin-bottom: 10px;">Game Title</h2>
+    <!-- 3. MAIN GAME CONTAINER -->
+    <div id="game-platform">
+        <header>
+            <div>Welcome, <span id="display-username" style="color: var(--gold);">Player</span></div>
+            <div class="wallet-box">
+                Balance: ₹<span id="user-balance">0</span>
+            </div>
+        </header>
+
+        <div class="casino-machine">
+            <div class="machine-header">CRAZY 777</div>
             
-            <div id="game-stage">
-                <!-- Dynamic Game HTML Inject Here -->
+            <div class="reels-container">
+                <div class="reel" id="reel1">BAR</div>
+                <div class="reel" id="reel2">BAR</div>
+                <div class="reel" id="reel3">BAR</div>
+                <div class="reel bonus-reel" id="reel4">10X</div>
+            </div>
+
+            <div class="win-display" id="status-message">GOOD LUCK!</div>
+
+            <div class="controls">
+                <div class="bet-control-group">
+                    <label style="color: var(--gold);">BET: ₹</label>
+                    <input type="number" id="bet-amount" class="bet-input" value="10" min="5">
+                </div>
+                <button class="spin-btn" id="spin-button" onclick="spinReels()">SPIN</button>
             </div>
         </div>
     </div>
 
     <script>
-        // GLOBAL WALLET SYSTEM
-        let userBalance = 10000;
-        let audioPlaying = false;
-        let activeGameSymbols = [];
-        let aviatorInterval = null;
-        let currentMultiplier = 1.00;
-        let isAviatorRunning = false;
+        let balance = 0;
+        const mainSymbols = ['7️⃣', 'BAR', '🍒', '🔔', '💎'];
+        const bonusSymbols = ['2X', '5X', '10X', 'RESPIN', 'ANY'];
 
-        function updateBalanceDisplay() {
-            document.getElementById('balance-display').innerText = userBalance.toLocaleString();
-        }
+        // Simulate Initial Loader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loading-screen').style.display = 'none';
+                document.getElementById('auth-modal').style.display = 'flex';
+            }, 2000);
+        });
 
-        function toggleAudio() {
-            const audio = document.getElementById('bg-audio');
-            const btn = document.getElementById('audio-btn');
-            if (audioPlaying) {
-                audio.pause();
-                btn.innerText = '🎵';
-            } else {
-                audio.play().catch(() => {});
-                btn.innerText = '🔊';
+        function sendOTP() {
+            const name = document.getElementById('user-name').value;
+            const phone = document.getElementById('user-phone').value;
+
+            if(!name || !phone) {
+                alert("Please enter Name and Mobile Number!");
+                return;
             }
-            audioPlaying = !audioPlaying;
+
+            document.getElementById('step-1').style.display = 'none';
+            document.getElementById('step-2').style.display = 'block';
         }
 
-        function closeModal() {
-            document.getElementById('game-modal').style.display = 'none';
-            if(aviatorInterval) clearInterval(aviatorInterval);
-            isAviatorRunning = false;
+        function verifyOTP() {
+            const otp = document.getElementById('otp-input').value;
+            if(otp === "1234") {
+                // Assign Random Bonus between ₹20 and ₹50
+                balance = Math.floor(Math.random() * (50 - 20 + 1)) + 20;
+                
+                document.getElementById('display-username').innerText = document.getElementById('user-name').value;
+                document.getElementById('user-balance').innerText = balance;
+                
+                document.getElementById('auth-modal').style.display = 'none';
+                document.getElementById('game-platform').style.display = 'flex';
+                
+                alert(`Welcome Bonus of ₹${balance} added to your account!`);
+            } else {
+                alert("Invalid OTP! Use 1234");
+            }
         }
 
-        /* ----------------------------------
-           SLOT MACHINE ENGINE
-        ---------------------------------- */
-        function openSlotGame(title, symbols) {
-            activeGameSymbols = symbols;
-            document.getElementById('modal-title').innerText = title;
-            const stage = document.getElementById('game-stage');
-
-            stage.innerHTML = `
-                <div class="game-screen">
-                    <div class="slot-reels">
-                        <div class="reel" id="reel1">${symbols[0]}</div>
-                        <div class="reel" id="reel2">${symbols[1]}</div>
-                        <div class="reel" id="reel3">${symbols[2]}</div>
-                    </div>
-                    <div id="slot-status" style="font-size: 16px; font-weight: bold; color: var(--gold);">Set your bet and press SPIN</div>
-                </div>
-                <div class="bet-controls">
-                    <label>BET COINS:</label>
-                    <input type="number" id="bet-amount" class="bet-input" value="100" min="10">
-                    <button class="action-btn" id="spin-btn" onclick="spinSlots()">SPIN 🎰</button>
-                </div>
-            `;
-            document.getElementById('game-modal').style.display = 'flex';
-        }
-
-        function spinSlots() {
+        function spinReels() {
             const betInput = document.getElementById('bet-amount');
             const bet = parseInt(betInput.value);
 
             if (isNaN(bet) || bet <= 0) {
-                alert("Enter a valid bet amount!");
-                return;
-            }
-            if (bet > userBalance) {
-                alert("Insufficient Coins!");
+                alert("Invalid Bet Amount!");
                 return;
             }
 
-            userBalance -= bet;
-            updateBalanceDisplay();
+            if (bet > balance) {
+                alert("Insufficient Balance!");
+                return;
+            }
 
-            const spinBtn = document.getElementById('spin-btn');
-            const status = document.getElementById('slot-status');
+            balance -= bet;
+            document.getElementById('user-balance').innerText = balance;
+
+            const spinBtn = document.getElementById('spin-button');
+            const status = document.getElementById('status-message');
             spinBtn.disabled = true;
-            status.innerText = "Spinning...";
+            status.innerText = "SPINNING...";
+            status.style.color = "var(--gold)";
 
             let spins = 0;
-            const interval = setInterval(() => {
-                document.getElementById('reel1').innerText = activeGameSymbols[Math.floor(Math.random() * activeGameSymbols.length)];
-                document.getElementById('reel2').innerText = activeGameSymbols[Math.floor(Math.random() * activeGameSymbols.length)];
-                document.getElementById('reel3').innerText = activeGameSymbols[Math.floor(Math.random() * activeGameSymbols.length)];
+            const timer = setInterval(() => {
+                document.getElementById('reel1').innerText = mainSymbols[Math.floor(Math.random() * mainSymbols.length)];
+                document.getElementById('reel2').innerText = mainSymbols[Math.floor(Math.random() * mainSymbols.length)];
+                document.getElementById('reel3').innerText = mainSymbols[Math.floor(Math.random() * mainSymbols.length)];
+                document.getElementById('reel4').innerText = bonusSymbols[Math.floor(Math.random() * bonusSymbols.length)];
                 spins++;
 
                 if (spins > 15) {
-                    clearInterval(interval);
+                    clearInterval(timer);
                     spinBtn.disabled = false;
-                    evaluateSlotWin(bet);
+                    checkPayout(bet);
                 }
             }, 100);
         }
 
-        function evaluateSlotWin(bet) {
+        function checkPayout(bet) {
             const r1 = document.getElementById('reel1').innerText;
             const r2 = document.getElementById('reel2').innerText;
             const r3 = document.getElementById('reel3').innerText;
-            const status = document.getElementById('slot-status');
+            const r4 = document.getElementById('reel4').innerText;
+            const status = document.getElementById('status-message');
+
+            let winMultiplier = 0;
 
             if (r1 === r2 && r2 === r3) {
-                const winAmount = bet * 10;
-                userBalance += winAmount;
-                status.innerText = `🎉 JACKPOT! You won ${winAmount} Coins! (10x)`;
-                status.style.color = "var(--accent-green)";
+                winMultiplier = 10;
             } else if (r1 === r2 || r2 === r3 || r1 === r3) {
-                const winAmount = bet * 2;
-                userBalance += winAmount;
-                status.innerText = `✨ NICE WIN! You won ${winAmount} Coins! (2x)`;
-                status.style.color = "var(--gold-bright)";
-            } else {
-                status.innerText = "❌ No match. Try again!";
-                status.style.color = "var(--accent-red)";
+                winMultiplier = 2;
             }
-            updateBalanceDisplay();
-        }
 
-        /* ----------------------------------
-           AVIATOR CRASH ENGINE
-        ---------------------------------- */
-        function openAviatorGame() {
-            document.getElementById('modal-title').innerText = "Aviator Crash Game";
-            const stage = document.getElementById('game-stage');
+            if (winMultiplier > 0) {
+                let bonusFactor = 1;
+                if (r4 === '2X') bonusFactor = 2;
+                if (r4 === '5X') bonusFactor = 5;
+                if (r4 === '10X') bonusFactor = 10;
 
-            stage.innerHTML = `
-                <div class="game-screen">
-                    <div class="aviator-display" id="aviator-mult">1.00x</div>
-                    <div id="aviator-status" style="font-size: 16px; font-weight: bold; color: #fff; margin-top:15px;">Place your bet to take off</div>
-                </div>
-                <div class="bet-controls">
-                    <label>BET COINS:</label>
-                    <input type="number" id="aviator-bet" class="bet-input" value="100" min="10">
-                    <button class="action-btn" id="aviator-btn" onclick="startAviator()">START FLIGHT 🚀</button>
-                </div>
-            `;
-            document.getElementById('game-modal').style.display = 'flex';
-        }
+                const totalWin = bet * winMultiplier * bonusFactor;
+                balance += totalWin;
+                document.getElementById('user-balance').innerText = balance;
 
-        function startAviator() {
-            const betBtn = document.getElementById('aviator-btn');
-
-            if (!isAviatorRunning) {
-                const betInput = document.getElementById('aviator-bet');
-                const bet = parseInt(betInput.value);
-
-                if (isNaN(bet) || bet <= 0 || bet > userBalance) {
-                    alert("Invalid or insufficient coin balance!");
-                    return;
-                }
-
-                userBalance -= bet;
-                updateBalanceDisplay();
-
-                isAviatorRunning = true;
-                currentMultiplier = 1.00;
-                const crashPoint = (Math.random() * 4 + 1.1).toFixed(2); // Random crash between 1.1x and 5.1x
-
-                betBtn.innerText = "CASH OUT 💰";
-                betBtn.style.background = "var(--gold)";
-
-                aviatorInterval = setInterval(() => {
-                    currentMultiplier += 0.05;
-                    document.getElementById('aviator-mult').innerText = currentMultiplier.toFixed(2) + "x";
-
-                    if (currentMultiplier >= crashPoint) {
-                        clearInterval(aviatorInterval);
-                        isAviatorRunning = false;
-                        document.getElementById('aviator-mult').innerText = "FLEW AWAY!";
-                        document.getElementById('aviator-status').innerText = `💥 Crashed at ${crashPoint}x! You lost the bet.`;
-                        document.getElementById('aviator-status').style.color = "var(--accent-red)";
-                        betBtn.innerText = "START FLIGHT 🚀";
-                        betBtn.style.background = "var(--accent-green)";
-                    }
-                }, 100);
+                status.innerText = `WIN ₹${totalWin}! (${r4} Multiplier)`;
+                status.style.color = "#00e676";
             } else {
-                // Cash out action
-                clearInterval(aviatorInterval);
-                isAviatorRunning = false;
-                const winAmount = Math.floor(parseInt(document.getElementById('aviator-bet').value) * currentMultiplier);
-                userBalance += winAmount;
-                updateBalanceDisplay();
-
-                document.getElementById('aviator-status').innerText = `🏆 Cashout Successful! Won ${winAmount} Coins!`;
-                document.getElementById('aviator-status').style.color = "var(--accent-green)";
-                betBtn.innerText = "START FLIGHT 🚀";
-                betBtn.style.background = "var(--accent-green)";
+                status.innerText = "TRY AGAIN!";
+                status.style.color = "#ff2a5f";
             }
         }
     </script>
