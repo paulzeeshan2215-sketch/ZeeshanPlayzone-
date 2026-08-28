@@ -1,1841 +1,2293 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Crazy 777 - 3D Slot Demo</title>
-
-  <style>
-    :root{
-      --gold:#ffd24d;
-      --gold2:#ff9d00;
-      --purple:#4c005e;
-      --purple2:#22002d;
-      --panel:#160018;
-      --green:#23e400;
-      --red:#ff2d30;
-      --blue:#1da5ff;
-    }
-
-    *{
-      box-sizing:border-box;
-      margin:0;
-      padding:0;
-      font-family:Arial, Helvetica, sans-serif;
-      -webkit-tap-highlight-color:transparent;
-      user-select:none;
-    }
-
-    body{
-      min-height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      overflow:hidden;
-      background:
-        radial-gradient(circle at center,#5e104d 0%,#250027 45%,#09000d 100%);
-      color:white;
-    }
-
-    .game{
-      width:min(1180px,100vw);
-      aspect-ratio:16/9;
-      min-height:500px;
-      position:relative;
-      overflow:hidden;
-
-      background:
-        linear-gradient(
-          180deg,
-          #7b0b6f 0%,
-          #3e053f 18%,
-          #22002c 70%,
-          #0c0013 100%
-        );
-
-      border-radius:16px;
-
-      box-shadow:
-        0 0 70px rgba(255,40,190,.35),
-        inset 0 0 80px rgba(0,0,0,.8);
-    }
-
-    /* =========================
-       OUTER GOLD MACHINE FRAME
-    ========================== */
-
-    .game::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      pointer-events:none;
-
-      border:
-        10px solid transparent;
-
-      border-image:
-        linear-gradient(
-          90deg,
-          #7b3b00,
-          #ffe68a,
-          #a95000,
-          #ffd15b,
-          #5c2500
-        ) 1;
-
-      box-shadow:
-        inset 0 0 30px #000;
-      z-index:30;
-    }
-
-    /* =========================
-       TOP AREA
-    ========================== */
-
-    .top{
-      position:absolute;
-      top:18px;
-      left:22px;
-      right:22px;
-      height:125px;
-
-      display:grid;
-      grid-template-columns:
-        1.15fr
-        .72fr
-        .85fr;
-
-      gap:18px;
-
-      z-index:10;
-    }
-
-    /* PAYTABLE */
-
-    .paytable{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:8px;
-    }
-
-    .pay-card{
-      height:50px;
-
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-
-      padding:0 16px;
-
-      background:
-        linear-gradient(
-          180deg,
-          #2e0644,
-          #100016
-        );
-
-      border-radius:7px;
-
-      border:
-        2px solid rgba(146,40,255,.55);
-
-      box-shadow:
-        inset 0 2px 7px rgba(255,255,255,.12),
-        0 5px 8px rgba(0,0,0,.35);
-    }
-
-    .pay-symbol{
-      font-size:20px;
-      font-weight:900;
-      color:#ffdd50;
-      text-shadow:
-        2px 2px 0 #a90000,
-        0 0 8px #ffb700;
-    }
-
-    .pay-symbol.bar{
-      color:#24d67a;
-      font-size:15px;
-      text-shadow:
-        0 0 7px #00ff77;
-    }
-
-    .pay-value{
-      font-size:21px;
-      font-weight:900;
-      color:#ffd966;
-      letter-spacing:1px;
-    }
-
-    /* LOGO */
-
-    .logo-box{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      position:relative;
-    }
-
-    .logo{
-      text-align:center;
-      line-height:.72;
-      transform:skew(-7deg);
-    }
-
-    .logo .crazy{
-      display:block;
-
-      font-size:32px;
-      font-style:italic;
-      font-weight:900;
-
-      color:#fff68b;
-
-      text-shadow:
-        3px 3px 0 #b43800,
-        0 0 14px #ffd400;
-    }
-
-    .logo .seven{
-      font-size:45px;
-      font-weight:1000;
-
-      color:#ffe55b;
-
-      text-shadow:
-        3px 3px 0 #c70000,
-        6px 6px 0 #7c0010,
-        0 0 15px #ffdd00;
-    }
-
-    .logo .two{
-      color:#ff3b24;
-      font-size:54px;
-      margin-left:-5px;
-      text-shadow:
-        3px 3px 0 #6e0000,
-        0 0 10px #ffbd00;
-    }
-
-    /* MULTIPLIER PANEL */
-
-    .bonus-top{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:10px;
-    }
-
-    .small-panel{
-      min-height:104px;
-
-      background:
-        linear-gradient(
-          180deg,
-          #30003d,
-          #110017
-        );
-
-      border:
-        2px solid rgba(139,36,255,.55);
-
-      border-radius:8px;
-
-      overflow:hidden;
-
-      box-shadow:
-        inset 0 2px 10px rgba(255,255,255,.08),
-        0 6px 10px rgba(0,0,0,.35);
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Crazy 777 | 3D Slot Machine</title>
+
+<style>
+:root{
+  --gold1:#fff6a5;
+  --gold2:#ffd541;
+  --gold3:#d78700;
+  --gold4:#713000;
+  --purple1:#7b116e;
+  --purple2:#41003f;
+  --purple3:#180020;
+  --panel:#0d0712;
+  --green1:#baff64;
+  --green2:#20dc00;
+  --green3:#006b00;
+  --red:#ff3b37;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,Helvetica,sans-serif;
+  user-select:none;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html,
+body{
+  width:100%;
+  min-height:100%;
+  background:#08000d;
+}
+
+body{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow-x:hidden;
+  color:white;
+
+  background:
+    radial-gradient(circle at 50% 35%,rgba(136,24,112,.75),transparent 28%),
+    radial-gradient(circle at 15% 90%,rgba(255,184,0,.10),transparent 35%),
+    radial-gradient(circle at 85% 20%,rgba(255,0,180,.12),transparent 30%),
+    linear-gradient(145deg,#050009,#1b0022 45%,#050009);
+}
+
+/* =====================================================
+   MAIN 3D SCENE
+===================================================== */
+
+.scene{
+  width:min(1180px,96vw);
+  perspective:1800px;
+  padding:24px 0 45px;
+}
+
+.machine-shadow{
+  width:82%;
+  height:60px;
+  margin:-20px auto 0;
+  border-radius:50%;
+  background:#000;
+  filter:blur(35px);
+  opacity:.85;
+}
+
+.machine{
+  position:relative;
+  width:100%;
+  min-height:650px;
+
+  transform-style:preserve-3d;
+  transform:rotateX(2deg);
+
+  border-radius:28px;
+
+  padding:10px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #592000 0%,
+      #ffd857 9%,
+      #fff3a2 18%,
+      #c57500 34%,
+      #ffe77a 52%,
+      #8d3600 72%,
+      #321000 100%
+    );
+
+  box-shadow:
+    0 42px 70px rgba(0,0,0,.8),
+    0 0 45px rgba(255,190,0,.25),
+    inset 0 0 15px rgba(255,255,255,.75);
+}
 
-    .panel-title{
-      height:31px;
+.machine::before{
+  content:"";
+  position:absolute;
+  inset:5px;
 
-      display:flex;
-      align-items:center;
-      justify-content:center;
+  border-radius:24px;
 
-      background:
-        linear-gradient(
-          90deg,
-          #4d00a4,
-          #19003b
-        );
+  border:2px solid rgba(255,255,255,.5);
 
-      color:#ffe888;
+  pointer-events:none;
 
-      font-size:15px;
-      font-weight:900;
+  box-shadow:
+    inset 0 0 8px rgba(255,255,255,.4);
+}
 
-      letter-spacing:1px;
+.machine-inner{
+  position:relative;
+  z-index:2;
 
-      border-bottom:
-        1px solid rgba(255,255,255,.1);
-    }
+  width:100%;
+  min-height:630px;
 
-    .multiplier-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:7px;
+  padding:18px;
 
-      padding:8px;
-    }
+  overflow:hidden;
 
-    .multiplier{
-      height:26px;
+  border-radius:21px;
 
-      border-radius:50%;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(151,27,159,.72),transparent 32%),
+    linear-gradient(180deg,#67085f 0%,#3b003d 18%,#19001e 65%,#09000d 100%);
 
-      display:flex;
-      align-items:center;
-      justify-content:center;
+  box-shadow:
+    inset 0 0 45px #000,
+    inset 0 0 20px rgba(255,255,255,.08);
+}
 
-      font-weight:900;
-      font-size:14px;
+/* moving metallic reflection */
 
-      color:#fff4a0;
+.machine-inner::after{
+  content:"";
 
-      background:
-        radial-gradient(
-          circle at 30% 25%,
-          #fff18b,
-          #d58d00 50%,
-          #6a2300
-        );
+  position:absolute;
+  inset:-20%;
 
-      border:
-        2px solid #ffd75a;
+  pointer-events:none;
 
-      text-shadow:
-        1px 1px 2px #000;
+  background:
+    linear-gradient(
+      110deg,
+      transparent 42%,
+      rgba(255,255,255,.06) 48%,
+      rgba(255,255,255,.14) 50%,
+      rgba(255,255,255,.05) 53%,
+      transparent 58%
+    );
 
-      box-shadow:
-        0 3px 5px #000;
-    }
+  animation:metalSweep 8s linear infinite;
+}
 
-    .respin{
-      height:73px;
+@keyframes metalSweep{
+  from{
+    transform:translateX(-55%);
+  }
+  to{
+    transform:translateX(55%);
+  }
+}
 
-      display:flex;
-      align-items:center;
-      justify-content:center;
+/* =====================================================
+   TOP SECTION
+===================================================== */
 
-      color:#fff5a3;
+.top-section{
+  position:relative;
+  z-index:5;
 
-      font-family:Georgia,serif;
-      font-size:24px;
-      font-weight:900;
+  height:125px;
 
-      text-shadow:
-        2px 2px 0 #9d0000,
-        0 0 10px #ffcc00;
-    }
+  display:grid;
 
-    /* =========================
-       MAIN REELS AREA
-    ========================== */
+  grid-template-columns:
+    1.25fr
+    .85fr
+    1fr;
 
-    .machine{
-      position:absolute;
+  gap:18px;
 
-      top:154px;
-      left:36px;
-      right:36px;
+  margin-bottom:14px;
+}
 
-      bottom:90px;
+/* PAYTABLE */
 
-      display:grid;
+.paytable{
+  display:grid;
 
-      grid-template-columns:
-        3.1fr
-        1.25fr;
+  grid-template-columns:1fr 1fr;
 
-      gap:20px;
+  gap:7px;
+}
 
-      z-index:5;
-    }
+.pay-card{
+  min-height:55px;
 
-    .main-reel-frame,
-    .bonus-frame{
-      position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 
-      border-radius:25px;
+  padding:8px 14px;
 
-      padding:14px;
+  border-radius:7px;
 
-      background:
-        linear-gradient(
-          145deg,
-          #210018,
-          #d7d2cf 15%,
-          #ffffff 28%,
-          #8e817e 50%,
-          #fff 78%,
-          #3c1820
-        );
+  background:
+    linear-gradient(180deg,#2c0740,#110016);
 
-      box-shadow:
-        0 12px 18px rgba(0,0,0,.65),
-        inset 0 0 16px rgba(255,255,255,.8);
-    }
+  border:
+    2px solid rgba(125,32,255,.45);
 
-    .main-reel-frame::before,
-    .bonus-frame::before{
-      content:"";
+  box-shadow:
+    inset 0 2px 8px rgba(255,255,255,.1),
+    inset 0 -5px 10px rgba(0,0,0,.5),
+    0 5px 9px rgba(0,0,0,.35);
+}
 
-      position:absolute;
-      inset:7px;
+.pay-symbol{
+  color:#ffe55a;
+  font-weight:900;
+  font-size:18px;
 
-      border-radius:19px;
+  text-shadow:
+    2px 2px 0 #a60000,
+    0 0 8px #ffbd00;
+}
 
-      border:
-        2px solid rgba(54,12,0,.6);
+.pay-symbol.bar{
+  color:#5dd4ff;
+  font-size:14px;
 
-      pointer-events:none;
-    }
+  text-shadow:
+    0 0 7px #00aaff;
+}
 
-    .main-reels{
-      width:100%;
-      height:100%;
+.pay-value{
+  color:#ffd95d;
+  font-weight:900;
+  font-size:19px;
+}
 
-      display:grid;
+/* LOGO */
 
-      grid-template-columns:
-        repeat(3,1fr);
+.logo-area{
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-      gap:8px;
+  perspective:500px;
+}
 
-      overflow:hidden;
+.logo{
+  position:relative;
 
-      border-radius:18px;
-    }
+  text-align:center;
 
-    .reel{
-      position:relative;
+  transform:
+    rotateX(7deg)
+    rotateY(-2deg)
+    skewX(-8deg);
+}
 
-      overflow:hidden;
+.logo-crazy{
+  display:block;
 
-      border-radius:18px;
+  color:#fff4a0;
 
-      background:
-        linear-gradient(
-          180deg,
-          #252027 0%,
-          #e8e8e8 18%,
-          #fff 45%,
-          #f8f8f8 58%,
-          #777078 100%
-        );
+  font-family:Georgia,serif;
+  font-style:italic;
+  font-weight:900;
 
-      box-shadow:
-        inset 8px 0 15px rgba(0,0,0,.28),
-        inset -8px 0 15px rgba(0,0,0,.25),
-        inset 0 18px 24px rgba(0,0,0,.35),
-        inset 0 -18px 24px rgba(0,0,0,.4);
-    }
+  font-size:38px;
 
-    .reel::before,
-    .reel::after{
-      content:"";
+  letter-spacing:-2px;
 
-      position:absolute;
-      left:0;
-      right:0;
+  text-shadow:
+    3px 3px 0 #b43200,
+    6px 6px 0 #650e00,
+    0 0 15px #ffcc00;
+}
 
-      height:34%;
+.logo-777{
+  display:block;
 
-      z-index:3;
+  margin-top:-5px;
 
-      pointer-events:none;
-    }
+  color:#ffe347;
 
-    .reel::before{
-      top:0;
+  font-family:Impact,Arial Black,sans-serif;
+  font-size:62px;
+  line-height:.75;
 
-      background:
-        linear-gradient(
-          #2a242b,
-          transparent
-        );
-    }
+  letter-spacing:-6px;
 
-    .reel::after{
-      bottom:0;
+  -webkit-text-stroke:2px #a82a00;
 
-      background:
-        linear-gradient(
-          transparent,
-          #393039
-        );
-    }
+  text-shadow:
+    3px 4px 0 #8a1300,
+    7px 9px 0 #4b0500,
+    0 0 20px #ffbd00;
+}
 
-    .symbol{
-      position:absolute;
+.logo-2{
+  position:absolute;
 
-      inset:0;
+  right:-19px;
+  bottom:-3px;
 
-      display:flex;
-      align-items:center;
-      justify-content:center;
+  color:#ff3c25;
 
-      font-size:clamp(55px,7vw,115px);
+  font-family:Impact,sans-serif;
+  font-size:48px;
 
-      z-index:2;
+  text-shadow:
+    3px 3px 0 #690000,
+    0 0 9px #ffbc00;
+}
 
-      filter:
-        drop-shadow(
-          0 8px 4px rgba(0,0,0,.35)
-        );
+/* MULTIPLIER */
 
-      transition:.15s;
-    }
+.bonus-top{
+  display:grid;
 
-    .symbol.bar-symbol{
-      font-size:clamp(30px,4vw,58px);
+  grid-template-columns:1fr 1fr;
 
-      color:#3bb8ff;
+  gap:9px;
+}
 
-      background:#030303;
+.top-panel{
+  overflow:hidden;
 
-      width:65%;
-      height:24%;
+  border-radius:8px;
 
-      left:17.5%;
-      top:38%;
+  background:
+    linear-gradient(180deg,#310043,#110017);
 
-      border-radius:7px;
+  border:
+    2px solid rgba(125,32,255,.45);
 
-      border:
-        3px solid #aaa;
+  box-shadow:
+    inset 0 2px 9px rgba(255,255,255,.1),
+    0 6px 9px rgba(0,0,0,.35);
+}
 
-      box-shadow:
-        0 4px 6px #000,
-        inset 0 0 10px #000;
+.panel-head{
+  height:31px;
 
-      font-weight:900;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-      text-shadow:
-        0 0 7px #1686ff;
-    }
+  color:#ffe77c;
 
-    /* BONUS REEL */
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:1px;
 
-    .bonus-frame{
-      padding:14px;
-    }
+  background:
+    linear-gradient(90deg,#6100ad,#220040);
 
-    .bonus-title{
-      position:absolute;
+  border-bottom:
+    1px solid rgba(255,255,255,.12);
+}
 
-      top:-38px;
-      left:0;
-      right:0;
+.multiplier-grid{
+  padding:8px;
 
-      text-align:center;
+  display:grid;
 
-      color:#7d4b00;
+  grid-template-columns:1fr 1fr;
 
-      font-family:Georgia,serif;
+  gap:7px;
+}
 
-      font-size:25px;
-      font-weight:900;
+.multiplier-ball{
+  height:27px;
 
-      letter-spacing:2px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-      text-shadow:
-        1px 1px 0 #fff;
-    }
+  border-radius:50%;
 
-    .bonus-reel{
-      position:relative;
+  color:#fff6ae;
+  font-weight:900;
+  font-size:13px;
 
-      width:100%;
-      height:100%;
+  background:
+    radial-gradient(
+      circle at 30% 25%,
+      #fff6a5 0%,
+      #d99100 42%,
+      #7d2c00 70%,
+      #300c00 100%
+    );
 
-      overflow:hidden;
+  border:
+    2px solid #ffe675;
 
-      border-radius:20px;
+  text-shadow:
+    1px 1px 2px #000;
 
-      background:
-        linear-gradient(
-          90deg,
-          #4a1a00,
-          #fff2c7 12%,
-          #fff 50%,
-          #fff0c7 88%,
-          #4a1a00
-        );
+  box-shadow:
+    0 3px 5px #000,
+    inset 0 2px 3px rgba(255,255,255,.5);
+}
 
-      border:
-        5px solid #d88600;
+.respin-box{
+  min-height:72px;
 
-      box-shadow:
-        inset 0 0 18px rgba(0,0,0,.45),
-        0 0 14px rgba(255,170,0,.65);
-    }
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-    .bonus-symbol{
-      position:absolute;
+  color:#fff6ad;
 
-      inset:0;
+  font-family:Georgia,serif;
+  font-weight:900;
+  font-size:21px;
 
-      display:flex;
-      align-items:center;
-      justify-content:center;
+  text-shadow:
+    2px 2px 0 #9b0000,
+    0 0 9px #ffc400;
+}
 
-      font-size:clamp(50px,7vw,100px);
+/* =====================================================
+   REEL AREA
+===================================================== */
 
-      font-weight:900;
+.reel-section{
+  position:relative;
+  z-index:4;
 
-      color:#b5ff29;
+  height:355px;
 
-      text-shadow:
-        3px 3px 0 #006039,
-        0 0 12px #cfff42;
+  display:grid;
 
-      z-index:2;
-    }
+  grid-template-columns:
+    3.15fr
+    1fr;
 
-    .bonus-symbol.badge{
-      color:#baff36;
-      font-size:clamp(42px,6vw,85px);
-    }
+  gap:20px;
+}
 
-    .bonus-symbol.badge::before{
-      content:"";
+/* 3D METALLIC FRAME */
 
-      position:absolute;
+.main-reel-frame,
+.bonus-frame{
+  position:relative;
 
-      width:58%;
-      aspect-ratio:1;
+  padding:14px;
 
-      border-radius:50%;
+  border-radius:23px;
 
-      border:
-        7px solid #2051a0;
+  background:
+    linear-gradient(
+      135deg,
+      #3a1200 0%,
+      #9d6c37 7%,
+      #f8f5ed 18%,
+      #8d8881 34%,
+      #ffffff 48%,
+      #817b74 68%,
+      #f6f2e8 82%,
+      #301300 100%
+    );
 
-      box-shadow:
-        0 0 0 8px #f5e24d,
-        inset 0 0 20px rgba(0,0,0,.35);
+  box-shadow:
+    0 12px 0 #240800,
+    0 22px 28px rgba(0,0,0,.62),
+    inset 0 0 12px rgba(255,255,255,.85);
 
-      z-index:-1;
-    }
+  transform:
+    translateZ(35px);
+}
 
-    /* PAYLINE */
+.main-reel-frame::before,
+.bonus-frame::before{
+  content:"";
 
-    .payline{
-      position:absolute;
+  position:absolute;
+  inset:6px;
 
-      left:-25px;
-      right:-25px;
+  border-radius:18px;
 
-      top:50%;
+  border:
+    2px solid rgba(66,21,0,.65);
 
-      height:5px;
+  pointer-events:none;
 
-      transform:translateY(-50%);
+  box-shadow:
+    inset 0 0 8px rgba(0,0,0,.4);
+}
 
-      background:
-        linear-gradient(
-          90deg,
-          #e69100,
-          #fff6a3 15%,
-          #ffcb25 50%,
-          #fff6a3 85%,
-          #e69100
-        );
+.main-reels{
+  position:relative;
 
-      z-index:20;
+  width:100%;
+  height:100%;
 
-      box-shadow:
-        0 0 9px #ffb700;
-    }
+  display:grid;
 
-    .payline::before,
-    .payline::after{
-      content:"";
+  grid-template-columns:
+    repeat(3,1fr);
 
-      position:absolute;
+  gap:9px;
 
-      top:50%;
+  overflow:hidden;
 
-      transform:translateY(-50%);
+  border-radius:16px;
+}
 
-      width:0;
-      height:0;
+/* INDIVIDUAL REEL */
 
-      border-top:12px solid transparent;
-      border-bottom:12px solid transparent;
-    }
+.reel{
+  position:relative;
 
-    .payline::before{
-      left:0;
+  overflow:hidden;
 
-      border-left:
-        18px solid #ffd83b;
-    }
+  border-radius:16px;
 
-    .payline::after{
-      right:0;
+  background:
+    linear-gradient(
+      180deg,
+      #1e1a20 0%,
+      #6d676d 10%,
+      #efefef 26%,
+      #fff 50%,
+      #eeeeee 73%,
+      #655e66 91%,
+      #171217 100%
+    );
 
-      border-right:
-        18px solid #ffd83b;
-    }
+  border:
+    2px solid #332b31;
 
-    /* =========================
-       BOTTOM DASHBOARD
-    ========================== */
+  box-shadow:
+    inset 10px 0 18px rgba(0,0,0,.28),
+    inset -10px 0 18px rgba(0,0,0,.26),
+    inset 0 25px 30px rgba(0,0,0,.46),
+    inset 0 -25px 30px rgba(0,0,0,.48),
+    0 5px 9px rgba(0,0,0,.5);
+}
 
-    .dashboard{
-      position:absolute;
+/* curved cylinder shine */
 
-      left:20px;
-      right:20px;
-      bottom:8px;
+.reel::after{
+  content:"";
 
-      height:76px;
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:24%;
+  width:52%;
 
-      display:grid;
+  pointer-events:none;
 
-      grid-template-columns:
-        55px
-        1.35fr
-        .9fr
-        1fr
-        65px
-        95px
-        55px;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,.5) 45%,
+      rgba(255,255,255,.1) 75%,
+      rgba(255,255,255,0) 100%
+    );
 
-      gap:8px;
+  opacity:.35;
 
-      align-items:center;
+  z-index:5;
+}
 
-      z-index:40;
-    }
+.reel::before{
+  content:"";
 
-    .bottom-panel{
-      height:64px;
+  position:absolute;
+  inset:0;
 
-      display:flex;
-      flex-direction:column;
+  pointer-events:none;
 
-      justify-content:center;
+  z-index:6;
 
-      padding:0 15px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0,0,0,.75) 0%,
+      transparent 18%,
+      transparent 78%,
+      rgba(0,0,0,.75) 100%
+    );
+}
 
-      background:
-        linear-gradient(
-          180deg,
-          #1e1022,
-          #08000c
-        );
+.symbol{
+  position:absolute;
 
-      border-radius:9px;
+  left:0;
+  top:50%;
 
-      border:
-        1px solid rgba(255,255,255,.13);
+  width:100%;
 
-      box-shadow:
-        inset 0 0 10px #000,
-        0 5px 8px rgba(0,0,0,.45);
-    }
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-    .small-bottom{
-      height:54px;
-      border-radius:50%;
+  transform:
+    translateY(-50%);
 
-      display:flex;
-      align-items:center;
-      justify-content:center;
+  font-size:clamp(64px,8vw,118px);
 
-      background:
-        radial-gradient(
-          circle,
-          #555,
-          #111
-        );
+  filter:
+    drop-shadow(0 9px 4px rgba(0,0,0,.35));
 
-      border:
-        2px solid #888;
+  z-index:3;
+}
 
-      font-size:25px;
+.symbol.bar-symbol{
+  width:66%;
+  height:27%;
 
-      box-shadow:
-        0 5px 7px #000;
-    }
+  left:17%;
+  top:50%;
 
-    .dash-label{
-      color:#ffe15e;
+  font-size:clamp(25px,4vw,48px);
 
-      font-size:18px;
+  color:#48bfff;
 
-      font-weight:900;
+  background:
+    linear-gradient(180deg,#161616,#000);
 
-      display:flex;
-      align-items:center;
-      gap:7px;
-    }
+  border:
+    4px solid #999;
 
-    .dash-label small{
-      background:#9e0b18;
+  border-radius:8px;
 
-      color:#fff;
+  box-shadow:
+    0 5px 8px #000,
+    inset 0 0 10px #000;
 
-      padding:2px 7px;
+  text-shadow:
+    0 0 8px #007dff;
+}
 
-      border-radius:3px;
+/* =====================================================
+   BONUS REEL
+===================================================== */
 
-      font-size:12px;
-    }
+.bonus-frame{
+  padding:13px;
+}
 
-    .dash-value{
-      margin-top:5px;
+.bonus-label{
+  position:absolute;
 
-      font-size:19px;
+  top:-36px;
+  left:0;
+  width:100%;
 
-      color:#d8d8e5;
+  text-align:center;
 
-      font-weight:700;
-    }
+  color:#8b5200;
 
-    .win-panel{
-      align-items:center;
-      text-align:center;
-    }
+  font-family:Georgia,serif;
+  font-weight:900;
+  font-size:23px;
 
-    .win-panel .dash-label{
-      justify-content:center;
-    }
+  letter-spacing:1px;
 
-    .auto-btn{
-      height:54px;
+  text-shadow:
+    1px 1px 0 #fff;
+}
 
-      display:flex;
-      align-items:center;
-      justify-content:center;
+.bonus-reel{
+  position:relative;
 
-      border-radius:50%;
+  width:100%;
+  height:100%;
 
-      font-size:30px;
+  overflow:hidden;
 
-      background:
-        radial-gradient(
-          circle,
-          #614600,
-          #241800
-        );
+  border-radius:16px;
 
-      border:
-        2px solid #c39127;
+  background:
+    linear-gradient(
+      90deg,
+      #5c2400 0%,
+      #d5b26a 8%,
+      #fff5d4 20%,
+      #fff 50%,
+      #fff3d1 80%,
+      #5c2400 100%
+    );
 
-      cursor:pointer;
+  border:
+    5px solid #d98a00;
 
-      box-shadow:
-        0 5px 8px #000;
-    }
+  box-shadow:
+    inset 0 0 18px rgba(0,0,0,.48),
+    0 0 16px rgba(255,180,0,.6);
+}
 
-    .spin-wrap{
-      width:94px;
-      height:94px;
+.bonus-reel::before{
+  content:"";
 
-      margin-top:-28px;
+  position:absolute;
+  inset:0;
 
-      border-radius:50%;
+  z-index:5;
 
-      padding:7px;
+  pointer-events:none;
 
-      background:
-        radial-gradient(
-          circle,
-          #b8ff59,
-          #00a600 55%,
-          #004400 75%
-        );
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0,0,0,.55),
+      transparent 20%,
+      transparent 80%,
+      rgba(0,0,0,.55)
+    );
+}
 
-      box-shadow:
-        0 0 0 4px #0d3e00,
-        0 0 25px #00ff21,
-        0 10px 15px #000;
-    }
+.bonus-symbol{
+  position:absolute;
 
-    .spin-btn{
-      width:100%;
-      height:100%;
+  left:0;
+  top:50%;
 
-      border:none;
+  width:100%;
 
-      border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-      cursor:pointer;
+  transform:translateY(-50%);
 
-      font-size:14px;
-      font-weight:900;
+  color:#c5ff38;
 
-      color:#fff;
+  font-weight:900;
 
-      background:
-        radial-gradient(
-          circle at 35% 25%,
-          #c9ff71,
-          #29e000 42%,
-          #008b00 75%,
-          #004c00
-        );
+  font-size:clamp(48px,7vw,100px);
 
-      border:
-        4px solid #a8ff63;
+  text-shadow:
+    3px 3px 0 #005e2c,
+    0 0 12px #c8ff46;
 
-      box-shadow:
-        inset 0 6px 9px rgba(255,255,255,.45),
-        0 5px 0 #004000;
+  z-index:3;
+}
 
-      transition:.12s;
-    }
+.bonus-symbol.respin{
+  color:#ff3b30;
 
-    .spin-btn:hover{
-      filter:brightness(1.15);
-    }
+  font-size:clamp(30px,5vw,57px);
 
-    .spin-btn:active{
-      transform:translateY(4px) scale(.95);
-      box-shadow:
-        inset 0 6px 9px rgba(255,255,255,.45),
-        0 1px 0 #004000;
-    }
+  text-shadow:
+    2px 2px 0 #770000,
+    0 0 10px #ffb000;
+}
 
-    .spin-btn:disabled{
-      filter:grayscale(1) brightness(.65);
-      cursor:not-allowed;
-    }
+/* =====================================================
+   GOLD PAYLINE
+===================================================== */
 
-    .wifi{
-      color:#7dff9a;
-      font-size:30px;
-      text-align:center;
-      text-shadow:0 0 8px #00ff66;
-    }
+.payline{
+  position:absolute;
 
-    /* =========================
-       SPIN ANIMATION
-    ========================== */
+  z-index:20;
 
-    .reel.spinning .symbol,
-    .bonus-reel.spinning .bonus-symbol{
-      animation:spinMotion .11s linear infinite;
-    }
+  left:-30px;
+  right:-30px;
+  top:50%;
 
-    @keyframes spinMotion{
-      0%{
-        transform:
-          translateY(-40px)
-          scaleY(.75);
-        filter:blur(2px);
-      }
+  height:5px;
 
-      50%{
-        transform:
-          translateY(40px)
-          scaleY(1.2);
-        filter:blur(3px);
-      }
+  transform:translateY(-50%);
 
-      100%{
-        transform:
-          translateY(-40px)
-          scaleY(.75);
-        filter:blur(2px);
-      }
-    }
+  background:
+    linear-gradient(
+      90deg,
+      #d67d00,
+      #fff6a5 10%,
+      #ffd028 50%,
+      #fff6a5 90%,
+      #d67d00
+    );
 
-    .machine-win{
-      animation:winFlash .35s ease 5;
-    }
+  box-shadow:
+    0 0 8px #ffb700;
+}
 
-    @keyframes winFlash{
-      50%{
-        filter:brightness(1.35);
-      }
-    }
+.payline::before,
+.payline::after{
+  content:"";
 
-    /* =========================
-       MOBILE
-    ========================== */
+  position:absolute;
+  top:50%;
 
-    @media(max-width:850px){
+  width:0;
+  height:0;
 
-      body{
-        align-items:flex-start;
-        overflow:auto;
-        background:#0c0012;
-      }
+  transform:translateY(-50%);
 
-      .game{
-        width:100%;
-        min-height:720px;
-        aspect-ratio:auto;
-        border-radius:0;
-      }
+  border-top:11px solid transparent;
+  border-bottom:11px solid transparent;
+}
 
-      .top{
-        height:auto;
-        grid-template-columns:1fr;
-      }
+.payline::before{
+  left:0;
+  border-left:18px solid #ffe25c;
+}
 
-      .logo-box{
-        height:80px;
-      }
+.payline::after{
+  right:0;
+  border-right:18px solid #ffe25c;
+}
 
-      .bonus-top{
-        display:none;
-      }
+/* =====================================================
+   BOTTOM CONTROL PANEL
+===================================================== */
 
-      .machine{
-        top:250px;
+.dashboard{
+  position:relative;
+  z-index:10;
 
-        grid-template-columns:1fr;
+  height:110px;
 
-        bottom:160px;
-      }
+  margin-top:18px;
 
-      .bonus-frame{
-        display:none;
-      }
+  display:grid;
 
-      .dashboard{
-        height:auto;
-        bottom:15px;
+  grid-template-columns:
+    56px
+    1.3fr
+    .8fr
+    1fr
+    60px
+    100px
+    56px;
 
-        grid-template-columns:
-          1fr
-          1fr
-          1fr;
+  gap:8px;
 
-        gap:8px;
-      }
+  align-items:center;
+}
 
-      .small-bottom{
-        display:none;
-      }
+.control-circle{
+  width:54px;
+  height:54px;
 
-      .spin-wrap{
-        width:85px;
-        height:85px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-        grid-column:2;
-        grid-row:1 / span 2;
+  border-radius:50%;
 
-        justify-self:center;
-        align-self:center;
-      }
+  color:#ddd;
+  font-size:24px;
 
-      .bottom-panel{
-        height:58px;
-        padding:0 9px;
-      }
+  background:
+    radial-gradient(circle at 30% 25%,#777,#242424 58%,#080808);
 
-      .dash-label{
-        font-size:13px;
-      }
+  border:
+    2px solid #999;
 
-      .dash-value{
-        font-size:14px;
-      }
+  box-shadow:
+    0 5px 0 #050505,
+    0 8px 10px rgba(0,0,0,.6);
+}
 
-      .pay-symbol{
-        font-size:14px;
-      }
+.info-panel{
+  min-height:68px;
 
-      .pay-value{
-        font-size:15px;
-      }
-    }
+  padding:10px 15px;
 
-    @media(max-width:520px){
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
 
-      .paytable{
-        gap:5px;
-      }
+  border-radius:8px;
 
-      .pay-card{
-        height:42px;
-        padding:0 7px;
-      }
+  background:
+    linear-gradient(180deg,#1b1020,#08050b);
 
-      .main-reel-frame{
-        padding:8px;
-      }
+  border:
+    1px solid rgba(255,255,255,.12);
 
-      .reel{
-        border-radius:10px;
-      }
+  box-shadow:
+    inset 0 0 13px #000,
+    0 5px 9px rgba(0,0,0,.5);
+}
 
-      .symbol{
-        font-size:55px;
-      }
+.info-title{
+  display:flex;
+  align-items:center;
+  gap:6px;
 
-      .symbol.bar-symbol{
-        font-size:23px;
-      }
+  color:#ffe064;
 
-      .game{
-        min-height:650px;
-      }
+  font-size:17px;
+  font-weight:900;
+}
 
-      .machine{
-        top:225px;
-      }
-    }
-  </style>
+.level{
+  padding:2px 7px;
+
+  border-radius:3px;
+
+  color:#fff;
+
+  background:#a30b18;
+
+  font-size:11px;
+}
+
+.info-value{
+  margin-top:5px;
+
+  color:#d9d8df;
+
+  font-size:18px;
+  font-weight:700;
+}
+
+.win-panel{
+  align-items:center;
+  text-align:center;
+}
+
+.win-panel .info-title{
+  justify-content:center;
+}
+
+.auto-button{
+  width:56px;
+  height:56px;
+
+  border-radius:50%;
+
+  border:
+    2px solid #c9952c;
+
+  color:#fff0a1;
+  font-size:28px;
+
+  cursor:pointer;
+
+  background:
+    radial-gradient(circle,#725200,#261a00);
+
+  box-shadow:
+    0 5px 0 #120c00,
+    0 8px 10px rgba(0,0,0,.6);
+}
+
+/* 3D SPIN BUTTON */
+
+.spin-shell{
+  width:98px;
+  height:98px;
+
+  padding:7px;
+
+  margin-top:-23px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      #d8ff8a 0%,
+      #47e400 34%,
+      #008700 63%,
+      #003f00 100%
+    );
+
+  border:
+    3px solid #123d00;
+
+  box-shadow:
+    0 0 0 3px #68d800,
+    0 0 25px rgba(35,255,0,.65),
+    0 10px 0 #003900,
+    0 18px 20px rgba(0,0,0,.7),
+    inset 0 4px 8px rgba(255,255,255,.6);
+}
+
+.spin-button{
+  width:100%;
+  height:100%;
+
+  border:none;
+  border-radius:50%;
+
+  cursor:pointer;
+
+  color:#fff;
+
+  font-weight:900;
+  font-size:15px;
+  letter-spacing:.5px;
+
+  background:
+    radial-gradient(
+      circle at 35% 22%,
+      #d8ff8d,
+      #4ef000 36%,
+      #0db400 61%,
+      #006400 82%,
+      #003900
+    );
+
+  border:
+    3px solid #bcff7d;
+
+  box-shadow:
+    inset 0 5px 8px rgba(255,255,255,.55),
+    0 5px 0 #004400;
+
+  transition:
+    transform .12s,
+    filter .12s;
+}
+
+.spin-button:hover{
+  filter:brightness(1.12);
+}
+
+.spin-button:active{
+  transform:
+    translateY(5px)
+    scale(.95);
+
+  box-shadow:
+    inset 0 5px 8px rgba(255,255,255,.55),
+    0 1px 0 #004400;
+}
+
+.spin-button:disabled{
+  filter:
+    grayscale(1)
+    brightness(.65);
+
+  cursor:not-allowed;
+}
+
+.sound-button{
+  cursor:pointer;
+}
+
+/* =====================================================
+   REEL SPINNING
+===================================================== */
+
+.reel.spinning .symbol{
+  animation:
+    reelMotion .09s linear infinite;
+}
+
+.bonus-reel.spinning .bonus-symbol{
+  animation:
+    bonusMotion .09s linear infinite;
+}
+
+@keyframes reelMotion{
+  0%{
+    transform:
+      translateY(-65%)
+      scaleY(.72);
+    filter:
+      blur(2px)
+      drop-shadow(0 9px 4px rgba(0,0,0,.3));
+  }
+
+  50%{
+    transform:
+      translateY(-35%)
+      scaleY(1.22);
+    filter:
+      blur(4px);
+  }
+
+  100%{
+    transform:
+      translateY(-65%)
+      scaleY(.72);
+    filter:
+      blur(2px);
+  }
+}
+
+@keyframes bonusMotion{
+  0%{
+    transform:
+      translateY(-70%)
+      scaleY(.7);
+    filter:blur(2px);
+  }
+
+  50%{
+    transform:
+      translateY(-30%)
+      scaleY(1.2);
+    filter:blur(3px);
+  }
+
+  100%{
+    transform:
+      translateY(-70%)
+      scaleY(.7);
+    filter:blur(2px);
+  }
+}
+
+/* =====================================================
+   WIN EFFECT
+===================================================== */
+
+.win-flash{
+  animation:
+    machineFlash .35s ease 5;
+}
+
+@keyframes machineFlash{
+  50%{
+    filter:brightness(1.28);
+  }
+}
+
+.win-glow{
+  box-shadow:
+    0 0 0 4px #fff,
+    0 0 28px #ffd700,
+    0 0 60px #ff8a00;
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:850px){
+
+  body{
+    align-items:flex-start;
+    overflow:auto;
+  }
+
+  .scene{
+    width:100%;
+    padding:0;
+  }
+
+  .machine{
+    border-radius:0;
+    min-height:820px;
+    transform:none;
+  }
+
+  .machine-inner{
+    min-height:800px;
+  }
+
+  .top-section{
+    height:auto;
+
+    grid-template-columns:1fr;
+
+    gap:10px;
+  }
+
+  .logo-area{
+    height:85px;
+  }
+
+  .bonus-top{
+    display:none;
+  }
+
+  .reel-section{
+    height:390px;
+
+    margin-top:18px;
+
+    grid-template-columns:1fr;
+  }
+
+  .bonus-frame{
+    display:none;
+  }
+
+  .dashboard{
+    margin-top:28px;
+
+    height:auto;
+
+    grid-template-columns:
+      1fr
+      1fr
+      1fr;
+
+    gap:7px;
+  }
+
+  .control-circle{
+    display:none;
+  }
+
+  .spin-shell{
+    grid-column:2;
+    grid-row:1 / span 2;
+
+    justify-self:center;
+
+    width:90px;
+    height:90px;
+
+    margin:0;
+  }
+
+  .info-panel{
+    min-height:60px;
+    padding:8px;
+  }
+
+  .info-title{
+    font-size:13px;
+  }
+
+  .info-value{
+    font-size:14px;
+  }
+
+  .auto-button{
+    display:none;
+  }
+}
+
+@media(max-width:500px){
+
+  .machine-inner{
+    padding:10px;
+  }
+
+  .pay-card{
+    min-height:44px;
+    padding:5px 8px;
+  }
+
+  .pay-symbol{
+    font-size:12px;
+  }
+
+  .pay-symbol.bar{
+    font-size:10px;
+  }
+
+  .pay-value{
+    font-size:14px;
+  }
+
+  .logo-crazy{
+    font-size:30px;
+  }
+
+  .logo-777{
+    font-size:52px;
+  }
+
+  .logo-2{
+    font-size:38px;
+  }
+
+  .reel-section{
+    height:340px;
+  }
+
+  .main-reel-frame{
+    padding:8px;
+  }
+
+  .symbol{
+    font-size:55px;
+  }
+
+  .symbol.bar-symbol{
+    font-size:20px;
+  }
+
+  .payline{
+    left:-15px;
+    right:-15px;
+  }
+}
+</style>
+
 </head>
 
 <body>
 
-  <div class="game" id="game">
+<div class="scene">
 
-    <!-- ================= TOP ================= -->
+  <main class="machine" id="machine">
 
-    <div class="top">
+```
+<div class="machine-inner">
 
-      <!-- PAYTABLE -->
+  <!-- TOP -->
 
-      <div class="paytable">
+  <section class="top-section">
 
-        <div class="pay-card">
-          <div class="pay-symbol">7️⃣ 7️⃣ 7️⃣</div>
-          <div class="pay-value">32000</div>
+    <div class="paytable">
+
+      <div class="pay-card">
+        <div class="pay-symbol">7️⃣ 7️⃣ 7️⃣</div>
+        <div class="pay-value">32000</div>
+      </div>
+
+      <div class="pay-card">
+        <div class="pay-symbol">7️⃣ 7️⃣</div>
+        <div class="pay-value">6400</div>
+      </div>
+
+      <div class="pay-card">
+        <div class="pay-symbol">7️⃣</div>
+        <div class="pay-value">3200</div>
+      </div>
+
+      <div class="pay-card">
+        <div class="pay-symbol bar">BAR BAR BAR</div>
+        <div class="pay-value">1280</div>
+      </div>
+
+      <div class="pay-card">
+        <div class="pay-symbol">7️⃣ 7️⃣</div>
+        <div class="pay-value">1280</div>
+      </div>
+
+      <div class="pay-card">
+        <div class="pay-symbol bar">BAR BAR</div>
+        <div class="pay-value">640</div>
+      </div>
+
+    </div>
+
+    <div class="logo-area">
+
+      <div class="logo">
+        <span class="logo-crazy">Crazy</span>
+        <span class="logo-777">777</span>
+        <span class="logo-2">2</span>
+      </div>
+
+    </div>
+
+    <div class="bonus-top">
+
+      <div class="top-panel">
+
+        <div class="panel-head">
+          MULTIPLIER
         </div>
 
-        <div class="pay-card">
-          <div class="pay-symbol">7️⃣ 7️⃣</div>
-          <div class="pay-value">6400</div>
-        </div>
-
-        <div class="pay-card">
-          <div class="pay-symbol">7️⃣ 7️⃣ 7️⃣</div>
-          <div class="pay-value">3200</div>
-        </div>
-
-        <div class="pay-card">
-          <div class="pay-symbol bar">BAR BAR BAR</div>
-          <div class="pay-value">1280</div>
-        </div>
-
-        <div class="pay-card">
-          <div class="pay-symbol">7️⃣ 7️⃣</div>
-          <div class="pay-value">1280</div>
-        </div>
-
-        <div class="pay-card">
-          <div class="pay-symbol bar">BAR BAR BAR</div>
-          <div class="pay-value">640</div>
+        <div class="multiplier-grid">
+          <div class="multiplier-ball">10×</div>
+          <div class="multiplier-ball">5×</div>
+          <div class="multiplier-ball">3×</div>
+          <div class="multiplier-ball">2×</div>
         </div>
 
       </div>
 
-      <!-- LOGO -->
+      <div class="top-panel">
 
-      <div class="logo-box">
-
-        <div class="logo">
-          <span class="crazy">Crazy</span>
-          <span class="seven">777</span>
-          <span class="two">2</span>
+        <div class="panel-head">
+          RESPIN
         </div>
 
-      </div>
-
-      <!-- MULTIPLIER / RESPIN -->
-
-      <div class="bonus-top">
-
-        <div class="small-panel">
-
-          <div class="panel-title">
-            MULTIPLIER
-          </div>
-
-          <div class="multiplier-grid">
-            <div class="multiplier">10×</div>
-            <div class="multiplier">5×</div>
-            <div class="multiplier">3×</div>
-            <div class="multiplier">2×</div>
-          </div>
-
-        </div>
-
-        <div class="small-panel">
-
-          <div class="panel-title">
-            RESPIN
-          </div>
-
-          <div class="respin">
-            RESPIN
-          </div>
-
+        <div class="respin-box">
+          RESPIN
         </div>
 
       </div>
 
     </div>
 
-    <!-- ================= MACHINE ================= -->
+  </section>
 
-    <div class="machine">
 
-      <!-- MAIN 3 REELS -->
+  <!-- REELS -->
 
-      <div class="main-reel-frame">
+  <section class="reel-section">
 
-        <div class="main-reels">
+    <div class="main-reel-frame">
 
-          <div class="reel" id="reel1">
-            <div class="symbol" id="symbol1">7️⃣</div>
-          </div>
+      <div class="main-reels">
 
-          <div class="reel" id="reel2">
-            <div class="symbol" id="symbol2">7️⃣</div>
-          </div>
+        <div class="reel" id="reel1">
+          <div class="symbol" id="symbol1">7️⃣</div>
+        </div>
 
-          <div class="reel" id="reel3">
-            <div class="symbol" id="symbol3">7️⃣</div>
-          </div>
+        <div class="reel" id="reel2">
+          <div class="symbol" id="symbol2">7️⃣</div>
+        </div>
 
+        <div class="reel" id="reel3">
+          <div class="symbol" id="symbol3">7️⃣</div>
         </div>
 
       </div>
-
-      <!-- BONUS REEL -->
-
-      <div class="bonus-frame">
-
-        <div class="bonus-title">
-          BONUS REEL
-        </div>
-
-        <div class="bonus-reel" id="bonusReel">
-
-          <div
-            class="bonus-symbol badge"
-            id="bonusSymbol"
-          >
-            2×
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- PAYLINE -->
-
-      <div class="payline"></div>
 
     </div>
 
-    <!-- ================= DASHBOARD ================= -->
 
-    <div class="dashboard">
+    <!-- BONUS REEL -->
 
-      <div class="small-bottom">⚙️</div>
+    <div class="bonus-frame">
 
-      <div class="bottom-panel">
+      <div class="bonus-label">
+        BONUS REEL
+      </div>
 
-        <div class="dash-label">
-          <small>LV 5</small>
-          Balance
-        </div>
+      <div class="bonus-reel" id="bonusReel">
 
         <div
-          class="dash-value"
-          id="balance"
+          class="bonus-symbol"
+          id="bonusSymbol"
         >
-          100,000.000
+          2×
         </div>
 
       </div>
 
-      <div class="bottom-panel">
+    </div>
 
-        <div class="dash-label">
-          🪙 Bet
-        </div>
 
-        <div
-          class="dash-value"
-          id="bet"
-        >
-          960
-        </div>
+    <!-- PAYLINE -->
 
-      </div>
+    <div class="payline"></div>
 
-      <div class="bottom-panel win-panel">
+  </section>
 
-        <div class="dash-label">
-          WIN
-        </div>
 
-        <div
-          class="dash-value"
-          id="win"
-        >
-          0.000
-        </div>
+  <!-- DASHBOARD -->
 
+  <section class="dashboard">
+
+    <button
+      class="control-circle"
+      type="button"
+      title="Settings"
+    >
+      ⚙
+    </button>
+
+
+    <div class="info-panel">
+
+      <div class="info-title">
+        <span class="level">LV 5</span>
+        Balance
       </div>
 
       <div
-        class="auto-btn"
-        title="Auto Spin"
+        class="info-value"
+        id="balance"
       >
-        ↻
+        100,000.000
       </div>
-
-      <div class="spin-wrap">
-
-        <button
-          class="spin-btn"
-          id="spinButton"
-        >
-          SPIN
-        </button>
-
-      </div>
-
-      <div class="wifi">◔</div>
 
     </div>
 
-  </div>
+
+    <div class="info-panel">
+
+      <div class="info-title">
+        🪙 Bet
+      </div>
+
+      <div
+        class="info-value"
+        id="bet"
+      >
+        960
+      </div>
+
+    </div>
 
 
-  <script>
+    <div class="info-panel win-panel">
 
-    /* =========================================
-       CRAZY 777 - DEMO SLOT ENGINE
-       Virtual credits only
-    ========================================= */
+      <div class="info-title">
+        WIN
+      </div>
 
-    let balance = 100000;
-    const bet = 960;
+      <div
+        class="info-value"
+        id="win"
+      >
+        0.000
+      </div>
 
-    let spinning = false;
-
-    const symbols = [
-      "7️⃣",
-      "BAR",
-      "🔔",
-      "🍒",
-      "💎"
-    ];
-
-    const bonusSymbols = [
-      "2×",
-      "3×",
-      "5×",
-      "10×",
-      "RESPIN"
-    ];
+    </div>
 
 
-    /* AUDIO */
-
-    let audioContext = null;
-
-
-    function sound(type){
-
-      try{
-
-        if(!audioContext){
-
-          audioContext =
-            new (
-              window.AudioContext ||
-              window.webkitAudioContext
-            )();
-
-        }
-
-        if(audioContext.state === "suspended"){
-          audioContext.resume();
-        }
-
-        const oscillator =
-          audioContext.createOscillator();
-
-        const gain =
-          audioContext.createGain();
-
-        oscillator.connect(gain);
-        gain.connect(audioContext.destination);
-
-        const now =
-          audioContext.currentTime;
+    <button
+      class="auto-button"
+      id="autoButton"
+      type="button"
+      title="Auto Spin"
+    >
+      ↻
+    </button>
 
 
-        if(type === "spin"){
+    <div class="spin-shell">
 
-          oscillator.type = "square";
+      <button
+        class="spin-button"
+        id="spinButton"
+        type="button"
+      >
+        SPIN
+      </button>
 
-          oscillator.frequency.setValueAtTime(
-            160,
-            now
-          );
-
-          oscillator.frequency.exponentialRampToValueAtTime(
-            80,
-            now + 0.07
-          );
-
-          gain.gain.setValueAtTime(
-            0.05,
-            now
-          );
-
-          gain.gain.exponentialRampToValueAtTime(
-            0.001,
-            now + 0.08
-          );
-
-          oscillator.start(now);
-          oscillator.stop(now + 0.08);
-
-        }
+    </div>
 
 
-        if(type === "stop"){
+    <button
+      class="control-circle sound-button"
+      id="soundButton"
+      type="button"
+      title="Music"
+    >
+      🔊
+    </button>
 
-          oscillator.type = "sine";
+  </section>
 
-          oscillator.frequency.setValueAtTime(
-            250,
-            now
-          );
+</div>
+```
 
-          gain.gain.setValueAtTime(
-            0.08,
-            now
-          );
+  </main>
 
-          gain.gain.exponentialRampToValueAtTime(
-            0.001,
-            now + 0.15
-          );
+  <div class="machine-shadow"></div>
 
-          oscillator.start(now);
-          oscillator.stop(now + 0.15);
+</div>
 
-        }
+<!-- YOUR BACKGROUND MUSIC FILE -->
+
+<audio
+id="bgMusic"
+loop
+preload="auto"
+
+>
+
+<source
+src="crazy777-bg.mp3"
+type="audio/mpeg"
+
+>
+
+</audio>
+
+<script>
+
+/* =====================================================
+   CRAZY 777
+   VISUAL DEMO WITH VIRTUAL CREDITS
+===================================================== */
+
+let balance = 100000;
+const bet = 960;
+
+let spinning = false;
+let musicStarted = false;
+let soundEnabled = true;
+
+const symbols = [
+  "7️⃣",
+  "BAR",
+  "🔔",
+  "🍒",
+  "💎"
+];
+
+const bonusSymbols = [
+  "2×",
+  "3×",
+  "5×",
+  "10×",
+  "RESPIN"
+];
+
+const bgMusic =
+  document.getElementById("bgMusic");
 
 
-        if(type === "win"){
+/* =====================================================
+   MUSIC
+===================================================== */
 
-          oscillator.type = "triangle";
+function startMusic(){
 
-          oscillator.frequency.setValueAtTime(
-            450,
-            now
-          );
+  if(!soundEnabled) return;
 
-          oscillator.frequency.setValueAtTime(
-            650,
-            now + 0.12
-          );
+  bgMusic.volume = 0.35;
 
-          oscillator.frequency.setValueAtTime(
-            900,
-            now + 0.25
-          );
+  bgMusic.play()
+    .then(() => {
+      musicStarted = true;
+    })
+    .catch(() => {});
 
-          gain.gain.setValueAtTime(
-            0.12,
-            now
-          );
+}
 
-          gain.gain.exponentialRampToValueAtTime(
-            0.001,
-            now + 0.7
-          );
+function toggleMusic(){
 
-          oscillator.start(now);
-          oscillator.stop(now + 0.7);
+  soundEnabled = !soundEnabled;
 
-        }
+  const soundButton =
+    document.getElementById("soundButton");
 
-      }catch(error){}
+  if(soundEnabled){
+
+    soundButton.innerText = "🔊";
+
+    startMusic();
+
+  }else{
+
+    soundButton.innerText = "🔇";
+
+    bgMusic.pause();
+
+  }
+
+}
+
+document
+  .getElementById("soundButton")
+  .addEventListener(
+    "click",
+    toggleMusic
+  );
+
+
+/* =====================================================
+   SOUND EFFECTS
+===================================================== */
+
+let audioContext = null;
+
+function effectSound(type){
+
+  if(!soundEnabled) return;
+
+  try{
+
+    if(!audioContext){
+
+      audioContext =
+        new (
+          window.AudioContext ||
+          window.webkitAudioContext
+        )();
 
     }
 
+    if(audioContext.state === "suspended"){
 
-    function randomItem(array){
-
-      return array[
-        Math.floor(
-          Math.random() * array.length
-        )
-      ];
+      audioContext.resume();
 
     }
 
+    const oscillator =
+      audioContext.createOscillator();
 
-    function formatNumber(number){
+    const gain =
+      audioContext.createGain();
 
-      return number.toLocaleString(
-        "en-US",
-        {
-          minimumFractionDigits:3,
-          maximumFractionDigits:3
-        }
+    oscillator.connect(gain);
+    gain.connect(audioContext.destination);
+
+    const now =
+      audioContext.currentTime;
+
+
+    if(type === "spin"){
+
+      oscillator.type = "square";
+
+      oscillator.frequency.setValueAtTime(
+        160,
+        now
       );
 
-    }
-
-
-    function updateBalance(){
-
-      document.getElementById(
-        "balance"
-      ).innerText =
-        formatNumber(balance);
-
-    }
-
-
-    function setMainSymbol(
-      number,
-      value
-    ){
-
-      const element =
-        document.getElementById(
-          "symbol" + number
-        );
-
-      element.classList.remove(
-        "bar-symbol"
+      oscillator.frequency.exponentialRampToValueAtTime(
+        65,
+        now + 0.08
       );
 
-      element.innerText = value;
+      gain.gain.setValueAtTime(
+        0.045,
+        now
+      );
 
+      gain.gain.exponentialRampToValueAtTime(
+        0.001,
+        now + 0.08
+      );
 
-      if(value === "BAR"){
-
-        element.classList.add(
-          "bar-symbol"
-        );
-
-      }
+      oscillator.start(now);
+      oscillator.stop(now + 0.08);
 
     }
 
 
-    function startSpin(){
+    if(type === "stop"){
 
-      if(spinning) return;
+      oscillator.type = "sine";
+
+      oscillator.frequency.setValueAtTime(
+        240,
+        now
+      );
+
+      gain.gain.setValueAtTime(
+        0.08,
+        now
+      );
+
+      gain.gain.exponentialRampToValueAtTime(
+        0.001,
+        now + 0.14
+      );
+
+      oscillator.start(now);
+      oscillator.stop(now + 0.14);
+
+    }
 
 
-      if(balance < bet){
+    if(type === "win"){
 
-        alert(
-          "Insufficient demo balance!"
-        );
+      oscillator.type = "triangle";
 
-        return;
+      oscillator.frequency.setValueAtTime(
+        450,
+        now
+      );
 
-      }
+      oscillator.frequency.setValueAtTime(
+        650,
+        now + 0.15
+      );
+
+      oscillator.frequency.setValueAtTime(
+        900,
+        now + 0.3
+      );
+
+      gain.gain.setValueAtTime(
+        0.12,
+        now
+      );
+
+      gain.gain.exponentialRampToValueAtTime(
+        0.001,
+        now + 0.75
+      );
+
+      oscillator.start(now);
+      oscillator.stop(now + 0.75);
+
+    }
+
+  }catch(error){}
+
+}
 
 
-      spinning = true;
+/* =====================================================
+   HELPERS
+===================================================== */
 
+function randomItem(array){
+
+  return array[
+    Math.floor(
+      Math.random() * array.length
+    )
+  ];
+
+}
+
+
+function formatNumber(number){
+
+  return number.toLocaleString(
+    "en-US",
+    {
+      minimumFractionDigits:3,
+      maximumFractionDigits:3
+    }
+  );
+
+}
+
+
+function updateBalance(){
+
+  document.getElementById(
+    "balance"
+  ).innerText =
+    formatNumber(balance);
+
+}
+
+
+function setMainSymbol(
+  reelNumber,
+  value
+){
+
+  const element =
+    document.getElementById(
+      "symbol" + reelNumber
+    );
+
+  element.classList.remove(
+    "bar-symbol"
+  );
+
+  element.innerText = value;
+
+  if(value === "BAR"){
+
+    element.classList.add(
+      "bar-symbol"
+    );
+
+  }
+
+}
+
+
+function setBonusSymbol(value){
+
+  const element =
+    document.getElementById(
+      "bonusSymbol"
+    );
+
+  element.classList.remove(
+    "respin"
+  );
+
+  element.innerText = value;
+
+  if(value === "RESPIN"){
+
+    element.classList.add(
+      "respin"
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   SPIN
+===================================================== */
+
+function startSpin(){
+
+  if(spinning) return;
+
+
+  if(!musicStarted){
+
+    startMusic();
+
+  }
+
+
+  if(balance < bet){
+
+    return;
+
+  }
+
+
+  spinning = true;
+
+
+  const spinButton =
+    document.getElementById(
+      "spinButton"
+    );
+
+  spinButton.disabled = true;
+
+
+  balance -= bet;
+
+  updateBalance();
+
+
+  document.getElementById(
+    "win"
+  ).innerText =
+    "0.000";
+
+
+  const reel1 =
+    document.getElementById("reel1");
+
+  const reel2 =
+    document.getElementById("reel2");
+
+  const reel3 =
+    document.getElementById("reel3");
+
+  const bonusReel =
+    document.getElementById("bonusReel");
+
+
+  reel1.classList.add("spinning");
+  reel2.classList.add("spinning");
+  reel3.classList.add("spinning");
+
+  bonusReel.classList.add("spinning");
+
+
+  const visualInterval =
+    setInterval(() => {
+
+      setMainSymbol(
+        1,
+        randomItem(symbols)
+      );
+
+      setMainSymbol(
+        2,
+        randomItem(symbols)
+      );
+
+      setMainSymbol(
+        3,
+        randomItem(symbols)
+      );
+
+      setBonusSymbol(
+        randomItem(bonusSymbols)
+      );
+
+      effectSound("spin");
+
+    },90);
+
+
+  /* STOP REELS */
+
+  setTimeout(() => {
+
+    reel1.classList.remove(
+      "spinning"
+    );
+
+    effectSound("stop");
+
+  },1000);
+
+
+  setTimeout(() => {
+
+    reel2.classList.remove(
+      "spinning"
+    );
+
+    effectSound("stop");
+
+  },1400);
+
+
+  setTimeout(() => {
+
+    reel3.classList.remove(
+      "spinning"
+    );
+
+    effectSound("stop");
+
+  },1800);
+
+
+  setTimeout(() => {
+
+    bonusReel.classList.remove(
+      "spinning"
+    );
+
+    effectSound("stop");
+
+  },2200);
+
+
+  setTimeout(() => {
+
+    clearInterval(
+      visualInterval
+    );
+
+
+    const result1 =
+      randomItem(symbols);
+
+    const result2 =
+      randomItem(symbols);
+
+    const result3 =
+      randomItem(symbols);
+
+    const bonusResult =
+      randomItem(bonusSymbols);
+
+
+    setMainSymbol(
+      1,
+      result1
+    );
+
+    setMainSymbol(
+      2,
+      result2
+    );
+
+    setMainSymbol(
+      3,
+      result3
+    );
+
+    setBonusSymbol(
+      bonusResult
+    );
+
+
+    evaluateWin(
+      result1,
+      result2,
+      result3,
+      bonusResult
+    );
+
+
+    spinButton.disabled = false;
+
+    spinning = false;
+
+  },2280);
+
+}
+
+
+/* =====================================================
+   WIN LOGIC
+===================================================== */
+
+function evaluateWin(
+  r1,
+  r2,
+  r3,
+  bonus
+){
+
+  let multiplier = 0;
+
+
+  if(
+    r1 === r2 &&
+    r2 === r3
+  ){
+
+    if(r1 === "7️⃣"){
+
+      multiplier = 50;
+
+    }else if(r1 === "BAR"){
+
+      multiplier = 20;
+
+    }else{
+
+      multiplier = 12;
+
+    }
+
+  }
+
+  else if(
+    r1 === r2 ||
+    r2 === r3 ||
+    r1 === r3
+  ){
+
+    multiplier = 5;
+
+  }
+
+
+  if(multiplier === 0){
+
+    return;
+
+  }
+
+
+  let bonusMultiplier = 1;
+
+
+  if(bonus === "2×"){
+
+    bonusMultiplier = 2;
+
+  }
+
+  if(bonus === "3×"){
+
+    bonusMultiplier = 3;
+
+  }
+
+  if(bonus === "5×"){
+
+    bonusMultiplier = 5;
+
+  }
+
+  if(bonus === "10×"){
+
+    bonusMultiplier = 10;
+
+  }
+
+  if(bonus === "RESPIN"){
+
+    bonusMultiplier = 2;
+
+  }
+
+
+  const totalWin =
+    bet *
+    multiplier *
+    bonusMultiplier;
+
+
+  balance += totalWin;
+
+
+  updateBalance();
+
+
+  document.getElementById(
+    "win"
+  ).innerText =
+    formatNumber(totalWin);
+
+
+  effectSound("win");
+
+
+  const machine =
+    document.getElementById("machine");
+
+  machine.classList.add(
+    "win-flash"
+  );
+
+
+  document.getElementById(
+    "win"
+  ).classList.add(
+    "win-glow"
+  );
+
+
+  setTimeout(() => {
+
+    machine.classList.remove(
+      "win-flash"
+    );
+
+    document.getElementById(
+      "win"
+    ).classList.remove(
+      "win-glow"
+    );
+
+  },1900);
+
+}
+
+
+/* =====================================================
+   AUTO SPIN
+===================================================== */
+
+let autoSpinning = false;
+let autoTimer = null;
+
+document
+  .getElementById("autoButton")
+  .addEventListener(
+    "click",
+    () => {
+
+      autoSpinning = !autoSpinning;
 
       const button =
         document.getElementById(
-          "spinButton"
+          "autoButton"
         );
 
-      button.disabled = true;
+      if(autoSpinning){
+
+        button.innerText = "■";
+
+        startSpin();
+
+        autoTimer =
+          setInterval(() => {
+
+            if(!spinning){
+
+              startSpin();
+
+            }
+
+          },3200);
+
+      }else{
+
+        button.innerText = "↻";
+
+        clearInterval(autoTimer);
+
+      }
+
+    }
+  );
 
 
-      balance -= bet;
-
-      updateBalance();
-
-
-      document.getElementById(
-        "win"
-      ).innerText =
-        "0.000";
+document
+  .getElementById("spinButton")
+  .addEventListener(
+    "click",
+    startSpin
+  );
 
 
-      const reels = [
-        document.getElementById("reel1"),
-        document.getElementById("reel2"),
-        document.getElementById("reel3")
-      ];
+/* FIRST USER INTERACTION CAN START MUSIC */
 
-      const bonusReel =
-        document.getElementById(
-          "bonusReel"
-        );
+document.addEventListener(
+  "pointerdown",
+  () => {
 
+    if(!musicStarted){
 
-      reels.forEach(
-        reel => reel.classList.add("spinning")
-      );
-
-      bonusReel.classList.add(
-        "spinning"
-      );
-
-
-      const animationInterval =
-        setInterval(() => {
-
-          setMainSymbol(
-            1,
-            randomItem(symbols)
-          );
-
-          setMainSymbol(
-            2,
-            randomItem(symbols)
-          );
-
-          setMainSymbol(
-            3,
-            randomItem(symbols)
-          );
-
-          document.getElementById(
-            "bonusSymbol"
-          ).innerText =
-            randomItem(bonusSymbols);
-
-          sound("spin");
-
-        }, 95);
-
-
-      /* STOP REELS ONE BY ONE */
-
-      setTimeout(() => {
-
-        reels[0].classList.remove(
-          "spinning"
-        );
-
-        sound("stop");
-
-      }, 1000);
-
-
-      setTimeout(() => {
-
-        reels[1].classList.remove(
-          "spinning"
-        );
-
-        sound("stop");
-
-      }, 1400);
-
-
-      setTimeout(() => {
-
-        reels[2].classList.remove(
-          "spinning"
-        );
-
-        sound("stop");
-
-      }, 1800);
-
-
-      setTimeout(() => {
-
-        bonusReel.classList.remove(
-          "spinning"
-        );
-
-        sound("stop");
-
-      }, 2200);
-
-
-      setTimeout(() => {
-
-        clearInterval(
-          animationInterval
-        );
-
-
-        const r1 =
-          randomItem(symbols);
-
-        const r2 =
-          randomItem(symbols);
-
-        const r3 =
-          randomItem(symbols);
-
-        const bonus =
-          randomItem(bonusSymbols);
-
-
-        setMainSymbol(1,r1);
-        setMainSymbol(2,r2);
-        setMainSymbol(3,r3);
-
-
-        document.getElementById(
-          "bonusSymbol"
-        ).innerText =
-          bonus;
-
-
-        evaluateWin(
-          r1,
-          r2,
-          r3,
-          bonus
-        );
-
-
-        button.disabled = false;
-
-        spinning = false;
-
-      }, 2300);
+      startMusic();
 
     }
 
+  },
+  {
+    once:true
+  }
+);
 
-    function evaluateWin(
-      r1,
-      r2,
-      r3,
-      bonus
-    ){
-
-      let multiplier = 0;
-
-
-      /* THREE MATCH */
-
-      if(
-        r1 === r2 &&
-        r2 === r3
-      ){
-
-        if(r1 === "7️⃣"){
-          multiplier = 50;
-        }
-
-        else if(r1 === "BAR"){
-          multiplier = 20;
-        }
-
-        else{
-          multiplier = 12;
-        }
-
-      }
-
-
-      /* TWO MATCH */
-
-      else if(
-        r1 === r2 ||
-        r2 === r3 ||
-        r1 === r3
-      ){
-
-        multiplier = 5;
-
-      }
-
-
-      if(multiplier === 0){
-
-        return;
-
-      }
-
-
-      let bonusMultiplier = 1;
-
-
-      if(bonus === "2×"){
-        bonusMultiplier = 2;
-      }
-
-      if(bonus === "3×"){
-        bonusMultiplier = 3;
-      }
-
-      if(bonus === "5×"){
-        bonusMultiplier = 5;
-      }
-
-      if(bonus === "10×"){
-        bonusMultiplier = 10;
-      }
-
-      if(bonus === "RESPIN"){
-        bonusMultiplier = 2;
-      }
-
-
-      const totalWin =
-        bet *
-        multiplier *
-        bonusMultiplier;
-
-
-      balance += totalWin;
-
-
-      updateBalance();
-
-
-      document.getElementById(
-        "win"
-      ).innerText =
-        formatNumber(totalWin);
-
-
-      sound("win");
-
-
-      document.getElementById(
-        "game"
-      ).classList.add(
-        "machine-win"
-      );
-
-
-      setTimeout(() => {
-
-        document.getElementById(
-          "game"
-        ).classList.remove(
-          "machine-win"
-        );
-
-      }, 1800);
-
-    }
-
-
-    document.getElementById(
-      "spinButton"
-    ).addEventListener(
-      "click",
-      startSpin
-    );
-
-  </script>
+</script>
 
 </body>
 </html>
