@@ -3,283 +3,1714 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#060817">
+<meta name="theme-color" content="#071225">
 <title>ZeeshanPlayzone-</title>
+
 <style>
 *{box-sizing:border-box}
-html,body{margin:0;min-height:100%;font-family:Inter,Arial,sans-serif;color:#fff}
-body{overflow-x:hidden;background:radial-gradient(circle at 15% 10%,#5d2cff33,transparent 28%),radial-gradient(circle at 85% 15%,#00e5ff25,transparent 25%),radial-gradient(circle at 50% 90%,#ff2bd625,transparent 30%),linear-gradient(135deg,#050616,#080b1e 45%,#03040c)}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:45px 45px;mask-image:linear-gradient(to bottom,#000,transparent)}
-button{font:inherit;cursor:pointer}
-button:disabled{opacity:.45;cursor:not-allowed}
-.hidden{display:none!important}
-:root{--bg:#060817;--panel:#0d1025;--panel2:#131735;--line:#313866;--cyan:#42f5e9;--blue:#4c8dff;--purple:#9b5cff;--pink:#ff3ed1;--gold:#ffd95c;--orange:#ff9b42;--green:#42edaa;--red:#ff5578;--text:#fff;--muted:#9ba8c7}
-#loader{position:fixed;inset:0;z-index:99999;display:grid;place-items:center;background:radial-gradient(circle,#17194b,#03040d 70%)}
-.loader-inner{text-align:center}
-.loader-logo{width:100px;height:100px;display:grid;place-items:center;margin:auto;border-radius:30px;font-size:30px;font-weight:1000;color:#fff;background:linear-gradient(135deg,#ffdc59,#ff4fd8,#635bff);box-shadow:0 0 35px #ff42d855,0 0 80px #615bff44;animation:logoFloat 2s ease-in-out infinite}
-@keyframes logoFloat{50%{transform:translateY(-8px) rotate(2deg)}}
-.loader-inner h1{margin:18px 0 0;font-size:28px}
-.loader-inner p{color:var(--muted);font-size:13px}
-.loader-ring{width:42px;height:42px;margin:20px auto;border:4px solid #ffffff12;border-top-color:var(--cyan);border-right-color:var(--pink);border-radius:50%;animation:rotate 1s linear infinite}
-@keyframes rotate{to{transform:rotate(360deg)}}
-#app{display:none;min-height:100vh;padding-bottom:100px}
-.topbar{position:sticky;top:0;z-index:100;height:74px;display:flex;align-items:center;gap:11px;padding:9px 14px;background:#060817e8;backdrop-filter:blur(22px);border-bottom:1px solid #ffffff12}
-.logo-small{width:49px;height:49px;display:grid;place-items:center;border-radius:16px;font-weight:1000;color:#fff;background:linear-gradient(135deg,#ffda55,#ff46d1,#635bff);box-shadow:0 0 24px #ff46d144}
-.brand-area{min-width:0}
-.brand-area strong{display:block;font-size:15px}
-.brand-area span{font-size:10px;color:var(--muted)}
-.balance{margin-left:auto;display:flex;align-items:center;gap:7px;padding:8px 12px;border-radius:22px;background:#11152f;border:1px solid #4a4f83;box-shadow:0 0 20px #5d55ff12;font-weight:1000}
-.coin{width:26px;height:26px;display:grid;place-items:center;border-radius:50%;color:#5c4100;background:linear-gradient(145deg,#fff38b,#ffad22);box-shadow:0 0 15px #ffd84d66}
-.settings{width:42px;height:42px;border-radius:13px;border:1px solid #ffffff16;background:#ffffff08;color:#fff}
-.container{width:min(820px,100%);margin:auto;padding:14px}
-.hero{position:relative;overflow:hidden;padding:25px;border-radius:28px;border:1px solid #5361a2;background:radial-gradient(circle at 90% 10%,#ff3ed125,transparent 30%),radial-gradient(circle at 15% 100%,#4c8dff22,transparent 30%),linear-gradient(135deg,#151b45,#090c20);box-shadow:0 20px 60px #0008,inset 0 0 45px #6b58ff0c}
-.hero:before{content:"";position:absolute;width:240px;height:240px;right:-100px;top:-100px;border-radius:50%;background:#ff40d41b;filter:blur(10px)}
-.hero-kicker{color:var(--cyan);font-size:11px;font-weight:1000;letter-spacing:2px}
-.hero h1{margin:8px 0;font-size:34px;line-height:1.05;background:linear-gradient(90deg,#fff,#59f8ec,#a66cff,#ff62d8);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero p{margin:0;max-width:570px;color:var(--muted);font-size:13px;line-height:1.6}
-.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:20px}
-.hero-stat{padding:11px;border-radius:15px;background:#ffffff08;border:1px solid #ffffff10}
-.hero-stat small{display:block;color:var(--muted);font-size:9px}
-.hero-stat strong{display:block;margin-top:4px;font-size:16px}
-.categories{display:flex;gap:8px;overflow-x:auto;padding:14px 0 4px;scrollbar-width:none}
-.categories::-webkit-scrollbar{display:none}
-.category{flex:0 0 auto;border:1px solid #ffffff14;background:#0d1128;color:#aeb8d2;border-radius:18px;padding:10px 14px;font-size:11px;font-weight:1000;transition:.2s}
-.category:hover{transform:translateY(-2px);border-color:#5c65ff}
-.category.active{color:#fff;border-color:transparent;background:linear-gradient(135deg,#46f0df,#4e91ff,#a84fff);box-shadow:0 0 22px #5d6cff35}
-.section-head{display:flex;justify-content:space-between;align-items:center;margin:21px 2px 11px}
-.section-head h2{margin:0;font-size:19px}
-.section-head span{font-size:10px;color:var(--muted)}
-.games{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.game-card{position:relative;overflow:hidden;min-height:205px;border-radius:22px;border:1px solid #323b69;background:linear-gradient(145deg,#151a3a,#080b1b);box-shadow:0 12px 35px #0007;transition:.2s}
-.game-card:hover{transform:translateY(-5px);border-color:#6d7cff;box-shadow:0 18px 45px #0009,0 0 28px #655cff1a}
-.game-cover{height:138px;display:grid;place-items:center;position:relative;overflow:hidden;font-size:60px;background:radial-gradient(circle at 50% 50%,#54eee52a,transparent 35%),radial-gradient(circle at 20% 20%,#ff45d41c,transparent 35%),linear-gradient(145deg,#192052,#080b1c)}
-.game-cover:before{content:"";position:absolute;width:150px;height:150px;border-radius:50%;background:#6c5cff20;filter:blur(15px);animation:pulseGlow 3s ease-in-out infinite}
-@keyframes pulseGlow{50%{transform:scale(1.3);opacity:.5}}
-.game-cover:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,#07091a)}
-.game-icon{position:relative;z-index:2;filter:drop-shadow(0 0 18px #fff5)}
-.game-info{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:11px}
-.game-info strong{font-size:12px}
-.game-info small{display:block;color:var(--muted);font-size:9px;margin-top:4px}
-.game-play{flex:0 0 auto;border:0;width:38px;height:38px;border-radius:50%;color:#fff;font-weight:1000;background:linear-gradient(145deg,#48f0df,#4d8cff,#a950ff);box-shadow:0 0 18px #4d8cff44}
-.badge{position:absolute;left:9px;top:9px;z-index:5;padding:5px 8px;border-radius:8px;background:linear-gradient(135deg,#ff527a,#ff37d2);font-size:8px;font-weight:1000;box-shadow:0 0 15px #ff3d9c55}
-.ext-badge{position:absolute;left:9px;top:9px;z-index:5;padding:5px 8px;border-radius:8px;background:#ff9b42;font-size:8px;font-weight:1000;color:#000}
-.history-panel{padding:13px;border-radius:20px;border:1px solid #293157;background:#0c1024}
-.history-item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 2px;border-bottom:1px solid #ffffff0d}
-.history-item:last-child{border-bottom:0}
-.history-icon{width:39px;height:39px;display:grid;place-items:center;border-radius:12px;background:#ffffff09}
-.history-item strong{font-size:12px}
-.history-item small{display:block;color:var(--muted);font-size:9px;margin-top:3px}
-.win{color:var(--green)}.loss{color:var(--red)}
-.bottom{position:fixed;z-index:200;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(5,1fr);padding:8px 4px calc(8px + env(safe-area-inset-bottom));background:#07091af4;border-top:1px solid #ffffff12;backdrop-filter:blur(22px)}
-.nav{border:0;background:none;color:#74809f;font-size:9px;font-weight:1000}
-.nav b{display:block;font-size:21px;margin-bottom:3px}
-.nav.active{color:var(--cyan)}
-.modal{position:fixed;inset:0;z-index:500;display:none;place-items:center;padding:14px;background:#000c;backdrop-filter:blur(12px)}
-.modal-box{width:min(680px,100%);max-height:92vh;overflow:auto;border-radius:28px;border:1px solid #4b548b;background:radial-gradient(circle at 90% 0,#653fff16,transparent 35%),linear-gradient(150deg,#111735,#070a19);box-shadow:0 30px 100px #000e;padding:18px}
-.close{float:right;width:38px;height:38px;border:0;border-radius:12px;background:#ffffff0c;color:#fff}
-.game-header{clear:both;padding-top:8px;display:flex;align-items:center;justify-content:space-between}
-.game-header h2{margin:0;font-size:23px}
-.game-header span{color:var(--muted);font-size:10px}
-.virtual-note{margin:12px 0;padding:10px 12px;border-radius:13px;background:#42f0df09;border:1px solid #42f0df1e;color:#a8dcd7;font-size:10px;line-height:1.5}
-.game-stage{margin-top:15px;padding:15px;border-radius:22px;border:1px solid #30385f;background:radial-gradient(circle at 50% 0,#564cff0c,transparent 50%),#090c1b}
-.big-score{text-align:center;font-size:43px;font-weight:1000;background:linear-gradient(90deg,#fff,#55f1df,#9d63ff,#ff55ce);-webkit-background-clip:text;color:transparent}
-.game-button{width:100%;margin-top:12px;padding:14px;border:0;border-radius:15px;color:#07101c;font-weight:1000;background:linear-gradient(135deg,#51f0dc,#4c9bff,#a657ff);box-shadow:0 8px 25px #4d8cff2b}
-.toast{position:fixed;left:50%;bottom:92px;transform:translateX(-50%) translateY(20px);z-index:1000;padding:11px 17px;border-radius:13px;background:#161b3b;border:1px solid #4c5788;box-shadow:0 12px 35px #0009;opacity:0;pointer-events:none;transition:.25s;font-size:12px;white-space:nowrap}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-.ext-note{margin:8px 0 16px;padding:10px 12px;border-radius:12px;background:#ff9b4215;border:1px solid #ff9b4233;color:#ffc48a;font-size:11px;line-height:1.5}
-@media(max-width:520px){.hero{padding:21px}.hero h1{font-size:27px}.games{grid-template-columns:repeat(2,1fr)}.game-cover{height:112px}.game-card{min-height:175px}.game-info{padding:9px}.game-play{width:34px;height:34px}}
-</style>
-</head>
-<body>
-<div id="loader">
-  <div class="loader-inner">
-    <div class="loader-logo">ZP</div>
-    <h1>ZeeshanPlayzone-</h1>
-    <div class="loader-ring"></div>
-    <p>Loading game world...</p>
-  </div>
-</div>
-<main id="app">
-<header class="topbar">
-  <div class="logo-small">ZP</div>
-  <div class="brand-area">
-    <strong>ZeeshanPlayzone-</strong>
-    <span>Next-Gen Virtual Arcade</span>
-  </div>
-  <div class="balance">
-    <span class="coin">★</span>
-    <span id="balance">1000</span>
-  </div>
-  <button class="settings" id="historyBtn">☰</button>
-</header>
-<div class="container">
-<section class="hero">
-  <div class="hero-kicker">✦ ZEEshanPLAYZONE ORIGINAL</div>
-  <h1>PLAY. MASTER. LEVEL UP.</h1>
-  <p>Welcome to your neon virtual arcade. Play skill games, chase high scores and unlock new levels using virtual arcade points.</p>
-  <div class="hero-stats">
-    <div class="hero-stat"><small>LEVEL</small><strong id="levelText">1</strong></div>
-    <div class="hero-stat"><small>XP</small><strong id="xpText">0</strong></div>
-    <div class="hero-stat"><small>BEST SCORE</small><strong id="bestText">0</strong></div>
-  </div>
-</section>
-<div class="categories">
-  <button class="category active" data-filter="all">✦ ALL</button>
-  <button class="category" data-filter="skill">🧠 SKILL</button>
-  <button class="category" data-filter="arcade">⚡ ARCADE</button>
-  <button class="category" data-filter="cards">🃏 CARDS</button>
-  <button class="category" data-filter="reels">🎰 REELS</button>
-  <button class="category" data-filter="external">🌐 EXTERNAL</button>
-</div>
-<div class="section-head">
-  <h2>Featured Games</h2>
-  <span id="gameCount">8 games</span>
-</div>
-<section class="games" id="games"></section>
-<div class="section-head" id="extSectionHead" style="display:none">
-  <h2>External Games</h2>
-  <span>Opens in new tab</span>
-</div>
-<div class="ext-note" id="extNote" style="display:none">
-  These are third-party games. They open on external websites. Your virtual balance here is not connected to them.
-</div>
-<section class="games" id="externalGames" style="display:none"></section>
-<div class="section-head">
-  <h2>Recent Activity</h2>
-  <span>Virtual points</span>
-</div>
-<div class="history-panel"><div id="miniHistory"></div></div>
-</div>
-<nav class="bottom">
-  <button class="nav active" id="homeNav"><b>🎮</b>Games</button>
-  <button class="nav" id="skillNav"><b>🧠</b>Skill</button>
-  <button class="nav" id="arcadeNav"><b>⚡</b>Arcade</button>
-  <button class="nav" id="historyNav"><b>📜</b>History</button>
-  <button class="nav" id="resetBtn"><b>↻</b>Reset</button>
-</nav>
-</main>
-<div class="modal" id="gameModal">
-  <div class="modal-box">
-    <button class="close" id="closeGame">✕</button>
-    <div class="game-header">
-      <h2 id="modalTitle">Game</h2>
-      <span>Virtual arcade</span>
-    </div>
-    <div class="virtual-note">All scores and points in this arcade are virtual only. They have no cash value and cannot be exchanged for money.</div>
-    <div id="gameContent"></div>
-  </div>
-</div>
-<div class="modal" id="historyModal">
-  <div class="modal-box">
-    <button class="close" id="closeHistory">✕</button>
-    <div class="game-header"><h2>Game History</h2><span>Local device</span></div>
-    <div class="stat-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:15px">
-      <div class="stat-box" style="padding:15px;border-radius:17px;background:#ffffff07;border:1px solid #ffffff10"><small style="display:block;color:var(--muted);font-size:9px">TOTAL GAMES</small><strong id="totalGames" style="display:block;margin-top:5px;font-size:20px">0</strong></div>
-      <div class="stat-box" style="padding:15px;border-radius:17px;background:#ffffff07;border:1px solid #ffffff10"><small style="display:block;color:var(--muted);font-size:9px">TOTAL XP</small><strong id="totalXp" style="display:block;margin-top:5px;font-size:20px">0</strong></div>
-    </div>
-    <div id="fullHistory"></div>
-  </div>
-</div>
-<div class="toast" id="toast"></div>
-<script>
-"use strict";
-const STORAGE_BALANCE="zp_balance_v2",STORAGE_HISTORY="zp_history_v2",STORAGE_XP="zp_xp_v2",STORAGE_BEST="zp_best_v2";
-let balance=Number(localStorage.getItem(STORAGE_BALANCE)||1000);
-let history=JSON.parse(localStorage.getItem(STORAGE_HISTORY)||"[]");
-let xp=Number(localStorage.getItem(STORAGE_XP)||0);
-let bestScore=Number(localStorage.getItem(STORAGE_BEST)||0);
-let currentFilter="all";
-let reactionTimer=null,rocketTimer=null;
-const games=[
-  {id:"memory",title:"Neon Memory",icon:"🧠",type:"skill",badge:"PRO",description:"Match glowing memory cards"},
-  {id:"reaction",title:"Reaction Rush",icon:"⚡",type:"skill",badge:"FAST",description:"Test your reaction speed"},
-  {id:"target",title:"Target Smash",icon:"🎯",type:"arcade",badge:"NEW",description:"Hit targets before time runs out"},
-  {id:"rocket",title:"Rocket Rise",icon:"🚀",type:"arcade",badge:"LIVE",description:"Survive the rising multiplier"},
-  {id:"reels",title:"Neon Reels",icon:"🎰",type:"reels",badge:"HOT",description:"Animated virtual three-reel game"},
-  {id:"cards",title:"Royal Cards",icon:"🃏",type:"cards",badge:"",description:"Challenge the virtual deck"},
-  {id:"colors",title:"Color Blitz",icon:"🌈",type:"skill",badge:"SMART",description:"Find the correct color"},
-  {id:"sequence",title:"Sequence Master",icon:"🔢",type:"arcade",badge:"HARD",description:"Remember the growing sequence"}
-];
-const externalGames=[
-  {title:"Book of Dead",url:"https://sigma.world/play/games/playn-go/book-of-dead/",icon:"📕"},
-  {title:"Legacy of Dead",url:"https://sigma.world/play/games/playn-go/legacy-of-dead/",icon:"💀"},
-  {title:"777 Streak Megacharged",url:"https://sigma.world/play/games/octoplay/777-streak-megacharged/",icon:"7️⃣"},
-  {title:"Money Coming",url:"https://www.casinorating.com/games/jili-games/slots/money-coming",icon:"💰"},
-  {title:"Crazy 777",url:"https://www.casinorating.com/games/jili-games/slots/crazy-777",icon:"🎰"},
-  {title:"Golden Empire",url:"https://www.casinorating.com/games/jili-games/slots/golden-empire",icon:"👑"},
-  {title:"Lucky Ball",url:"https://www.casinorating.com/games/jili-games/slots/lucky-ball",icon:"🎱"},
-  {title:"Chicken Dash",url:"https://www.casinorating.com/games/jili-games/slots/chicken-dash",icon:"🐔"},
-  {title:"Cuc Toc 777",url:"https://www.casinorating.com/games/jili-games/slots/cuc-toc-777",icon:"🔥"},
-  {title:"Aviator",url:"https://www.bongobongo.ug/game/info/spribe-aviator",icon:"✈️"}
-];
-function $(id){return document.getElementById(id)}
-function save(){localStorage.setItem(STORAGE_BALANCE,String(balance));localStorage.setItem(STORAGE_HISTORY,JSON.stringify(history.slice(0,50)));localStorage.setItem(STORAGE_XP,String(xp));localStorage.setItem(STORAGE_BEST,String(bestScore))}
-function setBalance(v){balance=Math.max(0,Math.floor(v));$("balance").textContent=balance.toLocaleString();save()}
-function addXP(a){xp+=a;$("xpText").textContent=xp.toLocaleString();$("levelText").textContent=Math.floor(xp/250)+1;save()}
-function updateBest(s){if(s>bestScore){bestScore=s;$("bestText").textContent=bestScore.toLocaleString();save()}}
-function toast(m){const el=$("toast");el.textContent=m;el.classList.add("show");clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>el.classList.remove("show"),2200)}
-function escapeHtml(v){return String(v).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;")}
-function addHistory(g,r,p){history.unshift({game:g,result:r,amount:p,time:new Date().toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"})});history=history.slice(0,50);save();renderHistory()}
-function renderGames(){
-  const list=games.filter(g=>currentFilter==="all"||g.type===currentFilter);
-  $("gameCount").textContent=list.length+" games";
-  $("games").innerHTML=list.map(g=>`<article class="game-card" data-id="${g.id}">${g.badge?`<span class="badge">${g.badge}</span>`:""}<div class="game-cover"><div class="game-icon">${g.icon}</div></div><div class="game-info"><div><strong>${g.title}</strong><small>${g.description}</small></div><button class="game-play">▶</button></div></article>`).join("");
-  document.querySelectorAll("#games .game-card").forEach(c=>c.addEventListener("click",()=>{const g=games.find(x=>x.id===c.dataset.id);openGame(g)}));
-  if(currentFilter==="external"||currentFilter==="all"){
-    $("extSectionHead").style.display="flex";
-    $("extNote").style.display="block";
-    $("externalGames").style.display="grid";
-    $("externalGames").innerHTML=externalGames.map(g=>`<article class="game-card" style="cursor:pointer" onclick="window.open('${g.url}','_blank')"><span class="ext-badge">EXTERNAL</span><div class="game-cover"><div class="game-icon">${g.icon}</div></div><div class="game-info"><div><strong>${g.title}</strong><small>Opens in new tab</small></div><button class="game-play">↗</button></div></article>`).join("");
-  }else{
-    $("extSectionHead").style.display="none";
-    $("extNote").style.display="none";
-    $("externalGames").style.display="none";
+
+:root{
+  --bg:#050914;
+  --bg2:#0b1326;
+  --panel:#101b32;
+  --panel2:#172644;
+  --line:#29416d;
+  --gold:#ffd84d;
+  --gold2:#ff9e1b;
+  --cyan:#4ff5dd;
+  --blue:#4b8dff;
+  --pink:#ff4fa3;
+  --green:#42e6a4;
+  --text:#f7fbff;
+  --muted:#91a6c8;
+  --shadow:0 20px 60px #0009;
+}
+
+html,body{
+  margin:0;
+  min-height:100%;
+  background:
+    radial-gradient(circle at 50% -10%,#243d75 0,#0b1428 35%,#040711 75%);
+  color:var(--text);
+  font-family:Inter,Arial,Helvetica,sans-serif;
+}
+
+body{
+  overflow-x:hidden;
+}
+
+button{
+  font:inherit;
+  cursor:pointer;
+}
+
+button:disabled{
+  cursor:not-allowed;
+  opacity:.55;
+}
+
+#app{
+  min-height:100vh;
+  padding-bottom:90px;
+}
+
+/* TOP */
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:50;
+  height:72px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:9px 14px;
+  background:#050a16e8;
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid #ffffff12;
+}
+
+.logo{
+  width:48px;
+  height:48px;
+  border-radius:15px;
+  display:grid;
+  place-items:center;
+  font-size:15px;
+  font-weight:1000;
+  color:#071225;
+  background:linear-gradient(145deg,#fff06b,#ff9d18);
+  box-shadow:0 0 30px #ffbe3d55;
+}
+
+.brand{
+  font-size:18px;
+  font-weight:1000;
+}
+
+.brand small{
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  margin-top:2px;
+}
+
+.score{
+  margin-left:auto;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 13px;
+  border-radius:25px;
+  background:#111f3b;
+  border:1px solid #ffffff18;
+  font-weight:1000;
+}
+
+.score-icon{
+  width:27px;
+  height:27px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:linear-gradient(#ffe968,#ff9f18);
+  color:#3d2700;
+}
+
+/* MAIN */
+
+.wrap{
+  width:min(720px,100%);
+  margin:auto;
+  padding:18px 13px;
+}
+
+.hero{
+  text-align:center;
+  padding:8px 0 20px;
+}
+
+.hero .eyebrow{
+  color:var(--cyan);
+  font-size:11px;
+  font-weight:1000;
+  letter-spacing:2px;
+}
+
+.hero h1{
+  margin:7px 0;
+  font-size:clamp(30px,7vw,48px);
+  line-height:1;
+  background:linear-gradient(90deg,#fff,#65f5dc,#ffd94b,#fff);
+  background-size:250% auto;
+  -webkit-background-clip:text;
+  color:transparent;
+  animation:titleGlow 5s linear infinite;
+}
+
+@keyframes titleGlow{
+  to{background-position:250% center}
+}
+
+.hero p{
+  color:var(--muted);
+  font-size:12px;
+  margin:9px 0 0;
+}
+
+/* GAME */
+
+.machine{
+  position:relative;
+  overflow:hidden;
+  padding:14px;
+  border-radius:30px;
+  background:
+    linear-gradient(145deg,#172747,#080f20);
+  border:1px solid #ffffff1a;
+  box-shadow:
+    0 30px 80px #000b,
+    inset 0 1px #ffffff18;
+}
+
+.machine:before{
+  content:"";
+  position:absolute;
+  inset:-100px;
+  background:
+    conic-gradient(
+      from 0deg,
+      transparent,
+      #4ff5dd10,
+      transparent,
+      #ffd84d12,
+      transparent
+    );
+  animation:rotateBg 12s linear infinite;
+  pointer-events:none;
+}
+
+@keyframes rotateBg{
+  to{transform:rotate(360deg)}
+}
+
+.machine-inner{
+  position:relative;
+  z-index:2;
+  border-radius:23px;
+  padding:13px;
+  background:#070d1a;
+  border:1px solid #ffffff14;
+}
+
+/* JACKPOT */
+
+.display{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  padding:10px 5px 14px;
+}
+
+.display-title{
+  color:var(--muted);
+  font-size:10px;
+  font-weight:1000;
+  letter-spacing:1.5px;
+}
+
+.message{
+  color:#fff;
+  font-size:13px;
+  font-weight:1000;
+  text-align:right;
+}
+
+.message.win{
+  color:var(--gold);
+  text-shadow:0 0 18px #ffc52f88;
+}
+
+.message.super{
+  color:var(--cyan);
+  animation:superPulse .5s ease-in-out infinite alternate;
+}
+
+@keyframes superPulse{
+  from{transform:scale(1)}
+  to{transform:scale(1.08)}
+}
+
+/* REELS */
+
+.reels{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:7px;
+  padding:9px;
+  border-radius:20px;
+  background:
+    linear-gradient(180deg,#24365b,#101a30 45%,#07101f);
+  border:2px solid #3a527e;
+  box-shadow:
+    inset 0 10px 25px #0008,
+    inset 0 -10px 25px #0008,
+    0 12px 35px #0008;
+}
+
+.reel{
+  position:relative;
+  height:230px;
+  overflow:hidden;
+  border-radius:14px;
+  background:
+    linear-gradient(90deg,#08101e,#172541,#08101e);
+  border:1px solid #ffffff16;
+  box-shadow:
+    inset 8px 0 14px #0007,
+    inset -8px 0 14px #0007;
+}
+
+.reel:before,
+.reel:after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  height:55px;
+  z-index:4;
+  pointer-events:none;
+}
+
+.reel:before{
+  top:0;
+  background:linear-gradient(#07101fee,transparent);
+}
+
+.reel:after{
+  bottom:0;
+  background:linear-gradient(transparent,#07101fee);
+}
+
+.symbol{
+  height:76px;
+  display:grid;
+  place-items:center;
+  font-size:42px;
+  text-shadow:0 5px 14px #000b;
+  user-select:none;
+}
+
+.symbol span{
+  display:block;
+  transform:translateZ(0);
+}
+
+.reel.spinning .symbol{
+  filter:blur(2px);
+}
+
+.center-line{
+  position:absolute;
+  z-index:6;
+  top:50%;
+  left:3px;
+  right:3px;
+  height:78px;
+  transform:translateY(-50%);
+  border-top:2px solid #ffe36a;
+  border-bottom:2px solid #ffe36a;
+  box-shadow:
+    0 0 15px #ffd63f66,
+    inset 0 0 18px #ffd63f12;
+  pointer-events:none;
+}
+
+.center-line:before,
+.center-line:after{
+  content:"";
+  position:absolute;
+  top:50%;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#ffe66d;
+  box-shadow:0 0 15px #ffe66d;
+}
+
+.center-line:before{left:-4px}
+.center-line:after{right:-4px}
+
+/* PAYOUT PANEL */
+
+.payline{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  padding:13px 5px 8px;
+  color:var(--muted);
+  font-size:11px;
+}
+
+.payline b{
+  color:#fff;
+}
+
+.pills{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-bottom:13px;
+}
+
+.pill{
+  padding:6px 9px;
+  border-radius:9px;
+  background:#111d34;
+  border:1px solid #ffffff12;
+  color:#bcd0ee;
+  font-size:10px;
+  font-weight:900;
+}
+
+/* SPIN */
+
+.spin-area{
+  display:flex;
+  justify-content:center;
+  padding:3px 0 8px;
+}
+
+.spin{
+  position:relative;
+  width:min(260px,80vw);
+  height:64px;
+  border:0;
+  border-radius:20px;
+  color:#271900;
+  font-size:20px;
+  font-weight:1000;
+  letter-spacing:1px;
+  background:
+    linear-gradient(180deg,#fff276 0,#ffd238 48%,#f79b16 100%);
+  box-shadow:
+    0 10px 0 #a85e08,
+    0 18px 35px #ffb52b44,
+    inset 0 2px #fffbd0;
+  transition:.12s;
+}
+
+.spin:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.06);
+}
+
+.spin:active{
+  transform:translateY(7px);
+  box-shadow:
+    0 3px 0 #a85e08,
+    0 8px 18px #ffb52b33;
+}
+
+.spin.loading{
+  animation:buttonPulse .5s infinite alternate;
+}
+
+@keyframes buttonPulse{
+  to{filter:brightness(1.15)}
+}
+
+/* PARTICLES */
+
+#particles{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  pointer-events:none;
+  overflow:hidden;
+}
+
+.particle{
+  position:absolute;
+  width:8px;
+  height:8px;
+  border-radius:2px;
+  animation:fall 1.3s ease-out forwards;
+}
+
+@keyframes fall{
+  from{
+    transform:translate(0,0) rotate(0deg);
+    opacity:1;
+  }
+  to{
+    transform:translate(var(--x),var(--y)) rotate(720deg);
+    opacity:0;
   }
 }
-function renderHistory(){
-  const mini=$("miniHistory"),full=$("fullHistory");
-  $("totalGames").textContent=history.length;$("totalXp").textContent=xp.toLocaleString();
-  if(!history.length){const e=`<p style="color:#8996b5;font-size:12px;text-align:center;padding:20px">No games played yet.</p>`;mini.innerHTML=e;full.innerHTML=e;return}
-  const make=i=>`<div class="history-item"><div style="display:flex;align-items:center;gap:10px"><div class="history-icon">🎮</div><div><strong>${escapeHtml(i.game)}</strong><small>${i.time} • ${escapeHtml(i.result)}</small></div></div><b class="${i.amount>=0?"win":"loss"}">${i.amount>=0?"+":""}${i.amount}</b></div>`;
-  mini.innerHTML=history.slice(0,6).map(make).join("");full.innerHTML=history.map(make).join("");
+
+/* HISTORY */
+
+.card{
+  margin-top:15px;
+  padding:17px;
+  border-radius:20px;
+  background:#0c162a;
+  border:1px solid #ffffff12;
+  box-shadow:0 12px 35px #0005;
 }
-function openGame(game){
-  $("modalTitle").textContent=game.title;$("gameContent").innerHTML="";
-  if(game.id==="memory")buildMemory();
-  if(game.id==="reaction")buildReaction();
-  if(game.id==="target")buildTarget();
-  if(game.id==="rocket")buildRocket();
-  if(game.id==="reels")buildReels();
-  if(game.id==="cards")buildCards();
-  if(game.id==="colors")buildColors();
-  if(game.id==="sequence")buildSequence();
-  $("gameModal").style.display="grid";
+
+.card-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
-function buildMemory(){/* same as before - shortened for length */}
-function buildReaction(){/* same */}
-function buildTarget(){/* same */}
-function buildRocket(){/* same */}
-function buildReels(){/* same */}
-function buildCards(){/* same */}
-function buildColors(){/* same */}
-function buildSequence(){/* same */}
-/* NOTE: Full game functions are identical to the previous complete version.
-   To keep this response readable I have not repeated all 8 full game implementations.
-   When you paste, use the COMPLETE previous virtual arcade code + the external section above.
-   If you want the full combined file again, tell me and I will send the entire thing. */
-$("closeGame").onclick=()=>{$("gameModal").style.display="none";if(reactionTimer)clearTimeout(reactionTimer);if(rocketTimer){clearInterval(rocketTimer);rocketTimer=null}};
-$("closeHistory").onclick=()=>$("historyModal").style.display="none";
-$("historyBtn").onclick=()=>$("historyModal").style.display="grid";
-$("historyNav").onclick=()=>$("historyModal").style.display="grid";
-$("homeNav").onclick=()=>{currentFilter="all";setFilter("all")};
-$("skillNav").onclick=()=>{currentFilter="skill";setFilter("skill")};
-$("arcadeNav").onclick=()=>{currentFilter="arcade";setFilter("arcade")};
-$("resetBtn").onclick=()=>{if(confirm("Reset your virtual arcade progress?")){balance=1000;history=[];xp=0;bestScore=0;save();setBalance(1000);$("xpText").textContent="0";$("levelText").textContent="1";$("bestText").textContent="0";renderHistory();toast("Virtual arcade reset.")}};
-function setFilter(f){currentFilter=f;document.querySelectorAll(".category").forEach(b=>b.classList.toggle("active",b.dataset.filter===f));renderGames()}
-document.querySelectorAll(".category").forEach(b=>b.onclick=()=>setFilter(b.dataset.filter));
-$("gameModal").addEventListener("click",e=>{if(e.target===$("gameModal"))$("gameModal").style.display="none"});
-$("historyModal").addEventListener("click",e=>{if(e.target===$("historyModal"))$("historyModal").style.display="none"});
-window.addEventListener("load",()=>{setTimeout(()=>{$("loader").style.display="none";$("app").style.display="block";$("balance").textContent=balance.toLocaleString();$("xpText").textContent=xp.toLocaleString();$("levelText").textContent=Math.floor(xp/250)+1;$("bestText").textContent=bestScore.toLocaleString();renderGames();renderHistory()},900)});
+
+.card-head h3{
+  margin:0;
+  font-size:15px;
+}
+
+.card-head span{
+  color:var(--muted);
+  font-size:10px;
+}
+
+.history{
+  margin-top:12px;
+  display:grid;
+  gap:7px;
+}
+
+.history-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:10px;
+  border-radius:12px;
+  background:#111e36;
+}
+
+.history-symbols{
+  font-size:18px;
+  letter-spacing:2px;
+}
+
+.history-result{
+  font-size:11px;
+  font-weight:1000;
+}
+
+.history-result.win{
+  color:var(--green);
+}
+
+.history-result.loss{
+  color:#8397b9;
+}
+
+/* INFO */
+
+.info{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+
+.info-box{
+  text-align:center;
+  padding:12px 7px;
+  border-radius:14px;
+  background:#101c32;
+  border:1px solid #ffffff0e;
+}
+
+.info-box b{
+  display:block;
+  font-size:18px;
+}
+
+.info-box span{
+  display:block;
+  color:var(--muted);
+  font-size:9px;
+  margin-top:3px;
+}
+
+/* BOTTOM */
+
+.bottom{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:60;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  padding:8px 8px calc(8px + env(safe-area-inset-bottom));
+  background:#050a16f2;
+  backdrop-filter:blur(18px);
+  border-top:1px solid #ffffff12;
+}
+
+.nav{
+  border:0;
+  background:none;
+  color:#7185a8;
+  font-size:10px;
+  font-weight:1000;
+  padding:6px;
+}
+
+.nav b{
+  display:block;
+  font-size:21px;
+  margin-bottom:2px;
+}
+
+.nav.active{
+  color:#ffe05c;
+}
+
+/* MODAL */
+
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:200;
+  display:none;
+  place-items:center;
+  padding:18px;
+  background:#000b;
+  backdrop-filter:blur(8px);
+}
+
+.modal.show{
+  display:grid;
+}
+
+.modal-box{
+  width:min(450px,100%);
+  padding:23px;
+  border-radius:25px;
+  background:#0d192e;
+  border:1px solid #ffffff18;
+  box-shadow:var(--shadow);
+  text-align:center;
+}
+
+.modal-box h2{
+  margin:0 0 8px;
+}
+
+.modal-box p{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.6;
+}
+
+.close{
+  float:right;
+  border:0;
+  background:#ffffff12;
+  color:white;
+  border-radius:10px;
+  width:34px;
+  height:34px;
+}
+
+.big-score{
+  font-size:48px;
+  font-weight:1000;
+  color:var(--gold);
+  margin:20px 0;
+}
+
+/* MOBILE */
+
+@media(max-width:520px){
+  .brand{
+    font-size:15px;
+  }
+
+  .score{
+    font-size:13px;
+    padding:7px 9px;
+  }
+
+  .reels{
+    gap:4px;
+    padding:6px;
+  }
+
+  .reel{
+    height:205px;
+  }
+
+  .symbol{
+    height:68px;
+    font-size:35px;
+  }
+
+  .center-line{
+    height:70px;
+  }
+}
+
+@media(max-width:380px){
+  .logo{
+    width:42px;
+    height:42px;
+  }
+
+  .brand small{
+    display:none;
+  }
+
+  .reel{
+    height:190px;
+  }
+
+  .symbol{
+    height:63px;
+    font-size:31px;
+  }
+
+  .center-line{
+    height:65px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,
+  *:before,
+  *:after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    scroll-behavior:auto!important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="particles"></div>
+
+<div id="app">
+
+<header class="topbar">
+  <div class="logo">ZP</div>
+
+  <div class="brand">
+    ZeeshanPlayzone-
+    <small>ORIGINAL ARCADE</small>
+  </div>
+
+  <div class="score">
+    <span class="score-icon">★</span>
+    <span id="score">1000</span>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section class="hero">
+  <div class="eyebrow">✦ ZEEshanPLAYZONE ORIGINAL ✦</div>
+  <h1>NEON REELS</h1>
+  <p>Spin the reels • Chase the highest score • Virtual arcade points</p>
+</section>
+
+<section class="machine">
+
+<div class="machine-inner">
+
+  <div class="display">
+    <div>
+      <div class="display-title">CURRENT SCORE</div>
+      <div id="scoreSmall">1,000 POINTS</div>
+    </div>
+
+    <div class="message" id="message">
+      READY TO SPIN
+    </div>
+  </div>
+
+  <div class="reels" id="reels">
+
+    <div class="reel" data-reel="0">
+      <div class="symbol">🍋</div>
+      <div class="symbol">🍒</div>
+      <div class="symbol">7️⃣</div>
+      <div class="center-line"></div>
+    </div>
+
+    <div class="reel" data-reel="1">
+      <div class="symbol">💎</div>
+      <div class="symbol">⭐</div>
+      <div class="symbol">🍒</div>
+      <div class="center-line"></div>
+    </div>
+
+    <div class="reel" data-reel="2">
+      <div class="symbol">🔔</div>
+      <div class="symbol">7️⃣</div>
+      <div class="symbol">💎</div>
+      <div class="center-line"></div>
+    </div>
+
+    <div class="reel" data-reel="3">
+      <div class="symbol">⭐</div>
+      <div class="symbol">🍋</div>
+      <div class="symbol">7️⃣</div>
+      <div class="center-line"></div>
+    </div>
+
+    <div class="reel" data-reel="4">
+      <div class="symbol">🍒</div>
+      <div class="symbol">🔔</div>
+      <div class="symbol">💎</div>
+      <div class="center-line"></div>
+    </div>
+
+  </div>
+
+  <div class="payline">
+    <span>COMBOS</span>
+    <b>Match 3+</b>
+    <span>for arcade points</span>
+  </div>
+
+  <div class="pills">
+    <div class="pill">🍒 ×3 = +50</div>
+    <div class="pill">⭐ ×3 = +80</div>
+    <div class="pill">💎 ×3 = +120</div>
+    <div class="pill">7️⃣ ×3 = +250</div>
+  </div>
+
+  <div class="spin-area">
+    <button class="spin" id="spin">
+      SPIN REELS
+    </button>
+  </div>
+
+</div>
+</section>
+
+<section class="card">
+  <div class="card-head">
+    <h3>📊 ARCADE STATS</h3>
+    <span>THIS SESSION</span>
+  </div>
+
+  <div class="info">
+    <div class="info-box">
+      <b id="spins">0</b>
+      <span>SPINS</span>
+    </div>
+
+    <div class="info-box">
+      <b id="wins">0</b>
+      <span>COMBOS</span>
+    </div>
+
+    <div class="info-box">
+      <b id="best">0</b>
+      <span>BEST SCORE</span>
+    </div>
+  </div>
+</section>
+
+<section class="card">
+
+  <div class="card-head">
+    <h3>🕘 RECENT SPINS</h3>
+    <span>LOCAL HISTORY</span>
+  </div>
+
+  <div class="history" id="history">
+    <div class="history-row">
+      <div class="history-symbols">🍒 ⭐ 🍋</div>
+      <div class="history-result loss">READY</div>
+    </div>
+  </div>
+
+</section>
+
+<section class="card">
+  <div class="card-head">
+    <h3>ℹ️ ABOUT THE GAME</h3>
+  </div>
+
+  <p>
+    Neon Reels is an original arcade experience created for
+    ZeeshanPlayzone-. Points shown here are game points only and
+    have no cash value.
+  </p>
+</section>
+
+</main>
+
+<nav class="bottom">
+  <button class="nav active">
+    <b>🎮</b>
+    GAME
+  </button>
+
+  <button class="nav" id="historyNav">
+    <b>📜</b>
+    HISTORY
+  </button>
+
+  <button class="nav" id="soundNav">
+    <b>🔊</b>
+    SOUND ON
+  </button>
+</nav>
+
+</div>
+
+<div class="modal" id="infoModal">
+  <div class="modal-box">
+    <button class="close" id="closeModal">✕</button>
+    <h2>ZeeshanPlayzone-</h2>
+    <div class="big-score" id="modalScore">1000</div>
+    <p>
+      Your current arcade score.
+      These points are only part of this game and cannot be
+      deposited, withdrawn, exchanged or converted into money.
+    </p>
+    <button class="spin" id="modalClose">CONTINUE</button>
+  </div>
+</div>
+
+<script>
+"use strict";
+
+/* ================================
+   GAME DATA
+================================ */
+
+const SYMBOLS = [
+  {icon:"🍒", name:"Cherry", value:50},
+  {icon:"🍋", name:"Lemon", value:40},
+  {icon:"⭐", name:"Star", value:80},
+  {icon:"🔔", name:"Bell", value:70},
+  {icon:"💎", name:"Diamond", value:120},
+  {icon:"7️⃣", name:"Seven", value:250}
+];
+
+const REEL_COUNT = 5;
+
+let score = Number(localStorage.getItem("zp_score") || 1000);
+let spins = Number(localStorage.getItem("zp_spins") || 0);
+let wins = Number(localStorage.getItem("zp_wins") || 0);
+let best = Number(localStorage.getItem("zp_best") || score);
+
+let spinning = false;
+let soundEnabled = true;
+let audioContext = null;
+
+/* ================================
+   ELEMENTS
+================================ */
+
+const $ = id => document.getElementById(id);
+
+const scoreEl = $("score");
+const scoreSmall = $("scoreSmall");
+const spinsEl = $("spins");
+const winsEl = $("wins");
+const bestEl = $("best");
+const messageEl = $("message");
+const historyEl = $("history");
+const spinButton = $("spin");
+
+const reels = [...document.querySelectorAll(".reel")];
+
+/* ================================
+   SCORE
+================================ */
+
+function updateScore(){
+
+  scoreEl.textContent = score.toLocaleString();
+  scoreSmall.textContent =
+    score.toLocaleString() + " POINTS";
+
+  spinsEl.textContent = spins;
+  winsEl.textContent = wins;
+  bestEl.textContent = best.toLocaleString();
+
+  localStorage.setItem("zp_score",score);
+  localStorage.setItem("zp_spins",spins);
+  localStorage.setItem("zp_wins",wins);
+  localStorage.setItem("zp_best",best);
+}
+
+updateScore();
+
+/* ================================
+   AUDIO ENGINE
+================================ */
+
+function initAudio(){
+
+  if(!soundEnabled) return;
+
+  if(!audioContext){
+    const AC =
+      window.AudioContext ||
+      window.webkitAudioContext;
+
+    if(!AC) return;
+
+    audioContext = new AC();
+  }
+
+  if(audioContext.state === "suspended"){
+    audioContext.resume();
+  }
+}
+
+function tone(
+  frequency,
+  duration,
+  type="sine",
+  volume=.045,
+  delay=0
+){
+
+  if(!soundEnabled) return;
+
+  initAudio();
+
+  if(!audioContext) return;
+
+  const now =
+    audioContext.currentTime + delay;
+
+  const osc =
+    audioContext.createOscillator();
+
+  const gain =
+    audioContext.createGain();
+
+  osc.type = type;
+  osc.frequency.setValueAtTime(
+    frequency,
+    now
+  );
+
+  gain.gain.setValueAtTime(
+    0.0001,
+    now
+  );
+
+  gain.gain.exponentialRampToValueAtTime(
+    volume,
+    now + .012
+  );
+
+  gain.gain.exponentialRampToValueAtTime(
+    0.0001,
+    now + duration
+  );
+
+  osc.connect(gain);
+  gain.connect(audioContext.destination);
+
+  osc.start(now);
+  osc.stop(now + duration + .02);
+}
+
+function spinSound(){
+
+  tone(120,.055,"square",.025);
+  tone(160,.055,"square",.025,.075);
+  tone(210,.055,"square",.025,.15);
+}
+
+function stopSound(index){
+
+  const notes=[
+    330,
+    370,
+    415,
+    466,
+    523
+  ];
+
+  tone(
+    notes[index] || 330,
+    .11,
+    "triangle",
+    .045
+  );
+}
+
+function winSound(){
+
+  const melody=[
+    523,
+    659,
+    784,
+    1046
+  ];
+
+  melody.forEach(
+    (n,i)=>{
+      tone(
+        n,
+        .22,
+        "sine",
+        .07,
+        i*.09
+      );
+    }
+  );
+}
+
+/* ================================
+   RANDOM
+================================ */
+
+function randomSymbol(){
+
+  return SYMBOLS[
+    Math.floor(
+      Math.random()*SYMBOLS.length
+    )
+  ];
+}
+
+/*
+  This is intentionally an arcade scoring
+  system rather than a wagering system.
+*/
+
+function createResult(){
+
+  const result=[];
+
+  for(let i=0;i<REEL_COUNT;i++){
+
+    result.push(
+      randomSymbol()
+    );
+  }
+
+  /*
+    Occasionally produce a visually
+    satisfying arcade combo.
+  */
+
+  if(Math.random()<.30){
+
+    const chosen =
+      SYMBOLS[
+        Math.floor(
+          Math.random()*SYMBOLS.length
+        )
+      ];
+
+    const count =
+      3 + Math.floor(Math.random()*3);
+
+    const positions =
+      [...Array(REEL_COUNT).keys()]
+        .sort(()=>Math.random()-.5)
+        .slice(0,count);
+
+    positions.forEach(
+      p => result[p]=chosen
+    );
+  }
+
+  return result;
+}
+
+/* ================================
+   REEL RENDER
+================================ */
+
+function renderReel(
+  reel,
+  symbols
+){
+
+  const line =
+    reel.querySelector(".center-line");
+
+  reel.innerHTML="";
+
+  symbols.forEach(symbol=>{
+
+    const div =
+      document.createElement("div");
+
+    div.className="symbol";
+
+    const span =
+      document.createElement("span");
+
+    span.textContent=symbol.icon;
+
+    div.appendChild(span);
+    reel.appendChild(div);
+
+  });
+
+  reel.appendChild(line);
+}
+
+/* ================================
+   INITIAL DISPLAY
+================================ */
+
+function initialDisplay(){
+
+  reels.forEach(reel=>{
+
+    const values=[];
+
+    for(let i=0;i<3;i++){
+      values.push(randomSymbol());
+    }
+
+    renderReel(
+      reel,
+      values
+    );
+  });
+}
+
+initialDisplay();
+
+/* ================================
+   REEL ANIMATION
+================================ */
+
+function animateReel(
+  reel,
+  finalSymbol,
+  duration,
+  index
+){
+
+  return new Promise(resolve=>{
+
+    reel.classList.add("spinning");
+
+    const start =
+      performance.now();
+
+    let lastTick=0;
+
+    function frame(now){
+
+      const elapsed =
+        now-start;
+
+      if(elapsed < duration){
+
+        /*
+          Rapid symbol replacement gives
+          the impression of a moving reel.
+        */
+
+        if(
+          now-lastTick >
+          Math.max(
+            35,
+            85-elapsed/15
+          )
+        ){
+
+          const temp=[
+            randomSymbol(),
+            randomSymbol(),
+            randomSymbol()
+          ];
+
+          renderReel(
+            reel,
+            temp
+          );
+
+          spinSound();
+
+          lastTick=now;
+        }
+
+        requestAnimationFrame(frame);
+
+      }else{
+
+        renderReel(
+          reel,
+          [
+            randomSymbol(),
+            finalSymbol,
+            randomSymbol()
+          ]
+        );
+
+        reel.classList.remove(
+          "spinning"
+        );
+
+        stopSound(index);
+
+        resolve();
+      }
+    }
+
+    requestAnimationFrame(frame);
+  });
+}
+
+/* ================================
+   COMBINATION
+================================ */
+
+function calculateCombo(result){
+
+  const counts={};
+
+  result.forEach(symbol=>{
+
+    counts[symbol.icon] =
+      (counts[symbol.icon] || 0)+1;
+
+  });
+
+  let bestSymbol=null;
+  let bestCount=0;
+
+  Object.keys(counts).forEach(icon=>{
+
+    if(counts[icon]>bestCount){
+
+      bestCount=counts[icon];
+      bestSymbol=
+        SYMBOLS.find(
+          s=>s.icon===icon
+        );
+    }
+
+  });
+
+  if(bestCount<3){
+
+    return {
+      win:false,
+      count:bestCount,
+      points:0,
+      symbol:bestSymbol
+    };
+  }
+
+  let multiplier=1;
+
+  if(bestCount===4){
+    multiplier=2;
+  }
+
+  if(bestCount===5){
+    multiplier=4;
+  }
+
+  const points =
+    bestSymbol.value *
+    multiplier;
+
+  return {
+    win:true,
+    count:bestCount,
+    points,
+    symbol:bestSymbol
+  };
+}
+
+/* ================================
+   PARTICLES
+================================ */
+
+function burst(){
+
+  const container =
+    $("particles");
+
+  const symbols=[
+    "✦",
+    "★",
+    "◆",
+    "✧",
+    "●"
+  ];
+
+  for(let i=0;i<55;i++){
+
+    const p =
+      document.createElement("div");
+
+    p.className="particle";
+
+    p.textContent =
+      symbols[
+        Math.floor(
+          Math.random()*symbols.length
+        )
+      ];
+
+    p.style.left =
+      (35+Math.random()*30)+"%";
+
+    p.style.top =
+      (35+Math.random()*15)+"%";
+
+    p.style.color =
+      [
+        "#ffd84d",
+        "#4ff5dd",
+        "#ff4fa3",
+        "#ffffff",
+        "#69a1ff"
+      ][
+        Math.floor(Math.random()*5)
+      ];
+
+    p.style.setProperty(
+      "--x",
+      ((Math.random()-.5)*700)+"px"
+    );
+
+    p.style.setProperty(
+      "--y",
+      ((Math.random()-.7)*600)+"px"
+    );
+
+    container.appendChild(p);
+
+    setTimeout(
+      ()=>p.remove(),
+      1400
+    );
+  }
+}
+
+/* ================================
+   HISTORY
+================================ */
+
+function addHistory(
+  result,
+  combo
+){
+
+  const row =
+    document.createElement("div");
+
+  row.className="history-row";
+
+  const icons =
+    result
+      .map(s=>s.icon)
+      .join(" ");
+
+  const symbols =
+    document.createElement("div");
+
+  symbols.className=
+    "history-symbols";
+
+  symbols.textContent=icons;
+
+  const status =
+    document.createElement("div");
+
+  status.className=
+    "history-result "+
+    (combo.win?"win":"loss");
+
+  status.textContent=
+    combo.win
+      ? "+"+combo.points+" POINTS"
+      : "NO COMBO";
+
+  row.appendChild(symbols);
+  row.appendChild(status);
+
+  historyEl.prepend(row);
+
+  while(
+    historyEl.children.length>8
+  ){
+    historyEl.lastElementChild.remove();
+  }
+}
+
+/* ================================
+   MESSAGE
+================================ */
+
+function setMessage(
+  text,
+  type=""
+){
+
+  messageEl.textContent=text;
+
+  messageEl.className=
+    "message "+type;
+}
+
+/* ================================
+   SPIN
+================================ */
+
+async function spin(){
+
+  if(spinning) return;
+
+  spinning=true;
+
+  spinButton.disabled=true;
+  spinButton.classList.add("loading");
+  spinButton.textContent="SPINNING…";
+
+  setMessage(
+    "REELS IN MOTION"
+  );
+
+  initAudio();
+
+  spins++;
+  updateScore();
+
+  const result =
+    createResult();
+
+  const animations =
+    reels.map(
+      (reel,index)=>
+        animateReel(
+          reel,
+          result[index],
+          1050 + index*330,
+          index
+        )
+    );
+
+  await Promise.all(
+    animations
+  );
+
+  const combo =
+    calculateCombo(result);
+
+  if(combo.win){
+
+    score += combo.points;
+    wins++;
+
+    if(score>best){
+      best=score;
+    }
+
+    updateScore();
+
+    if(combo.count===5){
+
+      setMessage(
+        "⚡ PERFECT COMBO +"+
+        combo.points+
+        " POINTS!",
+        "super"
+      );
+
+      burst();
+      winSound();
+
+    }else{
+
+      setMessage(
+        "✦ "+combo.symbol.icon+
+        " ×"+combo.count+
+        "  +"+combo.points+
+        " POINTS",
+        "win"
+      );
+
+      winSound();
+    }
+
+  }else{
+
+    setMessage(
+      "NO COMBO — TRY AGAIN"
+    );
+
+    tone(
+      180,
+      .13,
+      "sine",
+      .025
+    );
+  }
+
+  addHistory(
+    result,
+    combo
+  );
+
+  spinButton.textContent=
+    "SPIN AGAIN";
+
+  spinButton.classList.remove(
+    "loading"
+  );
+
+  spinButton.disabled=false;
+
+  spinning=false;
+}
+
+/* ================================
+   BUTTONS
+================================ */
+
+spinButton.addEventListener(
+  "click",
+  spin
+);
+
+$("soundNav").addEventListener(
+  "click",
+  ()=>{
+    soundEnabled=!soundEnabled;
+
+    $("soundNav").innerHTML =
+      soundEnabled
+        ? "<b>🔊</b>SOUND ON"
+        : "<b>🔇</b>SOUND OFF";
+
+    if(soundEnabled){
+      initAudio();
+      tone(
+        660,
+        .12,
+        "sine",
+        .05
+      );
+    }
+  }
+);
+
+$("historyNav").addEventListener(
+  "click",
+  ()=>{
+    document
+      .querySelector(".history")
+      .scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+      });
+  }
+);
+
+/* ================================
+   MODAL
+================================ */
+
+function openModal(){
+
+  $("modalScore").textContent =
+    score.toLocaleString();
+
+  $("infoModal")
+    .classList.add("show");
+}
+
+function closeModal(){
+
+  $("infoModal")
+    .classList.remove("show");
+}
+
+$("closeModal")
+  .addEventListener(
+    "click",
+    closeModal
+  );
+
+$("modalClose")
+  .addEventListener(
+    "click",
+    closeModal
+  );
+
+/* ================================
+   KEYBOARD
+================================ */
+
+document.addEventListener(
+  "keydown",
+  event=>{
+
+    if(
+      event.code==="Space" &&
+      !spinning
+    ){
+
+      event.preventDefault();
+      spin();
+    }
+
+    if(
+      event.key==="Escape"
+    ){
+
+      closeModal();
+    }
+  }
+);
+
+/* ================================
+   VISIBILITY
+================================ */
+
+document.addEventListener(
+  "visibilitychange",
+  ()=>{
+    if(
+      document.hidden &&
+      spinning
+    ){
+      /*
+        Browser animation naturally pauses
+        when the page is hidden.
+      */
+    }
+  }
+);
+
+/* ================================
+   STARTUP
+================================ */
+
+setMessage(
+  "READY TO SPIN"
+);
+
+updateScore();
+
 </script>
+
 </body>
 </html>
