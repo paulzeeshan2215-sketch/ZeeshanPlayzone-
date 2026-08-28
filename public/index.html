@@ -696,6 +696,7 @@ button:disabled{
   flex-direction:column;
   align-items:center;
   transform:translateY(0);
+  transition:transform .4s ease-out;
 }
 
 .symbol{
@@ -2553,7 +2554,7 @@ function buildReels(){
           class="spin-btn"
           id="spinButton"
         >
-          SPIN
+          SPIN • 10
         </button>
 
         <button
@@ -2607,7 +2608,14 @@ function spinReels(cost){
 
   if(spinning)return;
 
+  if(balance < cost){
+    toast("Not enough virtual points!");
+    return;
+  }
+
   spinning = true;
+
+  setBalance(balance - cost);
 
   const result =
     $("slotResult");
@@ -2644,6 +2652,8 @@ function spinReels(cost){
     ]
   ];
 
+  const symbolHeight = window.innerWidth <= 520 ? 100 : 116;
+
   [0,1,2].forEach(i=>{
 
     setTimeout(()=>{
@@ -2664,7 +2674,7 @@ function spinReels(cost){
         );
 
       track.style.transform =
-        `translateY(-${index*116}px)`;
+        `translateY(-${index*symbolHeight}px)`;
 
       tone(
         350+i*120,
@@ -2685,7 +2695,7 @@ function spinReels(cost){
           values[2]
         ){
 
-          reward = 100;
+          reward = cost * 8;
 
           message =
             "🎉 PERFECT MATCH!";
@@ -2700,11 +2710,15 @@ function spinReels(cost){
           values[2]
         ){
 
-          reward = 35;
+          reward = cost * 2;
 
           message =
             "✨ DOUBLE MATCH!";
 
+        }
+
+        if(reward > 0){
+          setBalance(balance + reward);
         }
 
         const score =
@@ -2720,13 +2734,12 @@ function spinReels(cost){
 
         result.textContent =
           message+
-          " Score: "+
-          score;
+          (reward > 0 ? " +" + reward : " Score: 0");
 
         addHistory(
           "Neon Reels",
           message,
-          score
+          reward - cost
         );
 
         if(score>0)
