@@ -3,1713 +3,1410 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#071225">
+<meta name="theme-color" content="#071b2f">
 <title>ZeeshanPlayzone-</title>
 
 <style>
 *{box-sizing:border-box}
-
-:root{
-  --bg:#050914;
-  --bg2:#0b1326;
-  --panel:#101b32;
-  --panel2:#172644;
-  --line:#29416d;
-  --gold:#ffd84d;
-  --gold2:#ff9e1b;
-  --cyan:#4ff5dd;
-  --blue:#4b8dff;
-  --pink:#ff4fa3;
-  --green:#42e6a4;
-  --text:#f7fbff;
-  --muted:#91a6c8;
-  --shadow:0 20px 60px #0009;
-}
-
-html,body{
-  margin:0;
-  min-height:100%;
-  background:
-    radial-gradient(circle at 50% -10%,#243d75 0,#0b1428 35%,#040711 75%);
-  color:var(--text);
-  font-family:Inter,Arial,Helvetica,sans-serif;
-}
-
+html,body{margin:0;min-height:100%;font-family:Inter,Arial,sans-serif;color:#fff}
 body{
+  background:
+    radial-gradient(circle at 50% -10%,#174b72 0,#0b263f 34%,#040b15 75%);
   overflow-x:hidden;
 }
+button{font:inherit;cursor:pointer}
+button:disabled{opacity:.45;cursor:not-allowed}
+.hidden{display:none!important}
 
-button{
-  font:inherit;
-  cursor:pointer;
+:root{
+ --bg:#06111f;
+ --panel:#0b1e31;
+ --panel2:#102b43;
+ --line:#2b5574;
+ --cyan:#46f0df;
+ --blue:#4ba3ff;
+ --gold:#ffd85a;
+ --orange:#ff9f43;
+ --text:#fff;
+ --muted:#9eb6c9;
+ --danger:#ff637d;
+ --green:#53e6a9;
 }
 
-button:disabled{
-  cursor:not-allowed;
-  opacity:.55;
+#loader{
+ position:fixed;
+ inset:0;
+ z-index:99999;
+ display:grid;
+ place-items:center;
+ background:#030a13;
 }
-
-#app{
-  min-height:100vh;
-  padding-bottom:90px;
+.loader-inner{text-align:center}
+.loader-logo{
+ width:92px;height:92px;
+ display:grid;place-items:center;
+ margin:auto;
+ border-radius:28px;
+ font-size:27px;
+ font-weight:1000;
+ color:#06131e;
+ background:linear-gradient(145deg,#fff08b,#ffad28);
+ box-shadow:0 0 55px #ffbe3d55;
 }
+.loader-inner h1{margin:18px 0 0;font-size:27px}
+.loader-inner p{color:var(--muted);font-size:13px}
+.loader-ring{
+ width:40px;height:40px;
+ margin:20px auto;
+ border:4px solid #ffffff18;
+ border-top-color:var(--cyan);
+ border-radius:50%;
+ animation:rotate 1s linear infinite;
+}
+@keyframes rotate{to{transform:rotate(360deg)}}
 
-/* TOP */
+#app{display:none;min-height:100vh;padding-bottom:90px}
 
 .topbar{
-  position:sticky;
-  top:0;
-  z-index:50;
-  height:72px;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:9px 14px;
-  background:#050a16e8;
-  backdrop-filter:blur(18px);
-  border-bottom:1px solid #ffffff12;
+ position:sticky;
+ top:0;
+ z-index:100;
+ height:72px;
+ display:flex;
+ align-items:center;
+ gap:10px;
+ padding:9px 13px;
+ background:#061522eF;
+ backdrop-filter:blur(18px);
+ border-bottom:1px solid #ffffff10;
+}
+.logo-small{
+ width:48px;height:48px;
+ display:grid;place-items:center;
+ border-radius:15px;
+ background:linear-gradient(145deg,#fff080,#ffad2a);
+ color:#071827;
+ font-weight:1000;
+}
+.brand-area{min-width:0}
+.brand-area strong{display:block;font-size:15px}
+.brand-area span{font-size:10px;color:var(--muted)}
+.balance{
+ margin-left:auto;
+ display:flex;
+ align-items:center;
+ gap:7px;
+ padding:8px 12px;
+ border-radius:22px;
+ background:#0b2539;
+ border:1px solid #3b6683;
+ font-weight:1000;
+}
+.coin{
+ width:25px;height:25px;
+ display:grid;place-items:center;
+ border-radius:50%;
+ background:linear-gradient(145deg,#fff080,#f5a400);
+ color:#654300;
+}
+.settings{
+ width:42px;height:42px;
+ border-radius:13px;
+ border:1px solid #ffffff14;
+ background:#ffffff08;
+ color:white;
 }
 
-.logo{
-  width:48px;
-  height:48px;
-  border-radius:15px;
-  display:grid;
-  place-items:center;
-  font-size:15px;
-  font-weight:1000;
-  color:#071225;
-  background:linear-gradient(145deg,#fff06b,#ff9d18);
-  box-shadow:0 0 30px #ffbe3d55;
-}
-
-.brand{
-  font-size:18px;
-  font-weight:1000;
-}
-
-.brand small{
-  display:block;
-  color:var(--muted);
-  font-size:10px;
-  margin-top:2px;
-}
-
-.score{
-  margin-left:auto;
-  display:flex;
-  align-items:center;
-  gap:8px;
-  padding:8px 13px;
-  border-radius:25px;
-  background:#111f3b;
-  border:1px solid #ffffff18;
-  font-weight:1000;
-}
-
-.score-icon{
-  width:27px;
-  height:27px;
-  display:grid;
-  place-items:center;
-  border-radius:50%;
-  background:linear-gradient(#ffe968,#ff9f18);
-  color:#3d2700;
-}
-
-/* MAIN */
-
-.wrap{
-  width:min(720px,100%);
-  margin:auto;
-  padding:18px 13px;
-}
+.container{width:min(760px,100%);margin:auto;padding:12px}
 
 .hero{
-  text-align:center;
-  padding:8px 0 20px;
+ position:relative;
+ overflow:hidden;
+ padding:22px;
+ border-radius:25px;
+ border:1px solid #3c6e91;
+ background:
+ linear-gradient(135deg,#103653,#071927);
+ box-shadow:0 18px 45px #0006;
+}
+.hero:before{
+ content:"";
+ position:absolute;
+ width:220px;height:220px;
+ right:-90px;top:-100px;
+ border-radius:50%;
+ background:#46f0df12;
+}
+.hero-kicker{
+ color:var(--cyan);
+ font-size:11px;
+ font-weight:900;
+ letter-spacing:1.5px;
+}
+.hero h1{margin:7px 0;font-size:31px}
+.hero p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
+
+.categories{
+ display:flex;
+ gap:7px;
+ overflow-x:auto;
+ padding:12px 0 3px;
+ scrollbar-width:none;
+}
+.categories::-webkit-scrollbar{display:none}
+.category{
+ flex:0 0 auto;
+ border:1px solid #ffffff13;
+ background:#0a1d2e;
+ color:#a9c0d1;
+ border-radius:18px;
+ padding:9px 13px;
+ font-size:11px;
+ font-weight:900;
+}
+.category.active{
+ color:#061521;
+ background:linear-gradient(135deg,#54f0dd,#41aaff);
 }
 
-.hero .eyebrow{
-  color:var(--cyan);
-  font-size:11px;
-  font-weight:1000;
-  letter-spacing:2px;
+.section-head{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ margin:18px 2px 10px;
+}
+.section-head h2{margin:0;font-size:18px}
+.section-head span{font-size:11px;color:var(--muted)}
+
+.games{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:11px;
+}
+.game-card{
+ position:relative;
+ overflow:hidden;
+ min-height:178px;
+ border-radius:20px;
+ border:1px solid #315b78;
+ background:linear-gradient(145deg,#102d45,#071725);
+ box-shadow:0 9px 25px #0005;
+ transition:.18s transform,.18s border-color;
+}
+.game-card:hover{
+ transform:translateY(-3px);
+ border-color:#51dcca;
+}
+.game-cover{
+ height:122px;
+ display:grid;
+ place-items:center;
+ position:relative;
+ font-size:54px;
+ background:
+ radial-gradient(circle at 50% 45%,#49dcca28,transparent 55%),
+ linear-gradient(145deg,#123d59,#071827);
+}
+.game-cover:after{
+ content:"";
+ position:absolute;
+ inset:0;
+ background:linear-gradient(180deg,transparent 45%,#06111dcc);
+}
+.game-icon{position:relative;z-index:2}
+.game-info{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ padding:10px;
+}
+.game-info strong{font-size:12px}
+.game-info small{display:block;color:var(--muted);font-size:9px;margin-top:3px}
+.game-play{
+ border:0;
+ width:35px;height:35px;
+ border-radius:50%;
+ background:linear-gradient(145deg,#5bf0d8,#38aaff);
+ color:#061522;
+ font-weight:1000;
 }
 
-.hero h1{
-  margin:7px 0;
-  font-size:clamp(30px,7vw,48px);
-  line-height:1;
-  background:linear-gradient(90deg,#fff,#65f5dc,#ffd94b,#fff);
-  background-size:250% auto;
-  -webkit-background-clip:text;
-  color:transparent;
-  animation:titleGlow 5s linear infinite;
+.badge{
+ position:absolute;
+ left:8px;top:8px;
+ z-index:4;
+ padding:4px 7px;
+ border-radius:7px;
+ background:#ff526e;
+ font-size:9px;
+ font-weight:1000;
 }
 
-@keyframes titleGlow{
-  to{background-position:250% center}
+.bottom{
+ position:fixed;
+ z-index:200;
+ left:0;right:0;bottom:0;
+ display:grid;
+ grid-template-columns:repeat(5,1fr);
+ padding:7px 4px calc(7px + env(safe-area-inset-bottom));
+ background:#061522F7;
+ border-top:1px solid #ffffff13;
+ backdrop-filter:blur(18px);
+}
+.nav{
+ border:0;
+ background:none;
+ color:#7894a9;
+ font-size:9px;
+ font-weight:900;
+}
+.nav b{display:block;font-size:21px;margin-bottom:3px}
+.nav.active{color:var(--cyan)}
+
+.modal{
+ position:fixed;
+ inset:0;
+ z-index:500;
+ display:none;
+ place-items:center;
+ padding:14px;
+ background:#000b;
+ backdrop-filter:blur(8px);
+}
+.modal-box{
+ width:min(620px,100%);
+ max-height:92vh;
+ overflow:auto;
+ border-radius:26px;
+ border:1px solid #3c6985;
+ background:linear-gradient(150deg,#0c263b,#06131f);
+ box-shadow:0 25px 80px #000b;
+ padding:18px;
+}
+.close{
+ float:right;
+ width:36px;height:36px;
+ border:0;
+ border-radius:11px;
+ background:#ffffff10;
+ color:white;
 }
 
-.hero p{
-  color:var(--muted);
-  font-size:12px;
-  margin:9px 0 0;
+.game-header{
+ clear:both;
+ padding-top:8px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+}
+.game-header h2{margin:0;font-size:22px}
+.game-header span{color:var(--muted);font-size:11px}
+
+.virtual-note{
+ margin:12px 0;
+ padding:10px 12px;
+ border-radius:12px;
+ background:#46f0df0b;
+ border:1px solid #46f0df22;
+ color:#a9dcd7;
+ font-size:10px;
+ line-height:1.5;
 }
 
-/* GAME */
+/* SLOT MACHINE */
 
-.machine{
-  position:relative;
-  overflow:hidden;
-  padding:14px;
-  border-radius:30px;
-  background:
-    linear-gradient(145deg,#172747,#080f20);
-  border:1px solid #ffffff1a;
-  box-shadow:
-    0 30px 80px #000b,
-    inset 0 1px #ffffff18;
+.slot-machine{
+ margin-top:16px;
+ padding:14px;
+ border-radius:22px;
+ background:
+ linear-gradient(145deg,#152e42,#06111c);
+ border:2px solid #395e75;
+ box-shadow:inset 0 0 30px #0008,0 12px 35px #0006;
 }
-
-.machine:before{
-  content:"";
-  position:absolute;
-  inset:-100px;
-  background:
-    conic-gradient(
-      from 0deg,
-      transparent,
-      #4ff5dd10,
-      transparent,
-      #ffd84d12,
-      transparent
-    );
-  animation:rotateBg 12s linear infinite;
-  pointer-events:none;
-}
-
-@keyframes rotateBg{
-  to{transform:rotate(360deg)}
-}
-
-.machine-inner{
-  position:relative;
-  z-index:2;
-  border-radius:23px;
-  padding:13px;
-  background:#070d1a;
-  border:1px solid #ffffff14;
-}
-
-/* JACKPOT */
-
-.display{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  padding:10px 5px 14px;
-}
-
-.display-title{
-  color:var(--muted);
-  font-size:10px;
-  font-weight:1000;
-  letter-spacing:1.5px;
-}
-
-.message{
-  color:#fff;
-  font-size:13px;
-  font-weight:1000;
-  text-align:right;
-}
-
-.message.win{
-  color:var(--gold);
-  text-shadow:0 0 18px #ffc52f88;
-}
-
-.message.super{
-  color:var(--cyan);
-  animation:superPulse .5s ease-in-out infinite alternate;
-}
-
-@keyframes superPulse{
-  from{transform:scale(1)}
-  to{transform:scale(1.08)}
-}
-
-/* REELS */
-
 .reels{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:7px;
-  padding:9px;
-  border-radius:20px;
-  background:
-    linear-gradient(180deg,#24365b,#101a30 45%,#07101f);
-  border:2px solid #3a527e;
-  box-shadow:
-    inset 0 10px 25px #0008,
-    inset 0 -10px 25px #0008,
-    0 12px 35px #0008;
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:8px;
 }
-
 .reel{
-  position:relative;
-  height:230px;
-  overflow:hidden;
-  border-radius:14px;
-  background:
-    linear-gradient(90deg,#08101e,#172541,#08101e);
-  border:1px solid #ffffff16;
-  box-shadow:
-    inset 8px 0 14px #0007,
-    inset -8px 0 14px #0007;
+ height:115px;
+ overflow:hidden;
+ border-radius:15px;
+ background:#f5f7f8;
+ border:3px solid #718494;
+ box-shadow:inset 0 0 20px #0004;
 }
-
-.reel:before,
-.reel:after{
-  content:"";
-  position:absolute;
-  left:0;
-  right:0;
-  height:55px;
-  z-index:4;
-  pointer-events:none;
+.reel-track{
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ transform:translateY(0);
 }
-
-.reel:before{
-  top:0;
-  background:linear-gradient(#07101fee,transparent);
-}
-
-.reel:after{
-  bottom:0;
-  background:linear-gradient(transparent,#07101fee);
-}
-
 .symbol{
-  height:76px;
-  display:grid;
-  place-items:center;
-  font-size:42px;
-  text-shadow:0 5px 14px #000b;
-  user-select:none;
+ width:100%;
+ height:115px;
+ display:grid;
+ place-items:center;
+ font-size:55px;
+ flex:0 0 115px;
 }
-
-.symbol span{
-  display:block;
-  transform:translateZ(0);
+.reel.spinning .reel-track{
+ animation:reelBlur .11s linear infinite;
 }
-
-.reel.spinning .symbol{
-  filter:blur(2px);
+@keyframes reelBlur{
+ from{transform:translateY(0)}
+ to{transform:translateY(-115px)}
 }
-
-.center-line{
-  position:absolute;
-  z-index:6;
-  top:50%;
-  left:3px;
-  right:3px;
-  height:78px;
-  transform:translateY(-50%);
-  border-top:2px solid #ffe36a;
-  border-bottom:2px solid #ffe36a;
-  box-shadow:
-    0 0 15px #ffd63f66,
-    inset 0 0 18px #ffd63f12;
-  pointer-events:none;
-}
-
-.center-line:before,
-.center-line:after{
-  content:"";
-  position:absolute;
-  top:50%;
-  width:8px;
-  height:8px;
-  border-radius:50%;
-  background:#ffe66d;
-  box-shadow:0 0 15px #ffe66d;
-}
-
-.center-line:before{left:-4px}
-.center-line:after{right:-4px}
-
-/* PAYOUT PANEL */
-
 .payline{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:8px;
-  padding:13px 5px 8px;
-  color:var(--muted);
-  font-size:11px;
+ height:3px;
+ margin:-59px 5px 56px;
+ position:relative;
+ z-index:5;
+ background:linear-gradient(90deg,transparent,#ffd84d,transparent);
+ box-shadow:0 0 10px #ffd84d;
+ pointer-events:none;
+}
+.slot-result{
+ min-height:38px;
+ display:grid;
+ place-items:center;
+ margin:9px 0;
+ color:var(--gold);
+ font-weight:1000;
+ font-size:17px;
+}
+.controls{
+ display:grid;
+ grid-template-columns:1fr 1.6fr 1fr;
+ gap:8px;
+}
+.control-btn{
+ border:1px solid #ffffff17;
+ border-radius:13px;
+ padding:12px;
+ background:#ffffff0a;
+ color:white;
+ font-weight:900;
+}
+.spin-btn{
+ border:0;
+ border-radius:14px;
+ background:linear-gradient(145deg,#ffe86b,#ff9f28);
+ color:#172514;
+ font-weight:1000;
+ font-size:16px;
 }
 
-.payline b{
-  color:#fff;
+/* WHEEL */
+
+.wheel-wrap{text-align:center;padding:18px 5px}
+.wheel{
+ width:min(310px,80vw);
+ aspect-ratio:1;
+ margin:auto;
+ border-radius:50%;
+ border:9px solid #e0a933;
+ position:relative;
+ box-shadow:0 0 0 5px #243d4f,0 15px 40px #0009;
+ background:conic-gradient(
+  #ef476f 0deg 45deg,
+  #ffd166 45deg 90deg,
+  #06d6a0 90deg 135deg,
+  #118ab2 135deg 180deg,
+  #9b5de5 180deg 225deg,
+  #f15bb5 225deg 270deg,
+  #00bbf9 270deg 315deg,
+  #70e000 315deg 360deg
+ );
+ transition:transform 4s cubic-bezier(.12,.7,.12,1);
+}
+.wheel:after{
+ content:"";
+ position:absolute;
+ inset:30%;
+ border-radius:50%;
+ background:#071827;
+ border:5px solid #f0bd43;
+}
+.pointer{
+ width:0;height:0;
+ border-left:13px solid transparent;
+ border-right:13px solid transparent;
+ border-top:30px solid #fff;
+ margin:-4px auto 10px;
+ filter:drop-shadow(0 3px 5px #000);
+ position:relative;
+ z-index:4;
+}
+.wheel-btn{
+ margin-top:18px;
+ width:100%;
+ padding:15px;
+ border:0;
+ border-radius:14px;
+ background:linear-gradient(145deg,#55f0db,#3b9fff);
+ color:#061521;
+ font-weight:1000;
 }
 
-.pills{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:6px;
-  margin-bottom:13px;
+/* CRASH */
+
+.crash{
+ position:relative;
+ height:250px;
+ overflow:hidden;
+ margin-top:15px;
+ border-radius:20px;
+ border:1px solid #345a74;
+ background:
+ linear-gradient(#091d2d,#050d16);
 }
-
-.pill{
-  padding:6px 9px;
-  border-radius:9px;
-  background:#111d34;
-  border:1px solid #ffffff12;
-  color:#bcd0ee;
-  font-size:10px;
-  font-weight:900;
+.crash-grid{
+ position:absolute;
+ inset:0;
+ background-image:
+ linear-gradient(#ffffff09 1px,transparent 1px),
+ linear-gradient(90deg,#ffffff09 1px,transparent 1px);
+ background-size:35px 35px;
 }
-
-/* SPIN */
-
-.spin-area{
-  display:flex;
-  justify-content:center;
-  padding:3px 0 8px;
+.crash-line{
+ position:absolute;
+ left:0;
+ bottom:25px;
+ width:0;
+ height:3px;
+ background:var(--cyan);
+ box-shadow:0 0 15px var(--cyan);
+ transform-origin:left center;
 }
-
-.spin{
-  position:relative;
-  width:min(260px,80vw);
-  height:64px;
-  border:0;
-  border-radius:20px;
-  color:#271900;
-  font-size:20px;
-  font-weight:1000;
-  letter-spacing:1px;
-  background:
-    linear-gradient(180deg,#fff276 0,#ffd238 48%,#f79b16 100%);
-  box-shadow:
-    0 10px 0 #a85e08,
-    0 18px 35px #ffb52b44,
-    inset 0 2px #fffbd0;
-  transition:.12s;
+.multiplier{
+ position:absolute;
+ inset:0;
+ display:grid;
+ place-items:center;
+ font-size:48px;
+ font-weight:1000;
+ color:#fff;
+ text-shadow:0 0 25px #46f0df;
 }
-
-.spin:hover{
-  transform:translateY(-2px);
-  filter:brightness(1.06);
-}
-
-.spin:active{
-  transform:translateY(7px);
-  box-shadow:
-    0 3px 0 #a85e08,
-    0 8px 18px #ffb52b33;
-}
-
-.spin.loading{
-  animation:buttonPulse .5s infinite alternate;
-}
-
-@keyframes buttonPulse{
-  to{filter:brightness(1.15)}
-}
-
-/* PARTICLES */
-
-#particles{
-  position:fixed;
-  inset:0;
-  z-index:100;
-  pointer-events:none;
-  overflow:hidden;
-}
-
-.particle{
-  position:absolute;
-  width:8px;
-  height:8px;
-  border-radius:2px;
-  animation:fall 1.3s ease-out forwards;
-}
-
-@keyframes fall{
-  from{
-    transform:translate(0,0) rotate(0deg);
-    opacity:1;
-  }
-  to{
-    transform:translate(var(--x),var(--y)) rotate(720deg);
-    opacity:0;
-  }
+.crash-start{
+ width:100%;
+ margin-top:10px;
+ padding:14px;
+ border:0;
+ border-radius:14px;
+ background:linear-gradient(145deg,#55f0db,#3b9fff);
+ color:#061521;
+ font-weight:1000;
 }
 
 /* HISTORY */
 
-.card{
-  margin-top:15px;
-  padding:17px;
-  border-radius:20px;
-  background:#0c162a;
-  border:1px solid #ffffff12;
-  box-shadow:0 12px 35px #0005;
+.history-item{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:10px;
+ padding:12px 0;
+ border-bottom:1px solid #ffffff0d;
+}
+.history-item:last-child{border-bottom:0}
+.history-icon{
+ width:38px;height:38px;
+ display:grid;place-items:center;
+ border-radius:12px;
+ background:#ffffff0b;
+}
+.history-item strong{font-size:12px}
+.history-item small{display:block;color:var(--muted);font-size:9px;margin-top:3px}
+.win{color:var(--green)}
+.loss{color:var(--danger)}
+
+.toast{
+ position:fixed;
+ left:50%;
+ bottom:90px;
+ transform:translateX(-50%) translateY(20px);
+ z-index:1000;
+ padding:11px 16px;
+ border-radius:13px;
+ background:#102d42;
+ border:1px solid #41677f;
+ box-shadow:0 12px 35px #0008;
+ opacity:0;
+ pointer-events:none;
+ transition:.25s;
+ font-size:12px;
+}
+.toast.show{
+ opacity:1;
+ transform:translateX(-50%) translateY(0);
 }
 
-.card-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-
-.card-head h3{
-  margin:0;
-  font-size:15px;
-}
-
-.card-head span{
-  color:var(--muted);
-  font-size:10px;
-}
-
-.history{
-  margin-top:12px;
-  display:grid;
-  gap:7px;
-}
-
-.history-row{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  padding:10px;
-  border-radius:12px;
-  background:#111e36;
-}
-
-.history-symbols{
-  font-size:18px;
-  letter-spacing:2px;
-}
-
-.history-result{
-  font-size:11px;
-  font-weight:1000;
-}
-
-.history-result.win{
-  color:var(--green);
-}
-
-.history-result.loss{
-  color:#8397b9;
-}
-
-/* INFO */
-
-.info{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
-}
-
-.info-box{
-  text-align:center;
-  padding:12px 7px;
-  border-radius:14px;
-  background:#101c32;
-  border:1px solid #ffffff0e;
-}
-
-.info-box b{
-  display:block;
-  font-size:18px;
-}
-
-.info-box span{
-  display:block;
-  color:var(--muted);
-  font-size:9px;
-  margin-top:3px;
-}
-
-/* BOTTOM */
-
-.bottom{
-  position:fixed;
-  left:0;
-  right:0;
-  bottom:0;
-  z-index:60;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  padding:8px 8px calc(8px + env(safe-area-inset-bottom));
-  background:#050a16f2;
-  backdrop-filter:blur(18px);
-  border-top:1px solid #ffffff12;
-}
-
-.nav{
-  border:0;
-  background:none;
-  color:#7185a8;
-  font-size:10px;
-  font-weight:1000;
-  padding:6px;
-}
-
-.nav b{
-  display:block;
-  font-size:21px;
-  margin-bottom:2px;
-}
-
-.nav.active{
-  color:#ffe05c;
-}
-
-/* MODAL */
-
-.modal{
-  position:fixed;
-  inset:0;
-  z-index:200;
-  display:none;
-  place-items:center;
-  padding:18px;
-  background:#000b;
-  backdrop-filter:blur(8px);
-}
-
-.modal.show{
-  display:grid;
-}
-
-.modal-box{
-  width:min(450px,100%);
-  padding:23px;
-  border-radius:25px;
-  background:#0d192e;
-  border:1px solid #ffffff18;
-  box-shadow:var(--shadow);
-  text-align:center;
-}
-
-.modal-box h2{
-  margin:0 0 8px;
-}
-
-.modal-box p{
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.6;
-}
-
-.close{
-  float:right;
-  border:0;
-  background:#ffffff12;
-  color:white;
-  border-radius:10px;
-  width:34px;
-  height:34px;
-}
-
-.big-score{
-  font-size:48px;
-  font-weight:1000;
-  color:var(--gold);
-  margin:20px 0;
-}
-
-/* MOBILE */
-
-@media(max-width:520px){
-  .brand{
-    font-size:15px;
-  }
-
-  .score{
-    font-size:13px;
-    padding:7px 9px;
-  }
-
-  .reels{
-    gap:4px;
-    padding:6px;
-  }
-
-  .reel{
-    height:205px;
-  }
-
-  .symbol{
-    height:68px;
-    font-size:35px;
-  }
-
-  .center-line{
-    height:70px;
-  }
-}
-
-@media(max-width:380px){
-  .logo{
-    width:42px;
-    height:42px;
-  }
-
-  .brand small{
-    display:none;
-  }
-
-  .reel{
-    height:190px;
-  }
-
-  .symbol{
-    height:63px;
-    font-size:31px;
-  }
-
-  .center-line{
-    height:65px;
-  }
-}
-
-@media(prefers-reduced-motion:reduce){
-  *,
-  *:before,
-  *:after{
-    animation-duration:.01ms!important;
-    animation-iteration-count:1!important;
-    scroll-behavior:auto!important;
-  }
+@media(max-width:430px){
+ .games{grid-template-columns:repeat(2,1fr)}
+ .hero h1{font-size:26px}
+ .game-cover{height:108px}
+ .game-card{min-height:160px}
+ .reel,.symbol{height:100px}
+ .symbol{flex-basis:100px}
+ .reel.spinning .reel-track{animation-duration:.09s}
 }
 </style>
 </head>
 
 <body>
 
-<div id="particles"></div>
+<div id="loader">
+ <div class="loader-inner">
+  <div class="loader-logo">ZP</div>
+  <h1>ZeeshanPlayzone-</h1>
+  <div class="loader-ring"></div>
+  <p>Loading game world...</p>
+ </div>
+</div>
 
-<div id="app">
+<main id="app">
 
 <header class="topbar">
-  <div class="logo">ZP</div>
+ <div class="logo-small">ZP</div>
+ <div class="brand-area">
+  <strong>ZeeshanPlayzone-</strong>
+  <span>Virtual Game Arcade</span>
+ </div>
 
-  <div class="brand">
-    ZeeshanPlayzone-
-    <small>ORIGINAL ARCADE</small>
-  </div>
+ <div class="balance">
+  <span class="coin">★</span>
+  <span id="balance">1000</span>
+ </div>
 
-  <div class="score">
-    <span class="score-icon">★</span>
-    <span id="score">1000</span>
-  </div>
+ <button class="settings" id="historyBtn">☰</button>
 </header>
 
-<main class="wrap">
+<div class="container">
 
 <section class="hero">
-  <div class="eyebrow">✦ ZEEshanPLAYZONE ORIGINAL ✦</div>
-  <h1>NEON REELS</h1>
-  <p>Spin the reels • Chase the highest score • Virtual arcade points</p>
+ <div class="hero-kicker">✦ ZEEshanPLAYZONE ORIGINAL</div>
+ <h1>PLAY. SPIN. WIN COINS.</h1>
+ <p>
+  A polished virtual game arcade. All coins are virtual points
+  used only inside this website.
+ </p>
 </section>
 
-<section class="machine">
+<div class="categories">
+ <button class="category active" data-filter="all">ALL</button>
+ <button class="category" data-filter="slots">🎰 REELS</button>
+ <button class="category" data-filter="wheel">🎡 WHEEL</button>
+ <button class="category" data-filter="crash">🚀 ARCADE</button>
+ <button class="category" data-filter="cards">🃏 CARDS</button>
+</div>
 
-<div class="machine-inner">
+<div class="section-head">
+ <h2>Featured Games</h2>
+ <span id="gameCount">4 games</span>
+</div>
 
-  <div class="display">
-    <div>
-      <div class="display-title">CURRENT SCORE</div>
-      <div id="scoreSmall">1,000 POINTS</div>
-    </div>
+<section class="games" id="games"></section>
 
-    <div class="message" id="message">
-      READY TO SPIN
-    </div>
-  </div>
+<div class="section-head">
+ <h2>Recent Activity</h2>
+ <span>Virtual coins</span>
+</div>
 
-  <div class="reels" id="reels">
-
-    <div class="reel" data-reel="0">
-      <div class="symbol">🍋</div>
-      <div class="symbol">🍒</div>
-      <div class="symbol">7️⃣</div>
-      <div class="center-line"></div>
-    </div>
-
-    <div class="reel" data-reel="1">
-      <div class="symbol">💎</div>
-      <div class="symbol">⭐</div>
-      <div class="symbol">🍒</div>
-      <div class="center-line"></div>
-    </div>
-
-    <div class="reel" data-reel="2">
-      <div class="symbol">🔔</div>
-      <div class="symbol">7️⃣</div>
-      <div class="symbol">💎</div>
-      <div class="center-line"></div>
-    </div>
-
-    <div class="reel" data-reel="3">
-      <div class="symbol">⭐</div>
-      <div class="symbol">🍋</div>
-      <div class="symbol">7️⃣</div>
-      <div class="center-line"></div>
-    </div>
-
-    <div class="reel" data-reel="4">
-      <div class="symbol">🍒</div>
-      <div class="symbol">🔔</div>
-      <div class="symbol">💎</div>
-      <div class="center-line"></div>
-    </div>
-
-  </div>
-
-  <div class="payline">
-    <span>COMBOS</span>
-    <b>Match 3+</b>
-    <span>for arcade points</span>
-  </div>
-
-  <div class="pills">
-    <div class="pill">🍒 ×3 = +50</div>
-    <div class="pill">⭐ ×3 = +80</div>
-    <div class="pill">💎 ×3 = +120</div>
-    <div class="pill">7️⃣ ×3 = +250</div>
-  </div>
-
-  <div class="spin-area">
-    <button class="spin" id="spin">
-      SPIN REELS
-    </button>
-  </div>
+<div class="modal-box" style="max-height:none;padding:14px">
+ <div id="miniHistory"></div>
+</div>
 
 </div>
-</section>
 
-<section class="card">
-  <div class="card-head">
-    <h3>📊 ARCADE STATS</h3>
-    <span>THIS SESSION</span>
-  </div>
-
-  <div class="info">
-    <div class="info-box">
-      <b id="spins">0</b>
-      <span>SPINS</span>
-    </div>
-
-    <div class="info-box">
-      <b id="wins">0</b>
-      <span>COMBOS</span>
-    </div>
-
-    <div class="info-box">
-      <b id="best">0</b>
-      <span>BEST SCORE</span>
-    </div>
-  </div>
-</section>
-
-<section class="card">
-
-  <div class="card-head">
-    <h3>🕘 RECENT SPINS</h3>
-    <span>LOCAL HISTORY</span>
-  </div>
-
-  <div class="history" id="history">
-    <div class="history-row">
-      <div class="history-symbols">🍒 ⭐ 🍋</div>
-      <div class="history-result loss">READY</div>
-    </div>
-  </div>
-
-</section>
-
-<section class="card">
-  <div class="card-head">
-    <h3>ℹ️ ABOUT THE GAME</h3>
-  </div>
-
-  <p>
-    Neon Reels is an original arcade experience created for
-    ZeeshanPlayzone-. Points shown here are game points only and
-    have no cash value.
-  </p>
-</section>
+<nav class="bottom">
+ <button class="nav active"><b>🎮</b>Games</button>
+ <button class="nav" id="wheelNav"><b>🎡</b>Wheel</button>
+ <button class="nav" id="slotsNav"><b>🎰</b>Reels</button>
+ <button class="nav" id="historyNav"><b>📜</b>History</button>
+ <button class="nav" id="resetBtn"><b>↻</b>Reset</button>
+</nav>
 
 </main>
 
-<nav class="bottom">
-  <button class="nav active">
-    <b>🎮</b>
-    GAME
-  </button>
+<div class="modal" id="gameModal">
+ <div class="modal-box">
 
-  <button class="nav" id="historyNav">
-    <b>📜</b>
-    HISTORY
-  </button>
+  <button class="close" id="closeGame">✕</button>
 
-  <button class="nav" id="soundNav">
-    <b>🔊</b>
-    SOUND ON
-  </button>
-</nav>
-
-</div>
-
-<div class="modal" id="infoModal">
-  <div class="modal-box">
-    <button class="close" id="closeModal">✕</button>
-    <h2>ZeeshanPlayzone-</h2>
-    <div class="big-score" id="modalScore">1000</div>
-    <p>
-      Your current arcade score.
-      These points are only part of this game and cannot be
-      deposited, withdrawn, exchanged or converted into money.
-    </p>
-    <button class="spin" id="modalClose">CONTINUE</button>
+  <div class="game-header">
+   <h2 id="modalTitle">Game</h2>
+   <span>Virtual coins only</span>
   </div>
+
+  <div class="virtual-note">
+   This game uses virtual coins only. Coins have no cash value and
+   cannot be deposited, withdrawn, transferred or exchanged for money.
+  </div>
+
+  <div id="gameContent"></div>
+
+ </div>
 </div>
+
+<div class="modal" id="historyModal">
+ <div class="modal-box">
+
+  <button class="close" id="closeHistory">✕</button>
+
+  <div class="game-header">
+   <h2>Game History</h2>
+   <span>Local device</span>
+  </div>
+
+  <div id="fullHistory"></div>
+
+ </div>
+</div>
+
+<div class="toast" id="toast"></div>
 
 <script>
 "use strict";
 
-/* ================================
-   GAME DATA
-================================ */
+/* ---------------------------------------------------------
+   ZEEshanPLAYZONE
+   Virtual-coins arcade
+--------------------------------------------------------- */
 
-const SYMBOLS = [
-  {icon:"🍒", name:"Cherry", value:50},
-  {icon:"🍋", name:"Lemon", value:40},
-  {icon:"⭐", name:"Star", value:80},
-  {icon:"🔔", name:"Bell", value:70},
-  {icon:"💎", name:"Diamond", value:120},
-  {icon:"7️⃣", name:"Seven", value:250}
+const STORAGE_BALANCE="zp_virtual_balance";
+const STORAGE_HISTORY="zp_game_history";
+
+let balance=Number(localStorage.getItem(STORAGE_BALANCE)||1000);
+let history=JSON.parse(localStorage.getItem(STORAGE_HISTORY)||"[]");
+let currentFilter="all";
+let currentGame=null;
+let spinning=false;
+let wheelSpinning=false;
+
+const games=[
+ {
+  id:"reels",
+  title:"777 Neon Reels",
+  icon:"🎰",
+  type:"slots",
+  badge:"HOT",
+  description:"Animated three-reel virtual arcade"
+ },
+ {
+  id:"treasure",
+  title:"Treasure Vault",
+  icon:"💎",
+  type:"slots",
+  badge:"NEW",
+  description:"Mystery treasure reel game"
+ },
+ {
+  id:"wheel",
+  title:"Lucky Wheel",
+  icon:"🎡",
+  type:"wheel",
+  badge:"LIVE",
+  description:"Spin for virtual coin rewards"
+ },
+ {
+  id:"rocket",
+  title:"Rocket Rise",
+  icon:"🚀",
+  type:"crash",
+  badge:"ARCADE",
+  description:"Watch the multiplier climb"
+ },
+ {
+  id:"cards",
+  title:"Royal Cards",
+  icon:"🃏",
+  type:"cards",
+  badge:"",
+  description:"Simple high-card arcade"
+ },
+ {
+  id:"gold",
+  title:"Golden Fortune",
+  icon:"🪙",
+  type:"slots",
+  badge:"",
+  description:"Gold themed virtual reels"
+ }
 ];
 
-const REEL_COUNT = 5;
+const symbols=[
+ "🍒","🍋","🍇","🔔","⭐","💎","7️⃣"
+];
 
-let score = Number(localStorage.getItem("zp_score") || 1000);
-let spins = Number(localStorage.getItem("zp_spins") || 0);
-let wins = Number(localStorage.getItem("zp_wins") || 0);
-let best = Number(localStorage.getItem("zp_best") || score);
-
-let spinning = false;
-let soundEnabled = true;
-let audioContext = null;
-
-/* ================================
-   ELEMENTS
-================================ */
-
-const $ = id => document.getElementById(id);
-
-const scoreEl = $("score");
-const scoreSmall = $("scoreSmall");
-const spinsEl = $("spins");
-const winsEl = $("wins");
-const bestEl = $("best");
-const messageEl = $("message");
-const historyEl = $("history");
-const spinButton = $("spin");
-
-const reels = [...document.querySelectorAll(".reel")];
-
-/* ================================
-   SCORE
-================================ */
-
-function updateScore(){
-
-  scoreEl.textContent = score.toLocaleString();
-  scoreSmall.textContent =
-    score.toLocaleString() + " POINTS";
-
-  spinsEl.textContent = spins;
-  winsEl.textContent = wins;
-  bestEl.textContent = best.toLocaleString();
-
-  localStorage.setItem("zp_score",score);
-  localStorage.setItem("zp_spins",spins);
-  localStorage.setItem("zp_wins",wins);
-  localStorage.setItem("zp_best",best);
+function $(id){
+ return document.getElementById(id);
 }
 
-updateScore();
-
-/* ================================
-   AUDIO ENGINE
-================================ */
-
-function initAudio(){
-
-  if(!soundEnabled) return;
-
-  if(!audioContext){
-    const AC =
-      window.AudioContext ||
-      window.webkitAudioContext;
-
-    if(!AC) return;
-
-    audioContext = new AC();
-  }
-
-  if(audioContext.state === "suspended"){
-    audioContext.resume();
-  }
+function save(){
+ localStorage.setItem(STORAGE_BALANCE,String(balance));
+ localStorage.setItem(STORAGE_HISTORY,JSON.stringify(history.slice(0,40)));
 }
 
-function tone(
-  frequency,
-  duration,
-  type="sine",
-  volume=.045,
-  delay=0
-){
+function setBalance(value){
+ balance=Math.max(0,Math.floor(value));
+ $("balance").textContent=balance.toLocaleString();
+ save();
+}
 
-  if(!soundEnabled) return;
+function toast(message){
+ const el=$("toast");
+ el.textContent=message;
+ el.classList.add("show");
+ clearTimeout(window.toastTimer);
+ window.toastTimer=setTimeout(()=>el.classList.remove("show"),2200);
+}
 
-  initAudio();
+function addHistory(game,result,amount){
+ history.unshift({
+  game,
+  result,
+  amount,
+  time:new Date().toLocaleTimeString([],{
+   hour:"2-digit",
+   minute:"2-digit"
+  })
+ });
+ history=history.slice(0,40);
+ save();
+ renderHistory();
+}
 
-  if(!audioContext) return;
+function renderHistory(){
+ const target=$("miniHistory");
+ const full=$("fullHistory");
 
-  const now =
-    audioContext.currentTime + delay;
+ if(!history.length){
+  const empty="<p style='color:#8fa8bb;font-size:12px'>No games played yet.</p>";
+  target.innerHTML=empty;
+  full.innerHTML=empty;
+  return;
+ }
 
-  const osc =
-    audioContext.createOscillator();
+ const html=history.slice(0,6).map(item=>`
+  <div class="history-item">
+   <div style="display:flex;align-items:center;gap:10px">
+    <div class="history-icon">🎮</div>
+    <div>
+     <strong>${escapeHtml(item.game)}</strong>
+     <small>${item.time} • ${escapeHtml(item.result)}</small>
+    </div>
+   </div>
+   <b class="${item.amount>=0?"win":"loss"}">
+    ${item.amount>=0?"+":""}${item.amount}
+   </b>
+  </div>
+ `).join("");
 
-  const gain =
-    audioContext.createGain();
+ target.innerHTML=html;
 
-  osc.type = type;
-  osc.frequency.setValueAtTime(
-    frequency,
-    now
-  );
+ full.innerHTML=history.map(item=>`
+  <div class="history-item">
+   <div style="display:flex;align-items:center;gap:10px">
+    <div class="history-icon">🎮</div>
+    <div>
+     <strong>${escapeHtml(item.game)}</strong>
+     <small>${item.time} • ${escapeHtml(item.result)}</small>
+    </div>
+   </div>
+   <b class="${item.amount>=0?"win":"loss"}">
+    ${item.amount>=0?"+":""}${item.amount}
+   </b>
+  </div>
+ `).join("");
+}
 
-  gain.gain.setValueAtTime(
-    0.0001,
-    now
-  );
+function escapeHtml(value){
+ return String(value)
+  .replaceAll("&","&amp;")
+  .replaceAll("<","&lt;")
+  .replaceAll(">","&gt;")
+  .replaceAll('"',"&quot;");
+}
 
-  gain.gain.exponentialRampToValueAtTime(
-    volume,
-    now + .012
-  );
+function renderGames(){
+ const list=games.filter(g=>
+  currentFilter==="all" || g.type===currentFilter
+ );
 
-  gain.gain.exponentialRampToValueAtTime(
-    0.0001,
-    now + duration
-  );
+ $("gameCount").textContent=list.length+" games";
 
-  osc.connect(gain);
-  gain.connect(audioContext.destination);
+ $("games").innerHTML=list.map(game=>`
+  <article class="game-card" data-id="${game.id}">
+   ${game.badge?`<span class="badge">${game.badge}</span>`:""}
+   <div class="game-cover">
+    <div class="game-icon">${game.icon}</div>
+   </div>
+   <div class="game-info">
+    <div>
+     <strong>${game.title}</strong>
+     <small>${game.description}</small>
+    </div>
+    <button class="game-play">▶</button>
+   </div>
+  </article>
+ `).join("");
 
-  osc.start(now);
-  osc.stop(now + duration + .02);
+ document.querySelectorAll(".game-card").forEach(card=>{
+  card.addEventListener("click",()=>{
+   const game=games.find(g=>g.id===card.dataset.id);
+   openGame(game);
+  });
+ });
+}
+
+function openGame(game){
+ currentGame=game;
+ $("modalTitle").textContent=game.title;
+ $("gameContent").innerHTML="";
+
+ if(game.type==="slots"){
+  buildSlots(game);
+ }
+
+ if(game.type==="wheel"){
+  buildWheel();
+ }
+
+ if(game.type==="crash"){
+  buildCrash();
+ }
+
+ if(game.type==="cards"){
+  buildCards();
+ }
+
+ $("gameModal").style.display="grid";
+}
+
+/* ---------------------------------------------------------
+   AUDIO
+--------------------------------------------------------- */
+
+let audioContext=null;
+
+function audio(){
+ if(!audioContext){
+  const AC=window.AudioContext||window.webkitAudioContext;
+  if(AC) audioContext=new AC();
+ }
+ return audioContext;
+}
+
+function tone(freq,duration,type="sine",volume=.04){
+ const ctx=audio();
+ if(!ctx)return;
+
+ const oscillator=ctx.createOscillator();
+ const gain=ctx.createGain();
+
+ oscillator.type=type;
+ oscillator.frequency.value=freq;
+
+ gain.gain.setValueAtTime(volume,ctx.currentTime);
+ gain.gain.exponentialRampToValueAtTime(
+  .001,
+  ctx.currentTime+duration
+ );
+
+ oscillator.connect(gain);
+ gain.connect(ctx.destination);
+
+ oscillator.start();
+ oscillator.stop(ctx.currentTime+duration);
 }
 
 function spinSound(){
-
-  tone(120,.055,"square",.025);
-  tone(160,.055,"square",.025,.075);
-  tone(210,.055,"square",.025,.15);
-}
-
-function stopSound(index){
-
-  const notes=[
-    330,
-    370,
-    415,
-    466,
-    523
-  ];
-
-  tone(
-    notes[index] || 330,
-    .11,
-    "triangle",
-    .045
-  );
+ tone(180,.08,"square",.025);
+ setTimeout(()=>tone(230,.08,"square",.025),80);
+ setTimeout(()=>tone(280,.08,"square",.025),160);
 }
 
 function winSound(){
-
-  const melody=[
-    523,
-    659,
-    784,
-    1046
-  ];
-
-  melody.forEach(
-    (n,i)=>{
-      tone(
-        n,
-        .22,
-        "sine",
-        .07,
-        i*.09
-      );
-    }
-  );
+ tone(523,.12,"sine",.04);
+ setTimeout(()=>tone(659,.12,"sine",.04),100);
+ setTimeout(()=>tone(784,.25,"sine",.04),200);
 }
 
-/* ================================
-   RANDOM
-================================ */
-
-function randomSymbol(){
-
-  return SYMBOLS[
-    Math.floor(
-      Math.random()*SYMBOLS.length
-    )
-  ];
+function loseSound(){
+ tone(180,.15,"sawtooth",.025);
+ setTimeout(()=>tone(130,.22,"sawtooth",.02),130);
 }
 
-/*
-  This is intentionally an arcade scoring
-  system rather than a wagering system.
-*/
+/* ---------------------------------------------------------
+   SLOTS
+--------------------------------------------------------- */
 
-function createResult(){
+function buildSlots(game){
 
-  const result=[];
+ $("gameContent").innerHTML=`
+  <div class="slot-machine">
 
-  for(let i=0;i<REEL_COUNT;i++){
+   <div class="reels">
+    <div class="reel" id="reel0">
+     <div class="reel-track" id="track0">
+      ${symbols.concat(symbols).map(s=>`
+       <div class="symbol">${s}</div>
+      `).join("")}
+     </div>
+    </div>
 
-    result.push(
-      randomSymbol()
-    );
-  }
+    <div class="reel" id="reel1">
+     <div class="reel-track" id="track1">
+      ${symbols.concat(symbols).map(s=>`
+       <div class="symbol">${s}</div>
+      `).join("")}
+     </div>
+    </div>
 
-  /*
-    Occasionally produce a visually
-    satisfying arcade combo.
-  */
+    <div class="reel" id="reel2">
+     <div class="reel-track" id="track2">
+      ${symbols.concat(symbols).map(s=>`
+       <div class="symbol">${s}</div>
+      `).join("")}
+     </div>
+    </div>
+   </div>
 
-  if(Math.random()<.30){
+   <div class="payline"></div>
 
-    const chosen =
-      SYMBOLS[
-        Math.floor(
-          Math.random()*SYMBOLS.length
-        )
-      ];
+   <div class="slot-result" id="slotResult">
+    Press SPIN to play
+   </div>
 
-    const count =
-      3 + Math.floor(Math.random()*3);
+   <div class="controls">
+    <button class="control-btn" id="minusBet">−</button>
+    <button class="spin-btn" id="spinButton">SPIN • 10</button>
+    <button class="control-btn" id="plusBet">+</button>
+   </div>
 
-    const positions =
-      [...Array(REEL_COUNT).keys()]
-        .sort(()=>Math.random()-.5)
-        .slice(0,count);
+  </div>
+ `;
 
-    positions.forEach(
-      p => result[p]=chosen
-    );
-  }
+ let cost=10;
 
-  return result;
+ const updateButton=()=>{
+  $("spinButton").textContent="SPIN • "+cost;
+ };
+
+ $("minusBet").onclick=()=>{
+  cost=Math.max(5,cost-5);
+  updateButton();
+ };
+
+ $("plusBet").onclick=()=>{
+  cost=Math.min(50,cost+5);
+  updateButton();
+ };
+
+ $("spinButton").onclick=()=>spinSlots(cost);
 }
 
-/* ================================
-   REEL RENDER
-================================ */
+function spinSlots(cost){
 
-function renderReel(
-  reel,
-  symbols
-){
+ if(spinning)return;
 
-  const line =
-    reel.querySelector(".center-line");
+ if(balance<cost){
+  toast("Not enough virtual coins.");
+  return;
+ }
 
-  reel.innerHTML="";
+ spinning=true;
+ setBalance(balance-cost);
 
-  symbols.forEach(symbol=>{
+ const resultEl=$("slotResult");
+ resultEl.textContent="SPINNING...";
 
-    const div =
-      document.createElement("div");
+ document.querySelectorAll(".reel").forEach(r=>{
+  r.classList.add("spinning");
+ });
 
-    div.className="symbol";
+ spinSound();
 
-    const span =
-      document.createElement("span");
+ const values=[
+  symbols[Math.floor(Math.random()*symbols.length)],
+  symbols[Math.floor(Math.random()*symbols.length)],
+  symbols[Math.floor(Math.random()*symbols.length)]
+ ];
 
-    span.textContent=symbol.icon;
+ [0,1,2].forEach(i=>{
+  setTimeout(()=>{
+   const reel=$("reel"+i);
+   const track=$("track"+i);
 
-    div.appendChild(span);
-    reel.appendChild(div);
+   reel.classList.remove("spinning");
 
-  });
+   const index=symbols.indexOf(values[i]);
+   track.style.transform=`translateY(-${index*115}px)`;
 
-  reel.appendChild(line);
+   tone(300+i*120,.1,"square",.03);
+
+   if(i===2){
+    finishSlots(values,cost);
+   }
+  },900+i*550);
+ });
 }
 
-/* ================================
-   INITIAL DISPLAY
-================================ */
+function finishSlots(values,cost){
 
-function initialDisplay(){
+ spinning=false;
 
-  reels.forEach(reel=>{
+ let reward=0;
+ let message="No match — spin again.";
 
-    const values=[];
+ if(values[0]===values[1] && values[1]===values[2]){
+  reward=cost*10;
+  message="JACKPOT! +"+reward+" virtual coins!";
+ }
+ else if(values[0]===values[1] || values[1]===values[2] || values[0]===values[2]){
+  reward=cost*2;
+  message="DOUBLE MATCH! +"+reward+" virtual coins!";
+ }
 
-    for(let i=0;i<3;i++){
-      values.push(randomSymbol());
-    }
-
-    renderReel(
-      reel,
-      values
-    );
-  });
+ if(reward>0){
+  setBalance(balance+reward);
+  winSound();
+  $("slotResult").textContent="🎉 "+message;
+  addHistory(currentGame.title,"Win",reward-cost);
+ }else{
+  loseSound();
+  $("slotResult").textContent="✨ "+message;
+  addHistory(currentGame.title,"No match",-cost);
+ }
 }
 
-initialDisplay();
+/* ---------------------------------------------------------
+   WHEEL
+--------------------------------------------------------- */
 
-/* ================================
-   REEL ANIMATION
-================================ */
+function buildWheel(){
 
-function animateReel(
-  reel,
-  finalSymbol,
-  duration,
-  index
-){
+ $("gameContent").innerHTML=`
+  <div class="wheel-wrap">
 
-  return new Promise(resolve=>{
+   <div class="pointer"></div>
 
-    reel.classList.add("spinning");
+   <div class="wheel" id="wheel">
+   </div>
 
-    const start =
-      performance.now();
+   <button class="wheel-btn" id="wheelSpin">
+    SPIN WHEEL • 10 COINS
+   </button>
 
-    let lastTick=0;
+   <div class="slot-result" id="wheelResult">
+    Spin the wheel for a virtual reward
+   </div>
 
-    function frame(now){
+  </div>
+ `;
 
-      const elapsed =
-        now-start;
-
-      if(elapsed < duration){
-
-        /*
-          Rapid symbol replacement gives
-          the impression of a moving reel.
-        */
-
-        if(
-          now-lastTick >
-          Math.max(
-            35,
-            85-elapsed/15
-          )
-        ){
-
-          const temp=[
-            randomSymbol(),
-            randomSymbol(),
-            randomSymbol()
-          ];
-
-          renderReel(
-            reel,
-            temp
-          );
-
-          spinSound();
-
-          lastTick=now;
-        }
-
-        requestAnimationFrame(frame);
-
-      }else{
-
-        renderReel(
-          reel,
-          [
-            randomSymbol(),
-            finalSymbol,
-            randomSymbol()
-          ]
-        );
-
-        reel.classList.remove(
-          "spinning"
-        );
-
-        stopSound(index);
-
-        resolve();
-      }
-    }
-
-    requestAnimationFrame(frame);
-  });
+ $("wheelSpin").onclick=spinWheel;
 }
 
-/* ================================
-   COMBINATION
-================================ */
+function spinWheel(){
 
-function calculateCombo(result){
+ if(wheelSpinning)return;
 
-  const counts={};
+ const cost=10;
 
-  result.forEach(symbol=>{
+ if(balance<cost){
+  toast("Not enough virtual coins.");
+  return;
+ }
 
-    counts[symbol.icon] =
-      (counts[symbol.icon] || 0)+1;
+ wheelSpinning=true;
+ setBalance(balance-cost);
 
-  });
+ const wheel=$("wheel");
+ const extra=1440+Math.floor(Math.random()*1440);
 
-  let bestSymbol=null;
-  let bestCount=0;
+ wheel.style.transform=`rotate(${extra}deg)`;
+ spinSound();
 
-  Object.keys(counts).forEach(icon=>{
+ setTimeout(()=>{
 
-    if(counts[icon]>bestCount){
+  wheelSpinning=false;
 
-      bestCount=counts[icon];
-      bestSymbol=
-        SYMBOLS.find(
-          s=>s.icon===icon
-        );
-    }
+  const rewards=[0,10,20,30,50,75,100,200];
+  const reward=rewards[Math.floor(Math.random()*rewards.length)];
 
-  });
-
-  if(bestCount<3){
-
-    return {
-      win:false,
-      count:bestCount,
-      points:0,
-      symbol:bestSymbol
-    };
-  }
-
-  let multiplier=1;
-
-  if(bestCount===4){
-    multiplier=2;
-  }
-
-  if(bestCount===5){
-    multiplier=4;
-  }
-
-  const points =
-    bestSymbol.value *
-    multiplier;
-
-  return {
-    win:true,
-    count:bestCount,
-    points,
-    symbol:bestSymbol
-  };
-}
-
-/* ================================
-   PARTICLES
-================================ */
-
-function burst(){
-
-  const container =
-    $("particles");
-
-  const symbols=[
-    "✦",
-    "★",
-    "◆",
-    "✧",
-    "●"
-  ];
-
-  for(let i=0;i<55;i++){
-
-    const p =
-      document.createElement("div");
-
-    p.className="particle";
-
-    p.textContent =
-      symbols[
-        Math.floor(
-          Math.random()*symbols.length
-        )
-      ];
-
-    p.style.left =
-      (35+Math.random()*30)+"%";
-
-    p.style.top =
-      (35+Math.random()*15)+"%";
-
-    p.style.color =
-      [
-        "#ffd84d",
-        "#4ff5dd",
-        "#ff4fa3",
-        "#ffffff",
-        "#69a1ff"
-      ][
-        Math.floor(Math.random()*5)
-      ];
-
-    p.style.setProperty(
-      "--x",
-      ((Math.random()-.5)*700)+"px"
-    );
-
-    p.style.setProperty(
-      "--y",
-      ((Math.random()-.7)*600)+"px"
-    );
-
-    container.appendChild(p);
-
-    setTimeout(
-      ()=>p.remove(),
-      1400
-    );
-  }
-}
-
-/* ================================
-   HISTORY
-================================ */
-
-function addHistory(
-  result,
-  combo
-){
-
-  const row =
-    document.createElement("div");
-
-  row.className="history-row";
-
-  const icons =
-    result
-      .map(s=>s.icon)
-      .join(" ");
-
-  const symbols =
-    document.createElement("div");
-
-  symbols.className=
-    "history-symbols";
-
-  symbols.textContent=icons;
-
-  const status =
-    document.createElement("div");
-
-  status.className=
-    "history-result "+
-    (combo.win?"win":"loss");
-
-  status.textContent=
-    combo.win
-      ? "+"+combo.points+" POINTS"
-      : "NO COMBO";
-
-  row.appendChild(symbols);
-  row.appendChild(status);
-
-  historyEl.prepend(row);
-
-  while(
-    historyEl.children.length>8
-  ){
-    historyEl.lastElementChild.remove();
-  }
-}
-
-/* ================================
-   MESSAGE
-================================ */
-
-function setMessage(
-  text,
-  type=""
-){
-
-  messageEl.textContent=text;
-
-  messageEl.className=
-    "message "+type;
-}
-
-/* ================================
-   SPIN
-================================ */
-
-async function spin(){
-
-  if(spinning) return;
-
-  spinning=true;
-
-  spinButton.disabled=true;
-  spinButton.classList.add("loading");
-  spinButton.textContent="SPINNING…";
-
-  setMessage(
-    "REELS IN MOTION"
-  );
-
-  initAudio();
-
-  spins++;
-  updateScore();
-
-  const result =
-    createResult();
-
-  const animations =
-    reels.map(
-      (reel,index)=>
-        animateReel(
-          reel,
-          result[index],
-          1050 + index*330,
-          index
-        )
-    );
-
-  await Promise.all(
-    animations
-  );
-
-  const combo =
-    calculateCombo(result);
-
-  if(combo.win){
-
-    score += combo.points;
-    wins++;
-
-    if(score>best){
-      best=score;
-    }
-
-    updateScore();
-
-    if(combo.count===5){
-
-      setMessage(
-        "⚡ PERFECT COMBO +"+
-        combo.points+
-        " POINTS!",
-        "super"
-      );
-
-      burst();
-      winSound();
-
-    }else{
-
-      setMessage(
-        "✦ "+combo.symbol.icon+
-        " ×"+combo.count+
-        "  +"+combo.points+
-        " POINTS",
-        "win"
-      );
-
-      winSound();
-    }
-
+  if(reward>0){
+   setBalance(balance+reward);
+   $("wheelResult").textContent=
+    "🎉 You received "+reward+" virtual coins!";
+   winSound();
+   addHistory("Lucky Wheel","Reward",reward-cost);
   }else{
-
-    setMessage(
-      "NO COMBO — TRY AGAIN"
-    );
-
-    tone(
-      180,
-      .13,
-      "sine",
-      .025
-    );
+   $("wheelResult").textContent=
+    "The wheel landed on 0. Try again!";
+   loseSound();
+   addHistory("Lucky Wheel","Zero reward",-cost);
   }
 
-  addHistory(
-    result,
-    combo
-  );
-
-  spinButton.textContent=
-    "SPIN AGAIN";
-
-  spinButton.classList.remove(
-    "loading"
-  );
-
-  spinButton.disabled=false;
-
-  spinning=false;
+ },4300);
 }
 
-/* ================================
-   BUTTONS
-================================ */
+/* ---------------------------------------------------------
+   ROCKET ARCADE
+--------------------------------------------------------- */
 
-spinButton.addEventListener(
-  "click",
-  spin
-);
+function buildCrash(){
 
-$("soundNav").addEventListener(
-  "click",
-  ()=>{
-    soundEnabled=!soundEnabled;
+ $("gameContent").innerHTML=`
+  <div class="crash">
 
-    $("soundNav").innerHTML =
-      soundEnabled
-        ? "<b>🔊</b>SOUND ON"
-        : "<b>🔇</b>SOUND OFF";
+   <div class="crash-grid"></div>
 
-    if(soundEnabled){
-      initAudio();
-      tone(
-        660,
-        .12,
-        "sine",
-        .05
-      );
-    }
-  }
-);
+   <div class="crash-line" id="crashLine"></div>
 
-$("historyNav").addEventListener(
-  "click",
-  ()=>{
-    document
-      .querySelector(".history")
-      .scrollIntoView({
-        behavior:"smooth",
-        block:"center"
-      });
-  }
-);
+   <div class="multiplier" id="multiplier">
+    1.00x
+   </div>
 
-/* ================================
-   MODAL
-================================ */
+  </div>
 
-function openModal(){
+  <button class="crash-start" id="crashStart">
+   START ROUND • 10 COINS
+  </button>
 
-  $("modalScore").textContent =
-    score.toLocaleString();
+  <div class="slot-result" id="crashResult">
+   Watch the rocket climb!
+  </div>
+ `;
 
-  $("infoModal")
-    .classList.add("show");
+ $("crashStart").onclick=startRocket;
 }
 
-function closeModal(){
+function startRocket(){
 
-  $("infoModal")
-    .classList.remove("show");
+ const cost=10;
+
+ if(balance<cost){
+  toast("Not enough virtual coins.");
+  return;
+ }
+
+ setBalance(balance-cost);
+
+ const button=$("crashStart");
+ const multiplier=$("multiplier");
+ const line=$("crashLine");
+
+ button.disabled=true;
+
+ let value=1;
+ let elapsed=0;
+
+ line.style.width="0";
+ line.style.transform="rotate(-20deg)";
+
+ const stopAt=1.5+Math.random()*4;
+
+ const timer=setInterval(()=>{
+
+  elapsed+=50;
+  value+=0.012+(value*.0015);
+
+  multiplier.textContent=value.toFixed(2)+"x";
+
+  const width=Math.min(100,(value/stopAt)*100);
+  line.style.width=width+"%";
+  line.style.transform=
+   `rotate(${-20+Math.min(24,width*.25)}deg)`;
+
+  if(value>=stopAt){
+
+   clearInterval(timer);
+
+   const reward=Math.floor(cost*stopAt);
+
+   if(stopAt>=2.5){
+    setBalance(balance+reward);
+
+    $("crashResult").textContent=
+     "🚀 Rocket reached "+stopAt.toFixed(2)+"x • +"+reward+" coins";
+
+    winSound();
+    addHistory("Rocket Rise","Reached "+stopAt.toFixed(2)+"x",reward-cost);
+
+   }else{
+
+    $("crashResult").textContent=
+     "Rocket stopped at "+stopAt.toFixed(2)+"x.";
+
+    loseSound();
+    addHistory("Rocket Rise","Round ended",-cost);
+   }
+
+   button.disabled=false;
+  }
+
+ },50);
 }
 
-$("closeModal")
-  .addEventListener(
-    "click",
-    closeModal
-  );
+/* ---------------------------------------------------------
+   CARDS
+--------------------------------------------------------- */
 
-$("modalClose")
-  .addEventListener(
-    "click",
-    closeModal
-  );
+function buildCards(){
 
-/* ================================
-   KEYBOARD
-================================ */
+ $("gameContent").innerHTML=`
+  <div style="text-align:center;padding:20px 0">
 
-document.addEventListener(
-  "keydown",
-  event=>{
+   <div id="playerCard"
+    style="font-size:80px;margin:15px">
+    🂠
+   </div>
 
-    if(
-      event.code==="Space" &&
-      !spinning
-    ){
+   <div id="cardResult"
+    class="slot-result">
+    Choose HIGH CARD
+   </div>
 
-      event.preventDefault();
-      spin();
-    }
+   <button class="wheel-btn" id="drawCard">
+    DRAW CARD • 10 COINS
+   </button>
 
-    if(
-      event.key==="Escape"
-    ){
+  </div>
+ `;
 
-      closeModal();
-    }
-  }
-);
+ $("drawCard").onclick=drawCard;
+}
 
-/* ================================
-   VISIBILITY
-================================ */
+function drawCard(){
 
-document.addEventListener(
-  "visibilitychange",
-  ()=>{
-    if(
-      document.hidden &&
-      spinning
-    ){
-      /*
-        Browser animation naturally pauses
-        when the page is hidden.
-      */
-    }
-  }
-);
+ const cost=10;
 
-/* ================================
+ if(balance<cost){
+  toast("Not enough virtual coins.");
+  return;
+ }
+
+ setBalance(balance-cost);
+
+ const deck=[
+  "🂡","🂢","🂣","🂤","🂥","🂦","🂧",
+  "🂨","🂩","🂪","🂫","🂭","🂮"
+ ];
+
+ const card=deck[Math.floor(Math.random()*deck.length)];
+ const value=Math.floor(Math.random()*13)+1;
+
+ $("playerCard").textContent=card;
+
+ if(value>=10){
+
+  const reward=25;
+  setBalance(balance+reward);
+
+  $("cardResult").textContent=
+   "👑 HIGH CARD! +"+reward+" virtual coins";
+
+  winSound();
+  addHistory("Royal Cards","High card",reward-cost);
+
+ }else{
+
+  $("cardResult").textContent=
+   "Card drawn. No reward this round.";
+
+  loseSound();
+  addHistory("Royal Cards","No reward",-cost);
+ }
+}
+
+/* ---------------------------------------------------------
+   MODALS / NAVIGATION
+--------------------------------------------------------- */
+
+$("closeGame").onclick=()=>{
+ $("gameModal").style.display="none";
+};
+
+$("closeHistory").onclick=()=>{
+ $("historyModal").style.display="none";
+};
+
+$("historyBtn").onclick=()=>{
+ $("historyModal").style.display="grid";
+};
+
+$("historyNav").onclick=()=>{
+ $("historyModal").style.display="grid";
+};
+
+$("wheelNav").onclick=()=>{
+ openGame(games.find(g=>g.id==="wheel"));
+};
+
+$("slotsNav").onclick=()=>{
+ openGame(games.find(g=>g.id==="reels"));
+};
+
+$("resetBtn").onclick=()=>{
+ if(confirm("Reset virtual coins and local game history?")){
+  balance=1000;
+  history=[];
+  save();
+  setBalance(balance);
+  renderHistory();
+  toast("Virtual arcade reset.");
+ }
+};
+
+document.querySelectorAll(".category").forEach(button=>{
+ button.onclick=()=>{
+
+  document.querySelectorAll(".category")
+   .forEach(x=>x.classList.remove("active"));
+
+  button.classList.add("active");
+
+  currentFilter=button.dataset.filter;
+
+  renderGames();
+ };
+});
+
+/* Close modal by clicking outside */
+$("gameModal").addEventListener("click",e=>{
+ if(e.target===$("gameModal")){
+  $("gameModal").style.display="none";
+ }
+});
+
+$("historyModal").addEventListener("click",e=>{
+ if(e.target===$("historyModal")){
+  $("historyModal").style.display="none";
+ }
+});
+
+/* ---------------------------------------------------------
    STARTUP
-================================ */
+--------------------------------------------------------- */
 
-setMessage(
-  "READY TO SPIN"
-);
+window.addEventListener("load",()=>{
 
-updateScore();
+ setTimeout(()=>{
 
+  $("loader").style.display="none";
+  $("app").style.display="block";
+
+  setBalance(balance);
+  renderGames();
+  renderHistory();
+
+ },800);
+
+});
 </script>
 
 </body>
