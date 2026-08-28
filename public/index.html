@@ -1,4 +1,4 @@
-```html
+html
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,104 +6,519 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#063d35">
 <title>ZeeshanPlayzone-</title>
+
 <style>
 :root{
-  --bg:#032d28;--bg2:#06463c;--panel:#075d50;--panel2:#0a7666;
-  --gold:#ffd84d;--gold2:#f3a900;--cyan:#5ff7df;--text:#fff;
-  --muted:#b8e8df;--shadow:0 10px 30px #001a1680;
+  --bg:#032d28;
+  --bg2:#06463c;
+  --panel:#075d50;
+  --panel2:#0a7666;
+  --gold:#ffd84d;
+  --gold2:#f3a900;
+  --cyan:#5ff7df;
+  --text:#fff;
+  --muted:#b8e8df;
+  --shadow:0 10px 30px #001a1680;
 }
-*{box-sizing:border-box}
-html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif;background:
- radial-gradient(circle at 50% 15%,#0d6656 0,#063e36 35%,#021f1d 100%);color:var(--text)}
-button,input{font:inherit}
-button{cursor:pointer}
-#loader{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:#021e1b}
-.loader-box{text-align:center}
-.logo{width:82px;height:82px;border-radius:24px;margin:auto;display:grid;place-items:center;
- background:linear-gradient(145deg,#ffe56d,#f5a900);color:#07352e;font-weight:1000;font-size:26px;
- box-shadow:0 0 35px #f5c33a88}
-.loader-title{font-size:27px;font-weight:1000;margin-top:18px}
-.spinner{width:38px;height:38px;border:4px solid #ffffff33;border-top-color:var(--cyan);
- border-radius:50%;animation:spin 1s linear infinite;margin:18px auto}
-@keyframes spin{to{transform:rotate(360deg)}}
 
-#auth{min-height:100vh;display:none;place-items:center;padding:20px}
-.auth-card{width:min(430px,100%);background:linear-gradient(150deg,#0a6759,#063d36);
- border:1px solid #55e6cf55;border-radius:28px;padding:28px;box-shadow:var(--shadow)}
-.brand{display:flex;align-items:center;gap:12px;font-weight:1000;font-size:25px}
-.brand-mark{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;
- background:linear-gradient(145deg,#ffe26b,#ed9c00);color:#07352e}
-.auth-card h1{font-size:27px;margin:24px 0 8px}
-.auth-card p{color:var(--muted);line-height:1.5}
-.field{margin:14px 0}
-.field label{display:block;font-size:12px;font-weight:800;margin-bottom:7px;color:#d8fff8}
-.field input{width:100%;padding:14px;border-radius:13px;border:1px solid #8af6e033;
- background:#022f2a;color:white;outline:none}
-.field input:focus{border-color:var(--cyan)}
-.btn{border:0;border-radius:14px;padding:14px 18px;font-weight:1000}
-.btn-gold{width:100%;background:linear-gradient(#ffe66c,#f3a900);color:#163d34}
-.btn-ghost{background:#ffffff14;color:white;border:1px solid #ffffff1c}
-.auth-msg{min-height:20px;color:#ffe47c;font-size:12px;margin-top:10px}
+*{
+  box-sizing:border-box
+}
 
-#app{display:none;min-height:100vh;padding-bottom:82px}
-.topbar{position:sticky;top:0;z-index:20;height:76px;background:#032d29ee;backdrop-filter:blur(12px);
- display:flex;align-items:center;gap:10px;padding:9px 12px;border-bottom:1px solid #8cf5dc33}
-.avatar{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;background:#1c4d44;border:2px solid #f4c33b;font-size:22px}
-.user-name{font-weight:900;max-width:90px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.balance{margin-left:auto;display:flex;align-items:center;gap:8px;background:linear-gradient(180deg,#087565,#064c42);
- border:2px solid #d4b735;border-radius:28px;padding:8px 15px;font-size:20px;font-weight:1000}
-.coin{width:27px;height:27px;border-radius:50%;display:grid;place-items:center;background:#ffd52f;color:#725000;font-size:13px}
-.plus{width:28px;height:28px;border-radius:50%;border:0;background:#50e0bc;color:#063d34;font-weight:1000}
-.icon-btn{width:42px;height:42px;border-radius:13px;border:1px solid #ffffff1a;background:#ffffff0d;color:white;font-size:20px}
+html,body{
+  margin:0;
+  min-height:100%;
+  font-family:Arial,Helvetica,sans-serif;
+  background:
+  radial-gradient(circle at 50% 15%,#0d6656 0,#063e36 35%,#021f1d 100%);
+  color:var(--text)
+}
 
-.container{width:min(650px,100%);margin:auto;padding:10px 12px}
-.tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;background:#075b50;border:1px solid #64e8d033;
- border-radius:24px;padding:4px;margin:6px 0 12px}
-.tab{border:0;background:transparent;color:#c8f3ea;padding:10px 3px;border-radius:19px;font-size:11px;font-weight:900}
-.tab.active{background:linear-gradient(#19a98f,#06725f);color:#fff}
-.banner{border-radius:18px;background:linear-gradient(135deg,#0b745f,#063c34);border:2px solid #d5c040;
- padding:16px;box-shadow:var(--shadow);position:relative;overflow:hidden}
-.banner:after{content:"";position:absolute;width:150px;height:150px;border-radius:50%;right:-45px;top:-55px;
- background:#ffd83d33}
-.banner small{color:#80f3db;font-weight:900}
-.banner h2{margin:5px 0;font-size:27px}
-.banner strong{font-size:34px;color:#ffe04b}
-.banner p{margin:4px 0;color:#d6fff7;font-size:12px}
-.section-title{display:flex;justify-content:space-between;align-items:center;margin:16px 2px 10px}
-.section-title h3{margin:0;font-size:18px}
-.section-title span{font-size:11px;color:#9ee8dc}
-.games{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.game{position:relative;min-height:148px;border-radius:17px;overflow:hidden;border:2px solid #f1cb4a;
- background:linear-gradient(145deg,#173e36,#075c4d);box-shadow:0 7px 16px #001c1877}
-.game-art{height:104px;display:grid;place-items:center;font-size:48px;background:
- radial-gradient(circle,#28a88d55,#032b2733 65%)}
-.game-name{font-weight:1000;font-size:12px;padding:6px 8px;text-align:center}
-.hot{position:absolute;top:3px;left:4px;background:#ef4d28;color:#fff;font-size:10px;font-weight:1000;
- padding:4px 7px;border-radius:8px}
-.play{position:absolute;bottom:34px;right:5px;width:28px;height:28px;border:0;border-radius:50%;
- background:#2ae0ad;color:#06382f;font-weight:1000}
-.card{background:#075448;border:1px solid #73e8d033;border-radius:20px;padding:16px;margin-top:12px}
-.row{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.muted{color:#aee8de;font-size:12px}
-.promo-input{display:flex;gap:8px;margin-top:10px}
-.promo-input input{flex:1;min-width:0;background:#043a33;border:1px solid #7cebd244;border-radius:12px;padding:12px;color:white}
-.promo-input button{background:#ffd94d;color:#123d35;border:0;border-radius:12px;padding:0 16px;font-weight:1000}
-#promoMsg{font-size:12px;margin-top:8px;color:#ffe66a}
-.bottom{position:fixed;bottom:0;left:0;right:0;z-index:30;background:#032d29f5;border-top:1px solid #f2d34c55;
- display:grid;grid-template-columns:repeat(5,1fr);padding:7px 5px calc(7px + env(safe-area-inset-bottom));backdrop-filter:blur(12px)}
-.nav{border:0;background:none;color:#a8ddd4;font-size:10px;font-weight:900}.nav b{display:block;font-size:21px;margin-bottom:2px}
-.nav.active{color:#ffe15a}
-.modal{position:fixed;inset:0;z-index:100;background:#0009;display:none;place-items:center;padding:18px}
-.modal-box{width:min(520px,100%);max-height:88vh;overflow:auto;background:#06453d;border:1px solid #70ead433;border-radius:24px;padding:20px}
-.modal-box h2{margin-top:0}
-.close{float:right;border:0;background:#ffffff15;color:#fff;border-radius:10px;padding:7px 11px}
-.game-screen{text-align:center}
-.game-screen .big{font-size:80px;margin:20px 0}
-.result{font-size:25px;font-weight:1000;color:#ffe052;min-height:35px}
-@media(max-width:420px){.games{gap:7px}.game{min-height:138px}.game-art{height:96px}.balance{font-size:16px;padding:7px 10px}}
+button,input{
+  font:inherit
+}
+
+button{
+  cursor:pointer
+}
+
+/* LOADER */
+
+#loader{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:grid;
+  place-items:center;
+  background:#021e1b
+}
+
+.loader-box{
+  text-align:center
+}
+
+.logo{
+  width:82px;
+  height:82px;
+  border-radius:24px;
+  margin:auto;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(145deg,#ffe56d,#f5a900);
+  color:#07352e;
+  font-weight:1000;
+  font-size:26px;
+  box-shadow:0 0 35px #f5c33a88
+}
+
+.loader-title{
+  font-size:27px;
+  font-weight:1000;
+  margin-top:18px
+}
+
+.spinner{
+  width:38px;
+  height:38px;
+  border:4px solid #ffffff33;
+  border-top-color:var(--cyan);
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+  margin:18px auto
+}
+
+@keyframes spin{
+  to{
+    transform:rotate(360deg)
+  }
+}
+
+/* APP */
+
+#app{
+  display:none;
+  min-height:100vh;
+  padding-bottom:82px
+}
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:20;
+  height:76px;
+  background:#032d29ee;
+  backdrop-filter:blur(12px);
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:9px 12px;
+  border-bottom:1px solid #8cf5dc33
+}
+
+.avatar{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:#1c4d44;
+  border:2px solid #f4c33b;
+  font-size:22px
+}
+
+.user-name{
+  font-weight:900;
+  max-width:130px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis
+}
+
+.balance{
+  margin-left:auto;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  background:linear-gradient(180deg,#087565,#064c42);
+  border:2px solid #d4b735;
+  border-radius:28px;
+  padding:8px 15px;
+  font-size:20px;
+  font-weight:1000
+}
+
+.coin{
+  width:27px;
+  height:27px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:#ffd52f;
+  color:#725000;
+  font-size:13px
+}
+
+.plus{
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  border:0;
+  background:#50e0bc;
+  color:#063d34;
+  font-weight:1000
+}
+
+.icon-btn{
+  width:42px;
+  height:42px;
+  border-radius:13px;
+  border:1px solid #ffffff1a;
+  background:#ffffff0d;
+  color:white;
+  font-size:20px
+}
+
+.container{
+  width:min(650px,100%);
+  margin:auto;
+  padding:10px 12px
+}
+
+/* TABS */
+
+.tabs{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:4px;
+  background:#075b50;
+  border:1px solid #64e8d033;
+  border-radius:24px;
+  padding:4px;
+  margin:6px 0 12px
+}
+
+.tab{
+  border:0;
+  background:transparent;
+  color:#c8f3ea;
+  padding:10px 3px;
+  border-radius:19px;
+  font-size:11px;
+  font-weight:900
+}
+
+.tab.active{
+  background:linear-gradient(#19a98f,#06725f);
+  color:#fff
+}
+
+/* BANNER */
+
+.banner{
+  border-radius:18px;
+  background:linear-gradient(135deg,#0b745f,#063c34);
+  border:2px solid #d5c040;
+  padding:16px;
+  box-shadow:var(--shadow);
+  position:relative;
+  overflow:hidden
+}
+
+.banner:after{
+  content:"";
+  position:absolute;
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  right:-45px;
+  top:-55px;
+  background:#ffd83d33
+}
+
+.banner small{
+  color:#80f3db;
+  font-weight:900
+}
+
+.banner h2{
+  margin:5px 0;
+  font-size:27px
+}
+
+.banner strong{
+  font-size:34px;
+  color:#ffe04b
+}
+
+.banner p{
+  margin:4px 0;
+  color:#d6fff7;
+  font-size:12px
+}
+
+/* SECTION */
+
+.section-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:16px 2px 10px
+}
+
+.section-title h3{
+  margin:0;
+  font-size:18px
+}
+
+.section-title span{
+  font-size:11px;
+  color:#9ee8dc
+}
+
+/* GAMES */
+
+.games{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px
+}
+
+.game{
+  position:relative;
+  min-height:148px;
+  border-radius:17px;
+  overflow:hidden;
+  border:2px solid #f1cb4a;
+  background:linear-gradient(145deg,#173e36,#075c4d);
+  box-shadow:0 7px 16px #001c1877
+}
+
+.game-art{
+  height:104px;
+  display:grid;
+  place-items:center;
+  font-size:48px;
+  background:
+  radial-gradient(circle,#28a88d55,#032b2733 65%)
+}
+
+.game-name{
+  font-weight:1000;
+  font-size:12px;
+  padding:6px 8px;
+  text-align:center
+}
+
+.hot{
+  position:absolute;
+  top:3px;
+  left:4px;
+  background:#ef4d28;
+  color:#fff;
+  font-size:10px;
+  font-weight:1000;
+  padding:4px 7px;
+  border-radius:8px
+}
+
+.play{
+  position:absolute;
+  bottom:34px;
+  right:5px;
+  width:28px;
+  height:28px;
+  border:0;
+  border-radius:50%;
+  background:#2ae0ad;
+  color:#06382f;
+  font-weight:1000
+}
+
+/* CARDS */
+
+.card{
+  background:#075448;
+  border:1px solid #73e8d033;
+  border-radius:20px;
+  padding:16px;
+  margin-top:12px
+}
+
+.row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px
+}
+
+.muted{
+  color:#aee8de;
+  font-size:12px
+}
+
+.promo-input{
+  display:flex;
+  gap:8px;
+  margin-top:10px
+}
+
+.promo-input input{
+  flex:1;
+  min-width:0;
+  background:#043a33;
+  border:1px solid #7cebd244;
+  border-radius:12px;
+  padding:12px;
+  color:white
+}
+
+.promo-input button{
+  background:#ffd94d;
+  color:#123d35;
+  border:0;
+  border-radius:12px;
+  padding:0 16px;
+  font-weight:1000
+}
+
+#promoMsg{
+  font-size:12px;
+  margin-top:8px;
+  color:#ffe66a
+}
+
+/* BOTTOM NAV */
+
+.bottom{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  z-index:30;
+  background:#032d29f5;
+  border-top:1px solid #f2d34c55;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  padding:7px 5px calc(7px + env(safe-area-inset-bottom));
+  backdrop-filter:blur(12px)
+}
+
+.nav{
+  border:0;
+  background:none;
+  color:#a8ddd4;
+  font-size:10px;
+  font-weight:900
+}
+
+.nav b{
+  display:block;
+  font-size:21px;
+  margin-bottom:2px
+}
+
+.nav.active{
+  color:#ffe15a
+}
+
+/* MODALS */
+
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  background:#0009;
+  display:none;
+  place-items:center;
+  padding:18px
+}
+
+.modal-box{
+  width:min(520px,100%);
+  max-height:88vh;
+  overflow:auto;
+  background:#06453d;
+  border:1px solid #70ead433;
+  border-radius:24px;
+  padding:20px
+}
+
+.modal-box h2{
+  margin-top:0
+}
+
+.close{
+  float:right;
+  border:0;
+  background:#ffffff15;
+  color:#fff;
+  border-radius:10px;
+  padding:7px 11px
+}
+
+.game-screen{
+  text-align:center
+}
+
+.game-screen .big{
+  font-size:80px;
+  margin:20px 0
+}
+
+.result{
+  font-size:22px;
+  font-weight:1000;
+  color:#ffe052;
+  min-height:35px
+}
+
+.btn{
+  border:0;
+  border-radius:14px;
+  padding:14px 18px;
+  font-weight:1000
+}
+
+.btn-gold{
+  width:100%;
+  background:linear-gradient(#ffe66c,#f3a900);
+  color:#163d34
+}
+
+.btn-ghost{
+  background:#ffffff14;
+  color:white;
+  border:1px solid #ffffff1c
+}
+
+@media(max-width:420px){
+  .games{
+    gap:7px
+  }
+
+  .game{
+    min-height:138px
+  }
+
+  .game-art{
+    height:96px
+  }
+
+  .balance{
+    font-size:16px;
+    padding:7px 10px
+  }
+
+  .user-name{
+    max-width:90px
+  }
+}
 </style>
 </head>
+
 <body>
+
+<!-- LOADER -->
 
 <div id="loader">
   <div class="loader-box">
@@ -114,51 +529,18 @@ button{cursor:pointer}
   </div>
 </div>
 
-<section id="auth">
-  <div class="auth-card">
-    <div class="brand">
-      <div class="brand-mark">ZP</div> ZeeshanPlayzone-
-    </div>
 
-    <h1>Welcome back</h1>
-
-    <p>Sign in with your mobile number. A real OTP can be sent when an SMS provider is configured on the server.</p>
-
-    <div class="field">
-      <label>NAME</label>
-      <input id="name" maxlength="40" placeholder="Your name">
-    </div>
-
-    <div class="field">
-      <label>MOBILE</label>
-      <input id="mobile" inputmode="tel" maxlength="15" placeholder="+91 9876543210">
-    </div>
-
-    <div class="field">
-      <label>PASSWORD</label>
-      <input id="password" type="password" maxlength="72" placeholder="Create or enter password">
-    </div>
-
-    <button class="btn btn-gold" id="sendOtp">SEND OTP</button>
-
-    <div id="otpArea" style="display:none">
-      <div class="field">
-        <label>OTP</label>
-        <input id="otp" inputmode="numeric" maxlength="6" placeholder="6-digit OTP">
-      </div>
-
-      <button class="btn btn-gold" id="verifyOtp">VERIFY & ENTER</button>
-    </div>
-
-    <div class="auth-msg" id="authMsg"></div>
-  </div>
-</section>
+<!-- MAIN APP -->
 
 <main id="app">
 
 <header class="topbar">
+
   <div class="avatar">🎮</div>
-  <div class="user-name" id="displayName">Player</div>
+
+  <div class="user-name" id="displayName">
+    Player
+  </div>
 
   <div class="balance">
     <span class="coin">★</span>
@@ -166,53 +548,135 @@ button{cursor:pointer}
     <button class="plus" id="bonusBtn">+</button>
   </div>
 
-  <button class="icon-btn" id="profileBtn">⚙</button>
+  <button class="icon-btn" id="profileBtn">
+    ⚙
+  </button>
+
 </header>
+
 
 <div class="container">
 
+  <!-- CATEGORY TABS -->
+
   <div class="tabs">
-    <button class="tab active" data-filter="all">❤️<br>ALL</button>
-    <button class="tab" data-filter="slots">🎰<br>SLOTS</button>
-    <button class="tab" data-filter="arcade">🚀<br>ARCADE</button>
-    <button class="tab" data-filter="lucky">🎡<br>LUCKY</button>
-    <button class="tab" data-filter="cards">🃏<br>CARDS</button>
+
+    <button class="tab active" data-filter="all">
+      ❤️<br>ALL
+    </button>
+
+    <button class="tab" data-filter="slots">
+      🎰<br>SLOTS
+    </button>
+
+    <button class="tab" data-filter="arcade">
+      🚀<br>ARCADE
+    </button>
+
+    <button class="tab" data-filter="lucky">
+      🎡<br>LUCKY
+    </button>
+
+    <button class="tab" data-filter="cards">
+      🃏<br>CARDS
+    </button>
+
   </div>
+
+
+  <!-- BANNER -->
 
   <section class="banner">
-    <small>✦ ZEESHANPLAYZONE- LIVE</small>
-    <h2>DAILY GAME CHALLENGE</h2>
-    <strong id="challenge">1,000</strong> <span>FREE COINS</span>
-    <p>Virtual coins only • No cash wagering • Fair random game outcomes</p>
+
+    <small>
+      ✦ ZEESHANPLAYZONE- LIVE
+    </small>
+
+    <h2>
+      DAILY GAME CHALLENGE
+    </h2>
+
+    <strong id="challenge">
+      1,000
+    </strong>
+
+    <span>
+      FREE COINS
+    </span>
+
+    <p>
+      Virtual coins only • No cash wagering
+    </p>
+
   </section>
 
+
+  <!-- GAMES -->
+
   <div class="section-title">
-    <h3>⭐ FAVORITE</h3>
-    <span>SEE ALL ›</span>
+    <h3>
+      ⭐ FAVORITE
+    </h3>
+
+    <span>
+      SEE ALL ›
+    </span>
   </div>
+
 
   <div class="games" id="games"></div>
 
+
+  <!-- PROMO -->
+
   <div class="card">
+
     <div class="row">
+
       <div>
-        <b>🎟️ Promo Code</b>
-        <div class="muted">Use your code for virtual bonus coins.</div>
+        <b>
+          🎟️ Promo Code
+        </b>
+
+        <div class="muted">
+          Use your code for virtual bonus coins.
+        </div>
       </div>
+
     </div>
 
     <div class="promo-input">
-      <input id="promo" placeholder="Enter promo code">
-      <button id="claimPromo">CLAIM</button>
+
+      <input
+        id="promo"
+        placeholder="Enter promo code"
+      >
+
+      <button id="claimPromo">
+        CLAIM
+      </button>
+
     </div>
 
     <div id="promoMsg"></div>
+
   </div>
 
+
+  <!-- LEADERBOARD -->
+
   <div class="card">
+
     <div class="row">
-      <b>🏆 Leaderboard</b>
-      <span class="muted">This week</span>
+
+      <b>
+        🏆 Leaderboard
+      </b>
+
+      <span class="muted">
+        This week
+      </span>
+
     </div>
 
     <p class="muted">
@@ -220,365 +684,595 @@ button{cursor:pointer}
       2. Lucky Star — 7,915 coins<br>
       3. Game Master — 7,210 coins
     </p>
+
   </div>
 
 </div>
 
+
+<!-- BOTTOM NAV -->
+
 <nav class="bottom">
-  <button class="nav" data-page="bank"><b>🏦</b>Bank</button>
-  <button class="nav active" data-page="game"><b>🎰</b>Game</button>
-  <button class="nav" data-page="lucky"><b>🎡</b>Lucky Wheel</button>
-  <button class="nav" data-page="refer"><b>🔗</b>Refer & Earn</button>
-  <button class="nav" data-page="events"><b>🎁</b>Events</button>
+
+  <button class="nav" data-page="bank">
+    <b>🏦</b>
+    Bank
+  </button>
+
+  <button class="nav active" data-page="game">
+    <b>🎰</b>
+    Game
+  </button>
+
+  <button class="nav" data-page="lucky">
+    <b>🎡</b>
+    Lucky Wheel
+  </button>
+
+  <button class="nav" data-page="refer">
+    <b>🔗</b>
+    Refer & Earn
+  </button>
+
+  <button class="nav" data-page="events">
+    <b>🎁</b>
+    Events
+  </button>
+
 </nav>
 
 </main>
 
+
+<!-- GAME MODAL -->
+
 <div class="modal" id="gameModal">
+
   <div class="modal-box game-screen">
-    <button class="close" data-close="gameModal">✕</button>
 
-    <h2 id="modalTitle">Game</h2>
+    <button
+      class="close"
+      data-close="gameModal"
+    >
+      ✕
+    </button>
 
-    <div class="big" id="modalEmoji">🎰</div>
+    <h2 id="modalTitle">
+      Game
+    </h2>
 
-    <div class="result" id="result"></div>
+    <div
+      class="big"
+      id="modalEmoji"
+    >
+      🎮
+    </div>
+
+    <div
+      class="result"
+      id="result"
+    ></div>
 
     <p class="muted">
-      This is a virtual-coin game. Outcomes are generated randomly and are not connected to real-money wagering.
+      Welcome to ZeeshanPlayzone-. This is a virtual game demo.
     </p>
 
-    <button class="btn btn-gold" id="playRound">PLAY ROUND</button>
+    <button
+      class="btn btn-gold"
+      id="closeGame"
+    >
+      CLOSE
+    </button>
+
   </div>
+
 </div>
 
+
+<!-- PROFILE MODAL -->
+
 <div class="modal" id="profileModal">
+
   <div class="modal-box">
 
-    <button class="close" data-close="profileModal">✕</button>
+    <button
+      class="close"
+      data-close="profileModal"
+    >
+      ✕
+    </button>
 
-    <h2>Profile</h2>
+    <h2>
+      Profile
+    </h2>
 
-    <p>Player: <b id="profileName">Player</b></p>
+    <p>
+      Player:
+      <b id="profileName">
+        Player
+      </b>
+    </p>
 
     <p class="muted">
       Virtual balance:
-      <b id="profileBalance">0</b> coins
+      <b id="profileBalance">
+        1000
+      </b>
+      coins
     </p>
 
-    <button class="btn btn-ghost" id="logout">LOG OUT</button>
+    <button
+      class="btn btn-ghost"
+      id="closeProfile"
+    >
+      CLOSE
+    </button>
 
   </div>
+
 </div>
 
+
 <script>
-const games=[
- {name:"Gems Fortune",emoji:"💎",type:"slots",hot:true},
- {name:"Dragon Kingdom",emoji:"🐉",type:"slots",hot:true},
- {name:"Ace Super",emoji:"🃏",type:"cards",hot:true},
- {name:"Super 777",emoji:"7️⃣",type:"slots",hot:true},
- {name:"Golden Temple",emoji:"🏛️",type:"arcade",hot:true},
- {name:"Queen Fortune",emoji:"👑",type:"slots",hot:true},
- {name:"The Crypt",emoji:"💀",type:"arcade",new:true},
- {name:"Night Hunting",emoji:"🌙",type:"arcade",hot:true},
- {name:"Jungle Delight",emoji:"🐯",type:"arcade",hot:true},
- {name:"Jackpot Fishing",emoji:"🦈",type:"lucky"},
- {name:"Chicken Road",emoji:"🐔",type:"arcade",hot:true},
- {name:"Very Lucky",emoji:"🍀",type:"lucky",hot:true}
+
+/* GAME DATA */
+
+const games = [
+
+  {
+    name:"Gems Fortune",
+    emoji:"💎",
+    type:"slots",
+    hot:true
+  },
+
+  {
+    name:"Dragon Kingdom",
+    emoji:"🐉",
+    type:"slots",
+    hot:true
+  },
+
+  {
+    name:"Ace Super",
+    emoji:"🃏",
+    type:"cards",
+    hot:true
+  },
+
+  {
+    name:"Super 777",
+    emoji:"7️⃣",
+    type:"slots",
+    hot:true
+  },
+
+  {
+    name:"Golden Temple",
+    emoji:"🏛️",
+    type:"arcade",
+    hot:true
+  },
+
+  {
+    name:"Queen Fortune",
+    emoji:"👑",
+    type:"slots",
+    hot:true
+  },
+
+  {
+    name:"The Crypt",
+    emoji:"💀",
+    type:"arcade",
+    new:true
+  },
+
+  {
+    name:"Night Hunting",
+    emoji:"🌙",
+    type:"arcade",
+    hot:true
+  },
+
+  {
+    name:"Jungle Delight",
+    emoji:"🐯",
+    type:"arcade",
+    hot:true
+  },
+
+  {
+    name:"Jackpot Fishing",
+    emoji:"🦈",
+    type:"lucky"
+  },
+
+  {
+    name:"Chicken Road",
+    emoji:"🐔",
+    type:"arcade",
+    hot:true
+  },
+
+  {
+    name:"Very Lucky",
+    emoji:"🍀",
+    type:"lucky",
+    hot:true
+  }
+
 ];
 
-let currentGame=null;
-let balance=1000;
-let filter="all";
 
-const $=id=>document.getElementById(id);
+let currentGame = null;
+let balance = 1000;
+let filter = "all";
+
+const $ = id =>
+  document.getElementById(id);
+
+
+/* RENDER GAMES */
 
 function renderGames(){
-  $("games").innerHTML=games
-    .filter(g=>filter==="all"||g.type===filter)
-    .map((g,i)=>`
-      <article class="game" data-i="${i}">
-        ${g.hot?'<span class="hot">HOT</span>':''}
-        ${g.new?'<span class="hot">NEW</span>':''}
-        <div class="game-art">${g.emoji}</div>
-        <div class="game-name">${g.name}</div>
-        <button class="play">▶</button>
-      </article>
-    `)
-    .join("");
 
-  document.querySelectorAll(".game").forEach(el=>{
-    el.onclick=()=>openGame(games[+el.dataset.i]);
-  });
+  $("games").innerHTML =
+    games
+      .filter(
+        g =>
+          filter === "all" ||
+          g.type === filter
+      )
+      .map(
+        g => `
+
+          <article class="game">
+
+            ${
+              g.hot
+                ? '<span class="hot">HOT</span>'
+                : ''
+            }
+
+            ${
+              g.new
+                ? '<span class="hot">NEW</span>'
+                : ''
+            }
+
+            <div class="game-art">
+              ${g.emoji}
+            </div>
+
+            <div class="game-name">
+              ${g.name}
+            </div>
+
+            <button
+              class="play"
+              type="button"
+            >
+              ▶
+            </button>
+
+          </article>
+
+        `
+      )
+      .join("");
+
+
+  document
+    .querySelectorAll(".game")
+    .forEach(
+      (element,index) => {
+
+        element.onclick = () =>
+          openGame(
+            games.filter(
+              g =>
+                filter === "all" ||
+                g.type === filter
+            )[index]
+          );
+
+      }
+    );
 }
 
-function openGame(g){
-  currentGame=g;
-  $("modalTitle").textContent=g.name;
-  $("modalEmoji").textContent=g.emoji;
-  $("result").textContent="";
-  $("gameModal").style.display="grid";
+
+/* OPEN GAME */
+
+function openGame(game){
+
+  currentGame = game;
+
+  $("modalTitle").textContent =
+    game.name;
+
+  $("modalEmoji").textContent =
+    game.emoji;
+
+  $("result").textContent =
+    "Ready to explore";
+
+  $("gameModal").style.display =
+    "grid";
 }
 
-function setBalance(v){
-  balance=Math.max(0,v);
-  $("balance").textContent=balance.toLocaleString();
-  $("profileBalance").textContent=balance.toLocaleString();
+
+/* BALANCE */
+
+function setBalance(value){
+
+  balance =
+    Math.max(0,value);
+
+  $("balance").textContent =
+    balance.toLocaleString();
+
+  $("profileBalance").textContent =
+    balance.toLocaleString();
+
 }
 
-function showApp(){
-  $("auth").style.display="none";
-  $("app").style.display="block";
 
-  $("displayName").textContent=
-    localStorage.getItem("sm_name")||"Player";
-
-  $("profileName").textContent=
-    $("displayName").textContent;
-
-  renderGames();
-
-  setBalance(
-    Number(
-      localStorage.getItem("sm_balance")||1000
-    )
-  );
-}
+/* SAVE */
 
 function save(){
+
   localStorage.setItem(
-    "sm_balance",
+    "zp_balance",
     balance
   );
 
-  localStorage.setItem(
-    "sm_name",
-    $("displayName").textContent
-  );
 }
 
-function authMsg(t){
-  $("authMsg").textContent=t;
-}
 
-window.addEventListener("load",()=>{
-  setTimeout(()=>{
-    $("loader").style.display="none";
+/* INITIALIZE */
 
-    if(localStorage.getItem("sm_session")){
-      showApp();
-    }else{
-      $("auth").style.display="grid";
+window.addEventListener(
+  "load",
+  () => {
+
+    setTimeout(
+      () => {
+
+        $("loader").style.display =
+          "none";
+
+        $("app").style.display =
+          "block";
+
+        const savedBalance =
+          Number(
+            localStorage.getItem(
+              "zp_balance"
+            ) || 1000
+          );
+
+        setBalance(
+          savedBalance
+        );
+
+        renderGames();
+
+      },
+      700
+    );
+
+  }
+);
+
+
+/* CATEGORY FILTER */
+
+document
+  .querySelectorAll(".tab")
+  .forEach(
+    button => {
+
+      button.onclick = () => {
+
+        document
+          .querySelectorAll(".tab")
+          .forEach(
+            item =>
+              item.classList.remove(
+                "active"
+              )
+          );
+
+        button.classList.add(
+          "active"
+        );
+
+        filter =
+          button.dataset.filter;
+
+        renderGames();
+
+      };
+
     }
-  },700);
-});
-
-$("sendOtp").onclick=async()=>{
-  const name=$("name").value.trim();
-  const mobile=$("mobile").value.trim();
-  const password=$("password").value;
-
-  if(
-    !name||
-    !mobile||
-    password.length<8
-  ){
-    return authMsg(
-      "Enter your name, mobile number and a password of at least 8 characters."
-    );
-  }
-
-  authMsg("Sending OTP…");
-
-  try{
-    const r=await fetch(
-      "/api/auth/request-otp",
-      {
-        method:"POST",
-        headers:{
-          "Content-Type":"application/json"
-        },
-        body:JSON.stringify({
-          name,
-          mobile,
-          password
-        })
-      }
-    );
-
-    const d=await r.json();
-
-    if(!r.ok){
-      throw new Error(
-        d.error||"Unable to send OTP"
-      );
-    }
-
-    $("otpArea").style.display="block";
-
-    authMsg(
-      d.message||"OTP sent."
-    );
-
-  }catch(e){
-    authMsg(e.message);
-  }
-};
-
-$("verifyOtp").onclick=async()=>{
-  try{
-    const r=await fetch(
-      "/api/auth/verify-otp",
-      {
-        method:"POST",
-        headers:{
-          "Content-Type":"application/json"
-        },
-        body:JSON.stringify({
-          mobile:$("mobile").value.trim(),
-          otp:$("otp").value.trim()
-        })
-      }
-    );
-
-    const d=await r.json();
-
-    if(!r.ok){
-      throw new Error(
-        d.error||"OTP verification failed"
-      );
-    }
-
-    localStorage.setItem(
-      "sm_session",
-      d.session
-    );
-
-    localStorage.setItem(
-      "sm_name",
-      d.name
-    );
-
-    showApp();
-
-  }catch(e){
-    authMsg(e.message);
-  }
-};
-
-$("claimPromo").onclick=async()=>{
-  if(
-    $("promo").value
-      .trim()
-      .toUpperCase()!=="ZEESHAN10"
-  ){
-    return $("promoMsg").textContent=
-      "Invalid promo code.";
-  }
-
-  if(
-    localStorage.getItem("sm_promo")
-  ){
-    return $("promoMsg").textContent=
-      "Promo already claimed.";
-  }
-
-  balance+=1000;
-
-  localStorage.setItem(
-    "sm_promo",
-    "1"
   );
 
-  setBalance(balance);
-  save();
 
-  $("promoMsg").textContent=
-    "ZEESHAN10 applied: +1,000 virtual coins!";
-};
+/* BONUS */
 
-$("playRound").onclick=()=>{
-  if(balance<10){
-    $("result").textContent=
-      "Not enough virtual coins.";
-    return;
-  }
+$("bonusBtn").onclick = () => {
 
-  balance-=10;
+  balance += 50;
 
-  const win=Math.random()<0.5;
+  setBalance(
+    balance
+  );
 
-  if(win){
-    balance+=20;
-    $("result").textContent=
-      "🎉 You won 20 virtual coins!";
-  }else{
-    $("result").textContent=
-      "Try again — 10 virtual coins used.";
-  }
-
-  setBalance(balance);
-  save();
-};
-
-document.querySelectorAll(".tab").forEach(b=>{
-  b.onclick=()=>{
-    document
-      .querySelectorAll(".tab")
-      .forEach(x=>x.classList.remove("active"));
-
-    b.classList.add("active");
-
-    filter=b.dataset.filter;
-
-    renderGames();
-  };
-});
-
-$("bonusBtn").onclick=()=>{
-  balance+=50;
-
-  setBalance(balance);
   save();
 
   alert(
     "+50 virtual coins added!"
   );
+
 };
 
-$("profileBtn").onclick=()=>{
-  $("profileBalance").textContent=
+
+/* PROFILE */
+
+$("profileBtn").onclick = () => {
+
+  $("profileName").textContent =
+    $("displayName").textContent;
+
+  $("profileBalance").textContent =
     balance.toLocaleString();
 
-  $("profileModal").style.display="grid";
+  $("profileModal").style.display =
+    "grid";
+
 };
 
-$("logout").onclick=()=>{
-  localStorage.removeItem(
-    "sm_session"
+
+/* CLOSE GAME */
+
+$("closeGame").onclick = () => {
+
+  $("gameModal").style.display =
+    "none";
+
+};
+
+
+/* CLOSE PROFILE */
+
+$("closeProfile").onclick = () => {
+
+  $("profileModal").style.display =
+    "none";
+
+};
+
+
+/* MODAL CLOSE BUTTONS */
+
+document
+  .querySelectorAll("[data-close]")
+  .forEach(
+    button => {
+
+      button.onclick = () => {
+
+        const modal =
+          $(button.dataset.close);
+
+        modal.style.display =
+          "none";
+
+      };
+
+    }
   );
 
-  $("app").style.display="none";
-  $("profileModal").style.display="none";
-  $("auth").style.display="grid";
+
+/* PROMO */
+
+$("claimPromo").onclick = () => {
+
+  const code =
+    $("promo")
+      .value
+      .trim()
+      .toUpperCase();
+
+  if(code !== "ZEESHAN10"){
+
+    $("promoMsg").textContent =
+      "Invalid promo code.";
+
+    return;
+
+  }
+
+
+  if(
+    localStorage.getItem(
+      "zp_promo"
+    )
+  ){
+
+    $("promoMsg").textContent =
+      "Promo already claimed.";
+
+    return;
+
+  }
+
+
+  balance += 1000;
+
+  localStorage.setItem(
+    "zp_promo",
+    "1"
+  );
+
+  setBalance(
+    balance
+  );
+
+  save();
+
+  $("promoMsg").textContent =
+    "ZEESHAN10 applied: +1,000 virtual coins!";
+
 };
 
-document.querySelectorAll("[data-close]")
-.forEach(b=>{
-  b.onclick=()=>
-    $(b.dataset.close).style.display="none";
-});
 
-document.querySelectorAll(".nav")
-.forEach(b=>{
-  b.onclick=()=>{
-    alert(
-      b.dataset.page==="bank"
-        ? "Bank is virtual-coin only in this version."
-        : "Section: "+b.dataset.page
-    );
-  };
-});
+/* BOTTOM NAV */
+
+document
+  .querySelectorAll(".nav")
+  .forEach(
+    button => {
+
+      button.onclick = () => {
+
+        document
+          .querySelectorAll(".nav")
+          .forEach(
+            item =>
+              item.classList.remove(
+                "active"
+              )
+          );
+
+        button.classList.add(
+          "active"
+        );
+
+        const page =
+          button.dataset.page;
+
+        if(page === "game"){
+
+          window.scrollTo({
+            top:0,
+            behavior:"smooth"
+          });
+
+        }else{
+
+          alert(
+            "Section: " + page
+          );
+
+        }
+
+      };
+
+    }
+  );
+
 </script>
 
 </body>
